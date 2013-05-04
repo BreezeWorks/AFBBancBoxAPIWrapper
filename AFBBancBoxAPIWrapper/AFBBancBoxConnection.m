@@ -30,12 +30,12 @@
 static NSString * const BANCBOX_BASE_URL_PRODUCTION = @"https://api.bancbox.com/v1/BBXPortRest/";
 static NSString * const BANCBOX_BASE_URL_SANDBOX = @"https://sandbox-api.bancbox.com/v1/BBXPortRest/";
 
+// Set the following as appropriate for sandbox or production use
+#define BANCBOX_SELECTED_SERVER_BASE_URL BANCBOX_BASE_URL_SANDBOX
+
 // Internal error responses
 static NSString * const kBancBoxErrorCodeBadClientStatus = @"AFB-BB-001";
 static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is not one of: 'ACTIVE', 'INACTIVE', 'SUSPENDED','DELETED'";
-
-// Set the following as appropriate for sandbox or production use
-#define BANCBOX_SELECTED_SERVER_BASE_URL BANCBOX_BASE_URL_SANDBOX
 
 @implementation AFBBancBoxConnection
 

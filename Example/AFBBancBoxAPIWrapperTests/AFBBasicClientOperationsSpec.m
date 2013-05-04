@@ -142,7 +142,7 @@ describe(@"The BancBox wrapper", ^{
         }];
         
         it(@"should update the client's status to VERIFIED", ^{
-            [[expectFutureValue(updatedClient.cipStatus) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:BancBoxClientCipStatusVerified];
+            [[expectFutureValue(updatedClient.cipStatus) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:BancBoxClientCipStatusVerified];      // this will only pass in production
         });
         
         POLL(getClientDone);

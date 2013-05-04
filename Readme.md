@@ -27,7 +27,9 @@ The BancBox authentication information (API key, API secret, and subscriber ID) 
 #define BANCBOX_SUBSCRIBER_ID 000000
 ```
 
-To use the library, at a minimum you will need to import AFBBancBoxConnection.h; import other headers as needed for access to the wrapper classes for clients, account, payments, and so on.
+To use the library, at a minimum you will need to import __AFBBancBoxConnection.h__; import other headers as needed for access to the wrapper classes for clients, account, payments, and so on.
+
+The library is set to use the BancBox sandbox server by default. To run these tests against the product server (careful!), change the define line near the top of __AFBBancBoxConnection.h__.
 
 # Contributors #
 AFBBancBoxAPIWrapper was written by Adam Block.
