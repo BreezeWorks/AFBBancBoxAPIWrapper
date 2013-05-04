@@ -27,10 +27,6 @@
 #import "AFBBancBoxAccountActivity.h"
 #import "AFBBancBoxPrivateAuthenticationItems.h"
 
-static NSString * const BANCBOX_API_KEY = @"";      // replace with your BancBox API key
-static NSString * const BANCBOX_API_SECRET = @"";       // replace with your BancBox API secret
-NSInteger const BANCBOX_SUBSCRIBER_ID = 0;     // replace with your BancBox subscriber ID
-
 static NSString * const BANCBOX_BASE_URL_PRODUCTION = @"https://api.bancbox.com/v1/BBXPortRest/";
 static NSString * const BANCBOX_BASE_URL_SANDBOX = @"https://sandbox-api.bancbox.com/v1/BBXPortRest/";
 
