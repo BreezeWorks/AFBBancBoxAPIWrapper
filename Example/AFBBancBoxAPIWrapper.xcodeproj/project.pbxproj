@@ -1,0 +1,784 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F94AD3DF1733394B00160A31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3DE1733394B00160A31 /* UIKit.framework */; };
+		F94AD3E11733394B00160A31 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3E01733394B00160A31 /* Foundation.framework */; };
+		F94AD3E31733394B00160A31 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3E21733394B00160A31 /* CoreGraphics.framework */; };
+		F94AD3E91733394B00160A31 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F94AD3E71733394B00160A31 /* InfoPlist.strings */; };
+		F94AD3EB1733394B00160A31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F94AD3EA1733394B00160A31 /* main.m */; };
+		F94AD3EF1733394B00160A31 /* AFBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F94AD3EE1733394B00160A31 /* AFBAppDelegate.m */; };
+		F94AD3F11733394B00160A31 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F94AD3F01733394B00160A31 /* Default.png */; };
+		F94AD3F31733394B00160A31 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F94AD3F21733394B00160A31 /* Default@2x.png */; };
+		F94AD3F51733394B00160A31 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F94AD3F41733394B00160A31 /* Default-568h@2x.png */; };
+		F94AD3FD1733394B00160A31 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3FC1733394B00160A31 /* SenTestingKit.framework */; };
+		F94AD3FE1733394B00160A31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3DE1733394B00160A31 /* UIKit.framework */; };
+		F94AD3FF1733394B00160A31 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3E01733394B00160A31 /* Foundation.framework */; };
+		F94AD4071733394B00160A31 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F94AD4051733394B00160A31 /* InfoPlist.strings */; };
+		F9F548DE173339C00032F86D /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548CC173339C00032F86D /* AFHTTPClient.m */; };
+		F9F548DF173339C00032F86D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548CE173339C00032F86D /* AFHTTPRequestOperation.m */; };
+		F9F548E0173339C00032F86D /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548D0173339C00032F86D /* AFImageRequestOperation.m */; };
+		F9F548E1173339C00032F86D /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548D2173339C00032F86D /* AFJSONRequestOperation.m */; };
+		F9F548E2173339C00032F86D /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548D4173339C00032F86D /* AFNetworkActivityIndicatorManager.m */; };
+		F9F548E3173339C00032F86D /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548D7173339C00032F86D /* AFPropertyListRequestOperation.m */; };
+		F9F548E4173339C00032F86D /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548D9173339C00032F86D /* AFURLConnectionOperation.m */; };
+		F9F548E5173339C00032F86D /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548DB173339C00032F86D /* AFXMLRequestOperation.m */; };
+		F9F548E6173339C00032F86D /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548DD173339C00032F86D /* UIImageView+AFNetworking.m */; };
+		F9F54917173339D20032F86D /* AFBBancBoxAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548E8173339D20032F86D /* AFBBancBoxAccount.m */; };
+		F9F54918173339D20032F86D /* AFBBancBoxAccountActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548EA173339D20032F86D /* AFBBancBoxAccountActivity.m */; };
+		F9F54919173339D20032F86D /* AFBBancBoxClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548EC173339D20032F86D /* AFBBancBoxClient.m */; };
+		F9F5491A173339D20032F86D /* AFBBancBoxConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548EE173339D20032F86D /* AFBBancBoxConnection.m */; };
+		F9F5491B173339D20032F86D /* AFBBancBoxExternalAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548F0173339D20032F86D /* AFBBancBoxExternalAccount.m */; };
+		F9F5491C173339D20032F86D /* AFBBancBoxExternalAccountBank.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548F2173339D20032F86D /* AFBBancBoxExternalAccountBank.m */; };
+		F9F5491D173339D20032F86D /* AFBBancBoxExternalAccountCard.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548F4173339D20032F86D /* AFBBancBoxExternalAccountCard.m */; };
+		F9F5491E173339D20032F86D /* AFBBancBoxExternalAccountCardCredit.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548F6173339D20032F86D /* AFBBancBoxExternalAccountCardCredit.m */; };
+		F9F5491F173339D20032F86D /* AFBBancBoxExternalAccountCardDebit.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548F8173339D20032F86D /* AFBBancBoxExternalAccountCardDebit.m */; };
+		F9F54920173339D20032F86D /* AFBBancBoxExternalAccountCardGift.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548FA173339D20032F86D /* AFBBancBoxExternalAccountCardGift.m */; };
+		F9F54921173339D20032F86D /* AFBBancBoxExternalAccountPaypal.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548FC173339D20032F86D /* AFBBancBoxExternalAccountPaypal.m */; };
+		F9F54922173339D20032F86D /* AFBBancBoxInternalAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548FE173339D20032F86D /* AFBBancBoxInternalAccount.m */; };
+		F9F54923173339D20032F86D /* AFBBancBoxLinkedExternalAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54900173339D20032F86D /* AFBBancBoxLinkedExternalAccount.m */; };
+		F9F54924173339D20032F86D /* AFBBancBoxPayee.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54902173339D20032F86D /* AFBBancBoxPayee.m */; };
+		F9F54925173339D20032F86D /* AFBBancBoxPayeeACH.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54904173339D20032F86D /* AFBBancBoxPayeeACH.m */; };
+		F9F54926173339D20032F86D /* AFBBancBoxPayeeBancBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54906173339D20032F86D /* AFBBancBoxPayeeBancBox.m */; };
+		F9F54927173339D20032F86D /* AFBBancBoxPayeeCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54908173339D20032F86D /* AFBBancBoxPayeeCheck.m */; };
+		F9F54928173339D20032F86D /* AFBBancBoxPayeePayPal.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F5490A173339D20032F86D /* AFBBancBoxPayeePayPal.m */; };
+		F9F54929173339D20032F86D /* AFBBancBoxPaymentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F5490C173339D20032F86D /* AFBBancBoxPaymentItem.m */; };
+		F9F5492A173339D20032F86D /* AFBBancBoxPaymentItemStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F5490E173339D20032F86D /* AFBBancBoxPaymentItemStatus.m */; };
+		F9F5492B173339D20032F86D /* AFBBancBoxResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54910173339D20032F86D /* AFBBancBoxResponse.m */; };
+		F9F5492C173339D20032F86D /* AFBBancBoxSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54912173339D20032F86D /* AFBBancBoxSchedule.m */; };
+		F9F5492D173339D20032F86D /* AFBBancBoxVerificationAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54914173339D20032F86D /* AFBBancBoxVerificationAnswer.m */; };
+		F9F5492E173339D20032F86D /* AFBBancBoxVerificationQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54916173339D20032F86D /* AFBBancBoxVerificationQuestion.m */; };
+		F9F54C0A17333FEA0032F86D /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F54C0217333F980032F86D /* libKiwi.a */; };
+		F9F54C0F1733584D0032F86D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F54C0E1733584D0032F86D /* MobileCoreServices.framework */; };
+		F9F54C11173358530032F86D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F54C10173358530032F86D /* SystemConfiguration.framework */; };
+		F9F54C12173359200032F86D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F54C0E1733584D0032F86D /* MobileCoreServices.framework */; };
+		F9F54C13173359200032F86D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F54C10173358530032F86D /* SystemConfiguration.framework */; };
+		F9F54C1517340DAF0032F86D /* AFBBasicClientOperationsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54C1417340DAF0032F86D /* AFBBasicClientOperationsSpec.m */; };
+		F9F54C171734151F0032F86D /* AFBBancBoxSpecValidEnumerationMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54C161734151F0032F86D /* AFBBancBoxSpecValidEnumerationMatcher.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F94AD4001733394B00160A31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F94AD3D31733394B00160A31 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F94AD3DA1733394B00160A31;
+			remoteInfo = AFBBancBoxAPIWrapper;
+		};
+		F9F54C0117333F980032F86D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9F54BFA17333F970032F86D /* Kiwi.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F5015B9F11583A77002E9A98;
+			remoteInfo = Kiwi;
+		};
+		F9F54C0317333F980032F86D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9F54BFA17333F970032F86D /* Kiwi.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 832C83C7157263B300F160D5;
+			remoteInfo = "Kiwi-OSX";
+		};
+		F9F54C0517333F980032F86D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9F54BFA17333F970032F86D /* Kiwi.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F5015C9E11584017002E9A98;
+			remoteInfo = KiwiTests;
+		};
+		F9F54C0817333FE50032F86D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9F54BFA17333F970032F86D /* Kiwi.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F5015B9E11583A77002E9A98;
+			remoteInfo = Kiwi;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F94AD3DB1733394B00160A31 /* AFBBancBoxAPIWrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AFBBancBoxAPIWrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F94AD3DE1733394B00160A31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F94AD3E01733394B00160A31 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F94AD3E21733394B00160A31 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F94AD3E61733394B00160A31 /* AFBBancBoxAPIWrapper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AFBBancBoxAPIWrapper-Info.plist"; sourceTree = "<group>"; };
+		F94AD3E81733394B00160A31 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F94AD3EA1733394B00160A31 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F94AD3EC1733394B00160A31 /* AFBBancBoxAPIWrapper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AFBBancBoxAPIWrapper-Prefix.pch"; sourceTree = "<group>"; };
+		F94AD3ED1733394B00160A31 /* AFBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFBAppDelegate.h; sourceTree = "<group>"; };
+		F94AD3EE1733394B00160A31 /* AFBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFBAppDelegate.m; sourceTree = "<group>"; };
+		F94AD3F01733394B00160A31 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F94AD3F21733394B00160A31 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F94AD3F41733394B00160A31 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F94AD3FB1733394B00160A31 /* AFBBancBoxAPIWrapperTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AFBBancBoxAPIWrapperTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F94AD3FC1733394B00160A31 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F94AD4041733394B00160A31 /* AFBBancBoxAPIWrapperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AFBBancBoxAPIWrapperTests-Info.plist"; sourceTree = "<group>"; };
+		F94AD4061733394B00160A31 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F9F548CB173339C00032F86D /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		F9F548CC173339C00032F86D /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
+		F9F548CD173339C00032F86D /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		F9F548CE173339C00032F86D /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		F9F548CF173339C00032F86D /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
+		F9F548D0173339C00032F86D /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
+		F9F548D1173339C00032F86D /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		F9F548D2173339C00032F86D /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
+		F9F548D3173339C00032F86D /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		F9F548D4173339C00032F86D /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		F9F548D5173339C00032F86D /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		F9F548D6173339C00032F86D /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		F9F548D7173339C00032F86D /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
+		F9F548D8173339C00032F86D /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		F9F548D9173339C00032F86D /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		F9F548DA173339C00032F86D /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		F9F548DB173339C00032F86D /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
+		F9F548DC173339C00032F86D /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		F9F548DD173339C00032F86D /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		F9F548E7173339D20032F86D /* AFBBancBoxAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxAccount.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxAccount.h; sourceTree = "<group>"; };
+		F9F548E8173339D20032F86D /* AFBBancBoxAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxAccount.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxAccount.m; sourceTree = "<group>"; };
+		F9F548E9173339D20032F86D /* AFBBancBoxAccountActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxAccountActivity.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxAccountActivity.h; sourceTree = "<group>"; };
+		F9F548EA173339D20032F86D /* AFBBancBoxAccountActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxAccountActivity.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxAccountActivity.m; sourceTree = "<group>"; };
+		F9F548EB173339D20032F86D /* AFBBancBoxClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxClient.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxClient.h; sourceTree = "<group>"; };
+		F9F548EC173339D20032F86D /* AFBBancBoxClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxClient.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxClient.m; sourceTree = "<group>"; };
+		F9F548ED173339D20032F86D /* AFBBancBoxConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxConnection.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxConnection.h; sourceTree = "<group>"; };
+		F9F548EE173339D20032F86D /* AFBBancBoxConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxConnection.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxConnection.m; sourceTree = "<group>"; };
+		F9F548EF173339D20032F86D /* AFBBancBoxExternalAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxExternalAccount.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccount.h; sourceTree = "<group>"; };
+		F9F548F0173339D20032F86D /* AFBBancBoxExternalAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxExternalAccount.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccount.m; sourceTree = "<group>"; };
+		F9F548F1173339D20032F86D /* AFBBancBoxExternalAccountBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxExternalAccountBank.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccountBank.h; sourceTree = "<group>"; };
+		F9F548F2173339D20032F86D /* AFBBancBoxExternalAccountBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxExternalAccountBank.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccountBank.m; sourceTree = "<group>"; };
+		F9F548F3173339D20032F86D /* AFBBancBoxExternalAccountCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxExternalAccountCard.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccountCard.h; sourceTree = "<group>"; };
+		F9F548F4173339D20032F86D /* AFBBancBoxExternalAccountCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxExternalAccountCard.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccountCard.m; sourceTree = "<group>"; };
+		F9F548F5173339D20032F86D /* AFBBancBoxExternalAccountCardCredit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxExternalAccountCardCredit.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccountCardCredit.h; sourceTree = "<group>"; };
+		F9F548F6173339D20032F86D /* AFBBancBoxExternalAccountCardCredit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxExternalAccountCardCredit.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccountCardCredit.m; sourceTree = "<group>"; };
+		F9F548F7173339D20032F86D /* AFBBancBoxExternalAccountCardDebit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxExternalAccountCardDebit.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccountCardDebit.h; sourceTree = "<group>"; };
+		F9F548F8173339D20032F86D /* AFBBancBoxExternalAccountCardDebit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxExternalAccountCardDebit.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccountCardDebit.m; sourceTree = "<group>"; };
+		F9F548F9173339D20032F86D /* AFBBancBoxExternalAccountCardGift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxExternalAccountCardGift.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccountCardGift.h; sourceTree = "<group>"; };
+		F9F548FA173339D20032F86D /* AFBBancBoxExternalAccountCardGift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxExternalAccountCardGift.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccountCardGift.m; sourceTree = "<group>"; };
+		F9F548FB173339D20032F86D /* AFBBancBoxExternalAccountPaypal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxExternalAccountPaypal.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccountPaypal.h; sourceTree = "<group>"; };
+		F9F548FC173339D20032F86D /* AFBBancBoxExternalAccountPaypal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxExternalAccountPaypal.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxExternalAccountPaypal.m; sourceTree = "<group>"; };
+		F9F548FD173339D20032F86D /* AFBBancBoxInternalAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxInternalAccount.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxInternalAccount.h; sourceTree = "<group>"; };
+		F9F548FE173339D20032F86D /* AFBBancBoxInternalAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxInternalAccount.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxInternalAccount.m; sourceTree = "<group>"; };
+		F9F548FF173339D20032F86D /* AFBBancBoxLinkedExternalAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxLinkedExternalAccount.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxLinkedExternalAccount.h; sourceTree = "<group>"; };
+		F9F54900173339D20032F86D /* AFBBancBoxLinkedExternalAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxLinkedExternalAccount.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxLinkedExternalAccount.m; sourceTree = "<group>"; };
+		F9F54901173339D20032F86D /* AFBBancBoxPayee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxPayee.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPayee.h; sourceTree = "<group>"; };
+		F9F54902173339D20032F86D /* AFBBancBoxPayee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxPayee.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPayee.m; sourceTree = "<group>"; };
+		F9F54903173339D20032F86D /* AFBBancBoxPayeeACH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxPayeeACH.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPayeeACH.h; sourceTree = "<group>"; };
+		F9F54904173339D20032F86D /* AFBBancBoxPayeeACH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxPayeeACH.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPayeeACH.m; sourceTree = "<group>"; };
+		F9F54905173339D20032F86D /* AFBBancBoxPayeeBancBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxPayeeBancBox.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPayeeBancBox.h; sourceTree = "<group>"; };
+		F9F54906173339D20032F86D /* AFBBancBoxPayeeBancBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxPayeeBancBox.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPayeeBancBox.m; sourceTree = "<group>"; };
+		F9F54907173339D20032F86D /* AFBBancBoxPayeeCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxPayeeCheck.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPayeeCheck.h; sourceTree = "<group>"; };
+		F9F54908173339D20032F86D /* AFBBancBoxPayeeCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxPayeeCheck.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPayeeCheck.m; sourceTree = "<group>"; };
+		F9F54909173339D20032F86D /* AFBBancBoxPayeePayPal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxPayeePayPal.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPayeePayPal.h; sourceTree = "<group>"; };
+		F9F5490A173339D20032F86D /* AFBBancBoxPayeePayPal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxPayeePayPal.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPayeePayPal.m; sourceTree = "<group>"; };
+		F9F5490B173339D20032F86D /* AFBBancBoxPaymentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxPaymentItem.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPaymentItem.h; sourceTree = "<group>"; };
+		F9F5490C173339D20032F86D /* AFBBancBoxPaymentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxPaymentItem.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPaymentItem.m; sourceTree = "<group>"; };
+		F9F5490D173339D20032F86D /* AFBBancBoxPaymentItemStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxPaymentItemStatus.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPaymentItemStatus.h; sourceTree = "<group>"; };
+		F9F5490E173339D20032F86D /* AFBBancBoxPaymentItemStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxPaymentItemStatus.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPaymentItemStatus.m; sourceTree = "<group>"; };
+		F9F5490F173339D20032F86D /* AFBBancBoxResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxResponse.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxResponse.h; sourceTree = "<group>"; };
+		F9F54910173339D20032F86D /* AFBBancBoxResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxResponse.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxResponse.m; sourceTree = "<group>"; };
+		F9F54911173339D20032F86D /* AFBBancBoxSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxSchedule.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxSchedule.h; sourceTree = "<group>"; };
+		F9F54912173339D20032F86D /* AFBBancBoxSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxSchedule.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxSchedule.m; sourceTree = "<group>"; };
+		F9F54913173339D20032F86D /* AFBBancBoxVerificationAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxVerificationAnswer.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxVerificationAnswer.h; sourceTree = "<group>"; };
+		F9F54914173339D20032F86D /* AFBBancBoxVerificationAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxVerificationAnswer.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxVerificationAnswer.m; sourceTree = "<group>"; };
+		F9F54915173339D20032F86D /* AFBBancBoxVerificationQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxVerificationQuestion.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxVerificationQuestion.h; sourceTree = "<group>"; };
+		F9F54916173339D20032F86D /* AFBBancBoxVerificationQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxVerificationQuestion.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxVerificationQuestion.m; sourceTree = "<group>"; };
+		F9F54BFA17333F970032F86D /* Kiwi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Kiwi.xcodeproj; path = ../Kiwi/Kiwi.xcodeproj; sourceTree = "<group>"; };
+		F9F54C0E1733584D0032F86D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		F9F54C10173358530032F86D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F9F54C1417340DAF0032F86D /* AFBBasicClientOperationsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFBBasicClientOperationsSpec.m; sourceTree = "<group>"; };
+		F9F54C161734151F0032F86D /* AFBBancBoxSpecValidEnumerationMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFBBancBoxSpecValidEnumerationMatcher.m; sourceTree = "<group>"; };
+		F9F54C181734194D0032F86D /* AFBBancBoxSpecValidEnumerationMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFBBancBoxSpecValidEnumerationMatcher.h; sourceTree = "<group>"; };
+		F9F54C191734E4A70032F86D /* AFBAsyncSpecPoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFBAsyncSpecPoller.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F94AD3D81733394B00160A31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9F54C12173359200032F86D /* MobileCoreServices.framework in Frameworks */,
+				F9F54C13173359200032F86D /* SystemConfiguration.framework in Frameworks */,
+				F94AD3DF1733394B00160A31 /* UIKit.framework in Frameworks */,
+				F94AD3E11733394B00160A31 /* Foundation.framework in Frameworks */,
+				F94AD3E31733394B00160A31 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F94AD3F71733394B00160A31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9F54C11173358530032F86D /* SystemConfiguration.framework in Frameworks */,
+				F9F54C0F1733584D0032F86D /* MobileCoreServices.framework in Frameworks */,
+				F9F54C0A17333FEA0032F86D /* libKiwi.a in Frameworks */,
+				F94AD3FD1733394B00160A31 /* SenTestingKit.framework in Frameworks */,
+				F94AD3FE1733394B00160A31 /* UIKit.framework in Frameworks */,
+				F94AD3FF1733394B00160A31 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F94AD3D21733394B00160A31 = {
+			isa = PBXGroup;
+			children = (
+				F9F54C0717333FA10032F86D /* Vendor */,
+				F94AD4131733395800160A31 /* Library */,
+				F94AD3E41733394B00160A31 /* Example */,
+				F94AD4021733394B00160A31 /* AFBBancBoxAPIWrapperTests */,
+				F94AD3DD1733394B00160A31 /* Frameworks */,
+				F94AD3DC1733394B00160A31 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F94AD3DC1733394B00160A31 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F94AD3DB1733394B00160A31 /* AFBBancBoxAPIWrapper.app */,
+				F94AD3FB1733394B00160A31 /* AFBBancBoxAPIWrapperTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F94AD3DD1733394B00160A31 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9F54C10173358530032F86D /* SystemConfiguration.framework */,
+				F9F54C0E1733584D0032F86D /* MobileCoreServices.framework */,
+				F94AD3DE1733394B00160A31 /* UIKit.framework */,
+				F94AD3E01733394B00160A31 /* Foundation.framework */,
+				F94AD3E21733394B00160A31 /* CoreGraphics.framework */,
+				F94AD3FC1733394B00160A31 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F94AD3E41733394B00160A31 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				F94AD3ED1733394B00160A31 /* AFBAppDelegate.h */,
+				F94AD3EE1733394B00160A31 /* AFBAppDelegate.m */,
+				F94AD3E51733394B00160A31 /* Supporting Files */,
+			);
+			name = Example;
+			path = AFBBancBoxAPIWrapper;
+			sourceTree = "<group>";
+		};
+		F94AD3E51733394B00160A31 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F94AD3E61733394B00160A31 /* AFBBancBoxAPIWrapper-Info.plist */,
+				F94AD3E71733394B00160A31 /* InfoPlist.strings */,
+				F94AD3EA1733394B00160A31 /* main.m */,
+				F94AD3EC1733394B00160A31 /* AFBBancBoxAPIWrapper-Prefix.pch */,
+				F94AD3F01733394B00160A31 /* Default.png */,
+				F94AD3F21733394B00160A31 /* Default@2x.png */,
+				F94AD3F41733394B00160A31 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F94AD4021733394B00160A31 /* AFBBancBoxAPIWrapperTests */ = {
+			isa = PBXGroup;
+			children = (
+				F94AD4031733394B00160A31 /* Supporting Files */,
+				F9F54C191734E4A70032F86D /* AFBAsyncSpecPoller.h */,
+				F9F54C181734194D0032F86D /* AFBBancBoxSpecValidEnumerationMatcher.h */,
+				F9F54C161734151F0032F86D /* AFBBancBoxSpecValidEnumerationMatcher.m */,
+				F9F54C1417340DAF0032F86D /* AFBBasicClientOperationsSpec.m */,
+			);
+			path = AFBBancBoxAPIWrapperTests;
+			sourceTree = "<group>";
+		};
+		F94AD4031733394B00160A31 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F94AD4041733394B00160A31 /* AFBBancBoxAPIWrapperTests-Info.plist */,
+				F94AD4051733394B00160A31 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F94AD4131733395800160A31 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				F9F548E7173339D20032F86D /* AFBBancBoxAccount.h */,
+				F9F548E8173339D20032F86D /* AFBBancBoxAccount.m */,
+				F9F548E9173339D20032F86D /* AFBBancBoxAccountActivity.h */,
+				F9F548EA173339D20032F86D /* AFBBancBoxAccountActivity.m */,
+				F9F548EB173339D20032F86D /* AFBBancBoxClient.h */,
+				F9F548EC173339D20032F86D /* AFBBancBoxClient.m */,
+				F9F548ED173339D20032F86D /* AFBBancBoxConnection.h */,
+				F9F548EE173339D20032F86D /* AFBBancBoxConnection.m */,
+				F9F548EF173339D20032F86D /* AFBBancBoxExternalAccount.h */,
+				F9F548F0173339D20032F86D /* AFBBancBoxExternalAccount.m */,
+				F9F548F1173339D20032F86D /* AFBBancBoxExternalAccountBank.h */,
+				F9F548F2173339D20032F86D /* AFBBancBoxExternalAccountBank.m */,
+				F9F548F3173339D20032F86D /* AFBBancBoxExternalAccountCard.h */,
+				F9F548F4173339D20032F86D /* AFBBancBoxExternalAccountCard.m */,
+				F9F548F5173339D20032F86D /* AFBBancBoxExternalAccountCardCredit.h */,
+				F9F548F6173339D20032F86D /* AFBBancBoxExternalAccountCardCredit.m */,
+				F9F548F7173339D20032F86D /* AFBBancBoxExternalAccountCardDebit.h */,
+				F9F548F8173339D20032F86D /* AFBBancBoxExternalAccountCardDebit.m */,
+				F9F548F9173339D20032F86D /* AFBBancBoxExternalAccountCardGift.h */,
+				F9F548FA173339D20032F86D /* AFBBancBoxExternalAccountCardGift.m */,
+				F9F548FB173339D20032F86D /* AFBBancBoxExternalAccountPaypal.h */,
+				F9F548FC173339D20032F86D /* AFBBancBoxExternalAccountPaypal.m */,
+				F9F548FD173339D20032F86D /* AFBBancBoxInternalAccount.h */,
+				F9F548FE173339D20032F86D /* AFBBancBoxInternalAccount.m */,
+				F9F548FF173339D20032F86D /* AFBBancBoxLinkedExternalAccount.h */,
+				F9F54900173339D20032F86D /* AFBBancBoxLinkedExternalAccount.m */,
+				F9F54901173339D20032F86D /* AFBBancBoxPayee.h */,
+				F9F54902173339D20032F86D /* AFBBancBoxPayee.m */,
+				F9F54903173339D20032F86D /* AFBBancBoxPayeeACH.h */,
+				F9F54904173339D20032F86D /* AFBBancBoxPayeeACH.m */,
+				F9F54905173339D20032F86D /* AFBBancBoxPayeeBancBox.h */,
+				F9F54906173339D20032F86D /* AFBBancBoxPayeeBancBox.m */,
+				F9F54907173339D20032F86D /* AFBBancBoxPayeeCheck.h */,
+				F9F54908173339D20032F86D /* AFBBancBoxPayeeCheck.m */,
+				F9F54909173339D20032F86D /* AFBBancBoxPayeePayPal.h */,
+				F9F5490A173339D20032F86D /* AFBBancBoxPayeePayPal.m */,
+				F9F5490B173339D20032F86D /* AFBBancBoxPaymentItem.h */,
+				F9F5490C173339D20032F86D /* AFBBancBoxPaymentItem.m */,
+				F9F5490D173339D20032F86D /* AFBBancBoxPaymentItemStatus.h */,
+				F9F5490E173339D20032F86D /* AFBBancBoxPaymentItemStatus.m */,
+				F9F5490F173339D20032F86D /* AFBBancBoxResponse.h */,
+				F9F54910173339D20032F86D /* AFBBancBoxResponse.m */,
+				F9F54911173339D20032F86D /* AFBBancBoxSchedule.h */,
+				F9F54912173339D20032F86D /* AFBBancBoxSchedule.m */,
+				F9F54913173339D20032F86D /* AFBBancBoxVerificationAnswer.h */,
+				F9F54914173339D20032F86D /* AFBBancBoxVerificationAnswer.m */,
+				F9F54915173339D20032F86D /* AFBBancBoxVerificationQuestion.h */,
+				F9F54916173339D20032F86D /* AFBBancBoxVerificationQuestion.m */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		F9F548CA173339C00032F86D /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				F9F548CB173339C00032F86D /* AFHTTPClient.h */,
+				F9F548CC173339C00032F86D /* AFHTTPClient.m */,
+				F9F548CD173339C00032F86D /* AFHTTPRequestOperation.h */,
+				F9F548CE173339C00032F86D /* AFHTTPRequestOperation.m */,
+				F9F548CF173339C00032F86D /* AFImageRequestOperation.h */,
+				F9F548D0173339C00032F86D /* AFImageRequestOperation.m */,
+				F9F548D1173339C00032F86D /* AFJSONRequestOperation.h */,
+				F9F548D2173339C00032F86D /* AFJSONRequestOperation.m */,
+				F9F548D3173339C00032F86D /* AFNetworkActivityIndicatorManager.h */,
+				F9F548D4173339C00032F86D /* AFNetworkActivityIndicatorManager.m */,
+				F9F548D5173339C00032F86D /* AFNetworking.h */,
+				F9F548D6173339C00032F86D /* AFPropertyListRequestOperation.h */,
+				F9F548D7173339C00032F86D /* AFPropertyListRequestOperation.m */,
+				F9F548D8173339C00032F86D /* AFURLConnectionOperation.h */,
+				F9F548D9173339C00032F86D /* AFURLConnectionOperation.m */,
+				F9F548DA173339C00032F86D /* AFXMLRequestOperation.h */,
+				F9F548DB173339C00032F86D /* AFXMLRequestOperation.m */,
+				F9F548DC173339C00032F86D /* UIImageView+AFNetworking.h */,
+				F9F548DD173339C00032F86D /* UIImageView+AFNetworking.m */,
+			);
+			name = AFNetworking;
+			path = ../AFNetworking/AFNetworking;
+			sourceTree = "<group>";
+		};
+		F9F54BFB17333F970032F86D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F9F54C0217333F980032F86D /* libKiwi.a */,
+				F9F54C0417333F980032F86D /* libKiwi-OSX.a */,
+				F9F54C0617333F980032F86D /* KiwiTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F9F54C0717333FA10032F86D /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				F9F548CA173339C00032F86D /* AFNetworking */,
+				F9F54BFA17333F970032F86D /* Kiwi.xcodeproj */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F94AD3DA1733394B00160A31 /* AFBBancBoxAPIWrapper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F94AD40D1733394B00160A31 /* Build configuration list for PBXNativeTarget "AFBBancBoxAPIWrapper" */;
+			buildPhases = (
+				F94AD3D71733394B00160A31 /* Sources */,
+				F94AD3D81733394B00160A31 /* Frameworks */,
+				F94AD3D91733394B00160A31 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AFBBancBoxAPIWrapper;
+			productName = AFBBancBoxAPIWrapper;
+			productReference = F94AD3DB1733394B00160A31 /* AFBBancBoxAPIWrapper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F94AD3FA1733394B00160A31 /* AFBBancBoxAPIWrapperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F94AD4101733394B00160A31 /* Build configuration list for PBXNativeTarget "AFBBancBoxAPIWrapperTests" */;
+			buildPhases = (
+				F94AD3F61733394B00160A31 /* Sources */,
+				F94AD3F71733394B00160A31 /* Frameworks */,
+				F94AD3F81733394B00160A31 /* Resources */,
+				F94AD3F91733394B00160A31 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9F54C0917333FE50032F86D /* PBXTargetDependency */,
+				F94AD4011733394B00160A31 /* PBXTargetDependency */,
+			);
+			name = AFBBancBoxAPIWrapperTests;
+			productName = AFBBancBoxAPIWrapperTests;
+			productReference = F94AD3FB1733394B00160A31 /* AFBBancBoxAPIWrapperTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F94AD3D31733394B00160A31 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AFB;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Adam Block";
+			};
+			buildConfigurationList = F94AD3D61733394B00160A31 /* Build configuration list for PBXProject "AFBBancBoxAPIWrapper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F94AD3D21733394B00160A31;
+			productRefGroup = F94AD3DC1733394B00160A31 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F9F54BFB17333F970032F86D /* Products */;
+					ProjectRef = F9F54BFA17333F970032F86D /* Kiwi.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F94AD3DA1733394B00160A31 /* AFBBancBoxAPIWrapper */,
+				F94AD3FA1733394B00160A31 /* AFBBancBoxAPIWrapperTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F9F54C0217333F980032F86D /* libKiwi.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libKiwi.a;
+			remoteRef = F9F54C0117333F980032F86D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F9F54C0417333F980032F86D /* libKiwi-OSX.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libKiwi-OSX.a";
+			remoteRef = F9F54C0317333F980032F86D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F9F54C0617333F980032F86D /* KiwiTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KiwiTests.octest;
+			remoteRef = F9F54C0517333F980032F86D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F94AD3D91733394B00160A31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F94AD3E91733394B00160A31 /* InfoPlist.strings in Resources */,
+				F94AD3F11733394B00160A31 /* Default.png in Resources */,
+				F94AD3F31733394B00160A31 /* Default@2x.png in Resources */,
+				F94AD3F51733394B00160A31 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F94AD3F81733394B00160A31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F94AD4071733394B00160A31 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F94AD3F91733394B00160A31 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F94AD3D71733394B00160A31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F94AD3EB1733394B00160A31 /* main.m in Sources */,
+				F94AD3EF1733394B00160A31 /* AFBAppDelegate.m in Sources */,
+				F9F548DE173339C00032F86D /* AFHTTPClient.m in Sources */,
+				F9F548DF173339C00032F86D /* AFHTTPRequestOperation.m in Sources */,
+				F9F548E0173339C00032F86D /* AFImageRequestOperation.m in Sources */,
+				F9F548E1173339C00032F86D /* AFJSONRequestOperation.m in Sources */,
+				F9F548E2173339C00032F86D /* AFNetworkActivityIndicatorManager.m in Sources */,
+				F9F548E3173339C00032F86D /* AFPropertyListRequestOperation.m in Sources */,
+				F9F548E4173339C00032F86D /* AFURLConnectionOperation.m in Sources */,
+				F9F548E5173339C00032F86D /* AFXMLRequestOperation.m in Sources */,
+				F9F548E6173339C00032F86D /* UIImageView+AFNetworking.m in Sources */,
+				F9F54917173339D20032F86D /* AFBBancBoxAccount.m in Sources */,
+				F9F54918173339D20032F86D /* AFBBancBoxAccountActivity.m in Sources */,
+				F9F54919173339D20032F86D /* AFBBancBoxClient.m in Sources */,
+				F9F5491A173339D20032F86D /* AFBBancBoxConnection.m in Sources */,
+				F9F5491B173339D20032F86D /* AFBBancBoxExternalAccount.m in Sources */,
+				F9F5491C173339D20032F86D /* AFBBancBoxExternalAccountBank.m in Sources */,
+				F9F5491D173339D20032F86D /* AFBBancBoxExternalAccountCard.m in Sources */,
+				F9F5491E173339D20032F86D /* AFBBancBoxExternalAccountCardCredit.m in Sources */,
+				F9F5491F173339D20032F86D /* AFBBancBoxExternalAccountCardDebit.m in Sources */,
+				F9F54920173339D20032F86D /* AFBBancBoxExternalAccountCardGift.m in Sources */,
+				F9F54921173339D20032F86D /* AFBBancBoxExternalAccountPaypal.m in Sources */,
+				F9F54922173339D20032F86D /* AFBBancBoxInternalAccount.m in Sources */,
+				F9F54923173339D20032F86D /* AFBBancBoxLinkedExternalAccount.m in Sources */,
+				F9F54924173339D20032F86D /* AFBBancBoxPayee.m in Sources */,
+				F9F54925173339D20032F86D /* AFBBancBoxPayeeACH.m in Sources */,
+				F9F54926173339D20032F86D /* AFBBancBoxPayeeBancBox.m in Sources */,
+				F9F54927173339D20032F86D /* AFBBancBoxPayeeCheck.m in Sources */,
+				F9F54928173339D20032F86D /* AFBBancBoxPayeePayPal.m in Sources */,
+				F9F54929173339D20032F86D /* AFBBancBoxPaymentItem.m in Sources */,
+				F9F5492A173339D20032F86D /* AFBBancBoxPaymentItemStatus.m in Sources */,
+				F9F5492B173339D20032F86D /* AFBBancBoxResponse.m in Sources */,
+				F9F5492C173339D20032F86D /* AFBBancBoxSchedule.m in Sources */,
+				F9F5492D173339D20032F86D /* AFBBancBoxVerificationAnswer.m in Sources */,
+				F9F5492E173339D20032F86D /* AFBBancBoxVerificationQuestion.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F94AD3F61733394B00160A31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9F54C1517340DAF0032F86D /* AFBBasicClientOperationsSpec.m in Sources */,
+				F9F54C171734151F0032F86D /* AFBBancBoxSpecValidEnumerationMatcher.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F94AD4011733394B00160A31 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F94AD3DA1733394B00160A31 /* AFBBancBoxAPIWrapper */;
+			targetProxy = F94AD4001733394B00160A31 /* PBXContainerItemProxy */;
+		};
+		F9F54C0917333FE50032F86D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Kiwi;
+			targetProxy = F9F54C0817333FE50032F86D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F94AD3E71733394B00160A31 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F94AD3E81733394B00160A31 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F94AD4051733394B00160A31 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F94AD4061733394B00160A31 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F94AD40B1733394B00160A31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F94AD40C1733394B00160A31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F94AD40E1733394B00160A31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AFBBancBoxAPIWrapper/AFBBancBoxAPIWrapper-Prefix.pch";
+				INFOPLIST_FILE = "AFBBancBoxAPIWrapper/AFBBancBoxAPIWrapper-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F94AD40F1733394B00160A31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AFBBancBoxAPIWrapper/AFBBancBoxAPIWrapper-Prefix.pch";
+				INFOPLIST_FILE = "AFBBancBoxAPIWrapper/AFBBancBoxAPIWrapper-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F94AD4111733394B00160A31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AFBBancBoxAPIWrapper.app/AFBBancBoxAPIWrapper";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AFBBancBoxAPIWrapper/AFBBancBoxAPIWrapper-Prefix.pch";
+				HEADER_SEARCH_PATHS = "../**";
+				INFOPLIST_FILE = "AFBBancBoxAPIWrapperTests/AFBBancBoxAPIWrapperTests-Info.plist";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-force_load",
+					"${BUILT_PRODUCTS_DIR}/libKiwi.a",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		F94AD4121733394B00160A31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AFBBancBoxAPIWrapper.app/AFBBancBoxAPIWrapper";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AFBBancBoxAPIWrapper/AFBBancBoxAPIWrapper-Prefix.pch";
+				HEADER_SEARCH_PATHS = "../**";
+				INFOPLIST_FILE = "AFBBancBoxAPIWrapperTests/AFBBancBoxAPIWrapperTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F94AD3D61733394B00160A31 /* Build configuration list for PBXProject "AFBBancBoxAPIWrapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F94AD40B1733394B00160A31 /* Debug */,
+				F94AD40C1733394B00160A31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F94AD40D1733394B00160A31 /* Build configuration list for PBXNativeTarget "AFBBancBoxAPIWrapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F94AD40E1733394B00160A31 /* Debug */,
+				F94AD40F1733394B00160A31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F94AD4101733394B00160A31 /* Build configuration list for PBXNativeTarget "AFBBancBoxAPIWrapperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F94AD4111733394B00160A31 /* Debug */,
+				F94AD4121733394B00160A31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F94AD3D31733394B00160A31 /* Project object */;
+}
