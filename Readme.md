@@ -11,10 +11,25 @@ The AFBBancBoxAPIWrapper library encapsulates the BancBox REST API to simplify m
 __AFBBancBoxAPIWrapper/AFBBancBoxConnection.h__ contains abbreviated information on the BancBox API along with the corresponding methods. Full API documentation can be found on the [BancBox API documentation](http://www.bancbox.com/api/index) pages.
 
 # Getting it #
-Clone the GIT repo and drag the AFBBancBoxAPIWrapper.xcodeproj file into your project. At a minimum you will need to import AFBBancBoxConnection.h; import other headers as needed for access to the wrapper classes for clients, account, payments, and so on.
+Clone the GIT repo and drag the AFBBancBoxAPIWrapper.xcodeproj file into your project.
+
+# Usage #
+The BancBox authentication information (API key, API secret, and subscriber ID) must be added as defines into the file __AFBBancBoxAPIWrapper/AFBBancBoxPrivateAuthenticationItems.h__. This file is included in the .gitignore so your auth data doesn't get committed to the repo. The format of the defines is as follows:
+
+```
+// replace with your BancBox API key
+#define BANCBOX_API_KEY @"apikey363732"
+
+// replace with your BancBox API secret
+#define BANCBOX_API_SECRET @"apisecret2727222"
+
+// replace with your BancBox subscriber ID
+#define BANCBOX_SUBSCRIBER_ID 000000
+```
+
+To use the library, at a minimum you will need to import AFBBancBoxConnection.h; import other headers as needed for access to the wrapper classes for clients, account, payments, and so on.
 
 # Contributors #
-
 AFBBancBoxAPIWrapper was written by Adam Block.
 
 # License #
