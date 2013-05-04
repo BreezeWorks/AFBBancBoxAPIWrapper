@@ -38,7 +38,9 @@ A series of Kiwi integration test specs can be found in __Example/AFBBancBoxAPIW
 AFBBancBoxAPIWrapper was written by Adam Block.
 
 # License #
-Copyright (c) 2013 Adam Block
+All BancBox code and documentation is copyright (c) 2013 bancboxcrowd.com. All Rights Reserved.
+
+AFBBancBoxAPIWrapper is copyright (c) 2013 Adam Block
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
