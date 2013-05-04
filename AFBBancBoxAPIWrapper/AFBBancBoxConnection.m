@@ -25,6 +25,7 @@
 #import "AFBBancBoxLinkedExternalAccount.h"
 #import "AFBBancBoxExternalAccountCard.h"
 #import "AFBBancBoxAccountActivity.h"
+#import "AFBBancBoxPrivateAuthenticationItems.h"
 
 static NSString * const BANCBOX_API_KEY = @"";      // replace with your BancBox API key
 static NSString * const BANCBOX_API_SECRET = @"";       // replace with your BancBox API secret

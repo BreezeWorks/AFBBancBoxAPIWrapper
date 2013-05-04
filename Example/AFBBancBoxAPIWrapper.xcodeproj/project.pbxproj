@@ -101,6 +101,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F91F227E17350E70007B489B /* AFBBancBoxPrivateAuthenticationItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxPrivateAuthenticationItems.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPrivateAuthenticationItems.h; sourceTree = "<group>"; };
 		F94AD3DB1733394B00160A31 /* AFBBancBoxAPIWrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AFBBancBoxAPIWrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F94AD3DE1733394B00160A31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F94AD3E01733394B00160A31 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -354,6 +355,7 @@
 				F9F54914173339D20032F86D /* AFBBancBoxVerificationAnswer.m */,
 				F9F54915173339D20032F86D /* AFBBancBoxVerificationQuestion.h */,
 				F9F54916173339D20032F86D /* AFBBancBoxVerificationQuestion.m */,
+				F91F227E17350E70007B489B /* AFBBancBoxPrivateAuthenticationItems.h */,
 			);
 			name = Library;
 			sourceTree = "<group>";

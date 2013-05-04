@@ -15,3 +15,6 @@ profile
 DerivedData
 .idea/
 *.hmap
+
+# Authentication file for BancBox API
+AFBBancBoxPrivateAuthenticationItems.h
