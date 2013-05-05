@@ -62,6 +62,16 @@ describe(@"The BancBox wrapper", ^{
             [[expectFutureValue(apiResponse.response[@"cipStatus"]) shouldEventuallyBeforeTimingOutAfter(2.0)] beValidCipStatus];
         });
         
+        if (BANCBOX_USE_PRODUCTION) {
+            it(@"should return a CIP status of UNVERIFIED", ^{
+                [[expectFutureValue(apiResponse.response[@"cipStatus"]) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:BancBoxClientCipStatusUnverified];
+            });
+        } else {
+            it(@"should return a CIP status of IGNORED", ^{
+                [[expectFutureValue(apiResponse.response[@"cipStatus"]) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:BancBoxClientCipStatusIgnored];
+            });
+        }
+        
         it(@"should return a valid client status", ^{
             [[expectFutureValue(apiResponse.response[@"clientStatus"]) shouldEventuallyBeforeTimingOutAfter(2.0)] beValidClientStatus];
         });
@@ -111,6 +121,10 @@ describe(@"The BancBox wrapper", ^{
         POLL(getClientDone);
     });
     
+    // The following spec will only pass in production. A new client in the Sandbox environment should have a CIP status of 'IGNORED'
+    
+    if (BANCBOX_USE_PRODUCTION) {
+    
     context(@"when verifying a client", ^{
         NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId } };
         
@@ -147,6 +161,8 @@ describe(@"The BancBox wrapper", ^{
         
         POLL(getClientDone);
     });
+        
+    }
     
     context(@"when updating the client's status", ^{
         NSString *newStatus = BancBoxClientStatusSuspended;

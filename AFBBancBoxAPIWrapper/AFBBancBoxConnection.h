@@ -13,6 +13,18 @@
 @class AFBBancBoxExternalAccount;
 @class AFBBancBoxInternalAccount;
 
+#define BANCBOX_BASE_URL_PRODUCTION @"https://api.bancbox.com/v1/BBXPortRest/"
+#define BANCBOX_BASE_URL_SANDBOX @"https://sandbox-api.bancbox.com/v1/BBXPortRest/"
+
+// Set the following as appropriate for sandbox or production use
+#define BANCBOX_USE_PRODUCTION 0
+
+#if BANCBOX_USE_PRODUCTION
+#define BANCBOX_SELECTED_SERVER_BASE_URL BANCBOX_BASE_URL_PRODUCTION
+#else
+#define BANCBOX_SELECTED_SERVER_BASE_URL BANCBOX_BASE_URL_SANDBOX
+#endif
+
 @interface AFBBancBoxConnection : NSObject
 
 typedef void(^ BancBoxResponseBlock)(AFBBancBoxResponse *response, id obj);
