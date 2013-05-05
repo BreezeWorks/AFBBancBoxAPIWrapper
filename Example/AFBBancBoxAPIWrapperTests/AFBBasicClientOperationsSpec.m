@@ -79,6 +79,28 @@ describe(@"The BancBox wrapper", ^{
         POLL(addClientDone);
     });
     
+    context(@"when adding an account for the client", ^{
+        __block BOOL openAccountDone = NO;
+        
+        NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId } };
+        __block AFBBancBoxResponse *apiResponse;
+        
+        [conn openAccount:params success:^(AFBBancBoxResponse *response, id obj) {
+            apiResponse = response;
+            openAccountDone = YES;
+        } failure:^(AFBBancBoxResponse *response, id obj) {
+            apiResponse = response;
+            openAccountDone = YES;
+        }];
+        
+        it(@"should be successful", ^{
+            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:BancBoxResponseStatusDescriptionPass];
+        });
+        
+        POLL(openAccountDone);
+
+    });
+    
     context(@"when updating a client", ^{
         AFBBancBoxClient *client = [AFBBancBoxClient new];
         client.clientIdSubscriberReferenceId = subscriberReferenceId;
