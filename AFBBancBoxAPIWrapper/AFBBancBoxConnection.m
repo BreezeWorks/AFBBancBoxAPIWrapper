@@ -27,10 +27,6 @@
 #import "AFBBancBoxAccountActivity.h"
 #import "AFBBancBoxPrivateAuthenticationItems.h"
 
-// Internal error responses
-static NSString * const kBancBoxErrorCodeBadClientStatus = @"AFB-BB-001";
-static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is not one of: 'ACTIVE', 'INACTIVE', 'SUSPENDED','DELETED'";
-
 @implementation AFBBancBoxConnection
 
 /*
@@ -116,7 +112,7 @@ static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is
 
 - (id)searchClientsObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"clients"] objectClass:[AFBBancBoxClient class] selector:@selector(initWithClientFromDictionary:)];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"clients"] objectClass:[AFBBancBoxClient class] selector:@selector(clientFromDictionary:)];
 }
 
 #pragma mark - getClient
@@ -177,7 +173,7 @@ static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is
 
 - (id)getSchedulesObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"schedules"] objectClass:[AFBBancBoxSchedule class] selector:@selector(initWithScheduleFromDictionary:)];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"schedules"] objectClass:[AFBBancBoxSchedule class] selector:@selector(scheduleFromDictionary:)];
 }
 
 #pragma mark - getSchedules
@@ -188,7 +184,7 @@ static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is
 
 - (id)cancelSchedulesObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"schedules"] objectClass:[AFBBancBoxSchedule class] selector:@selector(initWithScheduleFromDictionary:)];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"schedules"] objectClass:[AFBBancBoxSchedule class] selector:@selector(scheduleFromDictionary:)];
 }
 
 #pragma mark - collectFees
@@ -257,7 +253,7 @@ static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is
 
 - (id)getClientLinkedPayeesObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"linkedPayees"] objectClass:[AFBBancBoxPayee class] selector:@selector(initFactoryWithPayeeFromDictionary:)];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"linkedPayees"] objectClass:[AFBBancBoxPayee class] selector:@selector(payeeFromDictionary:)];
 }
 
 #pragma mark - updateLinkedPayee
@@ -274,7 +270,7 @@ static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is
 
 - (id)updateLinkedPayeeObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    AFBBancBoxPayee *payee = [[AFBBancBoxPayee alloc] initFactoryWithPayeeFromDictionary:bbResponse.response];
+    AFBBancBoxPayee *payee = [AFBBancBoxPayee payeeFromDictionary:bbResponse.response];
     return payee;
 }
 
@@ -303,7 +299,7 @@ static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is
 
 - (id)verifyClientObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"questions"] objectClass:[AFBBancBoxVerificationQuestion class] selector:@selector(initWithQuestionFromDictionary:)];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"questions"] objectClass:[AFBBancBoxVerificationQuestion class] selector:@selector(questionFromDictionary:)];
 }
 
 #pragma mark - submitVerificationAnswers
@@ -358,7 +354,7 @@ static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is
 
 - (id)collectFundsObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"itemStatuses"] objectClass:[AFBBancBoxPaymentItemStatus class] selector:@selector(initWithPaymentItemStatusFromDictionary:)];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"itemStatuses"] objectClass:[AFBBancBoxPaymentItemStatus class] selector:@selector(paymentItemStatusFromDictionary:)];
 }
 
 #pragma mark - openAccount
@@ -415,7 +411,7 @@ static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is
 
 - (id)getClientAccountsObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"accounts"] objectClass:[AFBBancBoxInternalAccount class] selector:@selector(initWithAccountFromDictionary:)];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"accounts"] objectClass:[AFBBancBoxInternalAccount class] selector:@selector(accountFromDictionary:)];
 }
 
 #pragma  mark - getClientLinkedExternalAccounts
@@ -432,7 +428,7 @@ static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is
 
 - (id)getClientLinkedExternalAccountsObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"linkedExternalAccounts"] objectClass:[AFBBancBoxExternalAccount class] selector:@selector(initFactoryWithExternalAccountFromDictionary:)];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"linkedExternalAccounts"] objectClass:[AFBBancBoxExternalAccount class] selector:@selector(externalAccountFromDictionary:)];
 }
 
 #pragma  mark - getAccountActivity
@@ -456,7 +452,7 @@ static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is
 
 - (id)getAccountActivityForAccountObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"activities"] objectClass:[AFBBancBoxAccountActivity class] selector:@selector(initWithActivityFromDictionary:)];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"activities"] objectClass:[AFBBancBoxAccountActivity class] selector:@selector(activityFromDictionary:)];
 }
 
 #pragma  mark - updateLinkedExternalAccount
@@ -501,7 +497,7 @@ static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is
 
 - (id)sendFundsObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"itemStatuses"] objectClass:[AFBBancBoxPaymentItemStatus class] selector:@selector(initWithPaymentItemStatusFromDictionary:)];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"itemStatuses"] objectClass:[AFBBancBoxPaymentItemStatus class] selector:@selector(paymentItemStatusFromDictionary:)];
 }
 
 #pragma  mark - transferFunds
@@ -524,7 +520,7 @@ static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is
 
 - (id)transferFundsObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"itemStatuses"] objectClass:[AFBBancBoxPaymentItemStatus class] selector:@selector(initWithPaymentItemStatusFromDictionary:)];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"itemStatuses"] objectClass:[AFBBancBoxPaymentItemStatus class] selector:@selector(paymentItemStatusFromDictionary:)];
 }
 
 #
@@ -572,8 +568,7 @@ static NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is
     
     if ([responseArray isKindOfClass:[NSArray class]]) {
         [responseArray enumerateObjectsUsingBlock:^(NSDictionary *responseObject, NSUInteger idx, BOOL *stop) {
-            id object = [objectClass alloc];
-            [object performSelector:selector withObject:responseObject];
+            id object = [objectClass performSelector:selector withObject:responseObject];
             [objects addObject:object];
         }];
     }
