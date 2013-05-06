@@ -22,7 +22,7 @@ NSString * const BancBoxResponseStatusDescriptionPass = @"PASS";
         self.warnings = [self warningsFromResponse:response];
         self.errors = [self errorsFromResponse:response];
         self.status = [response[@"status"] integerValue];
-        self.requestId = [response[@"requestId"] integerValue];
+        self.requestId = [response[@"requestId"] longLongValue];
     }
     return self;
 }
@@ -66,7 +66,7 @@ NSString * const BancBoxResponseStatusDescriptionPass = @"PASS";
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"BancBox API call status %@ for requestId %i. Response: %@", self.statusDescription, self.requestId, self.response];
+    return [NSString stringWithFormat:@"BancBox API call status %@ for requestId %lli. Response: %@", self.statusDescription, self.requestId, self.response];
 }
 
 - (NSString *)statusDescription

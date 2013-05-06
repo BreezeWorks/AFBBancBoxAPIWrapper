@@ -42,7 +42,7 @@ extern NSString * const BancBoxResponseStatusDescriptionPass;
 
 @interface AFBBancBoxResponse : NSObject
 
-@property (nonatomic) NSInteger requestId;
+@property (nonatomic) uint64_t requestId;
 @property (nonatomic) BancBoxResponseStatus status;
 @property (nonatomic, strong) NSArray *warnings;
 @property (nonatomic, strong) NSArray *errors;
