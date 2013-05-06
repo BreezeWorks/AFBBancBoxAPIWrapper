@@ -461,6 +461,12 @@
     [self executeRequestForPath:@"updateLinkedExternalAccount" params:params success:successBlock failure:failureBlock];
 }
 
+- (void)updateLinkedExternalAccount:(AFBBancBoxExternalAccount *)account bancBoxId:(NSString *)bancBoxId subscriberReferenceId:(NSString *)subscriberReferenceId success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+{
+    NSDictionary *params = @{ @"linkedExternalAccountId": @{ @"bancBoxId": bancBoxId, @"subscriberReferenceId": subscriberReferenceId }, @"account": [account accountDetailsDictionary] };
+    [self updateLinkedExternalAccount:params success:successBlock failure:failureBlock];
+}
+
 - (id)updateLinkedExternalAccountObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
     return [NSNull null];
@@ -481,6 +487,12 @@
 - (void)deleteLinkedExternalAccount:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
     [self executeRequestForPath:@"deleteLinkedExternalAccount" params:params success:successBlock failure:failureBlock];
+}
+
+- (void)deleteLinkedExternalAccountForAccount:(AFBBancBoxExternalAccount *)account success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+{
+    NSDictionary *params = @{ @"linkedExternalAccountId": @{ @"bancBoxId": [NSNumber numberWithLongLong:account.bancBoxId], @"subscriberReferenceId": account.subscriberReferenceId } };
+    [self deleteLinkedExternalAccount:params success:successBlock failure:failureBlock];
 }
 
 - (id)deleteLinkedExternalAccountObjectFromResponse:(AFBBancBoxResponse *)bbResponse

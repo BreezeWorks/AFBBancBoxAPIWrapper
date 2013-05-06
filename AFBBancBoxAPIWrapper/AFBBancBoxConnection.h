@@ -137,12 +137,14 @@ While createClient will not fail if you do not provide the DOB and SSN, you will
 
 // Use update linked external account API to change the details of a previously made linked external account.
 - (void)updateLinkedExternalAccount:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
+- (void)updateLinkedExternalAccount:(AFBBancBoxExternalAccount *)account bancBoxId:(NSString *)bancBoxId subscriberReferenceId:(NSString *)subscriberReferenceId success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
 
 // The closeAccount method allows you to close an account for a client. This method will not let you close an account that has a current balance. If you wish to close an account that has a current balance, you can sweep the account prior to invoking closeAccount using sendFunds, or you can specify a withdrawal method and destination in the request itself.
 - (void)closeAccount:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
 
 // Use the delete linked external account API to delete a linked external account.
 - (void)deleteLinkedExternalAccount:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
+- (void)deleteLinkedExternalAccountForAccount:(AFBBancBoxExternalAccount *)account success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
 
 // Use the sendFunds API to send funds out of a BancBox client's account.
 - (void)sendFunds:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;

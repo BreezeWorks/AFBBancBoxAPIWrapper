@@ -370,7 +370,115 @@ describe(@"The BancBox API wrapper", ^{
         
         POLL(retrieveLinkedExternalAccountDone);
     });
-
+    
+// ---- Update linked external account
+    context(@"when updating a linked external PayPal account", ^{
+        __block AFBBancBoxResponse *apiResponse;
+        __block BOOL retrieveLinkedExternalAccountDone = NO;
+        __block NSArray *retrievedAccounts;
+        __block AFBBancBoxExternalAccountPaypal *account;
+        
+        // get existing account for its subscriber ID
+        [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
+            apiResponse = response;
+            retrievedAccounts = obj;
+            account = retrievedAccounts[0];
+            retrieveLinkedExternalAccountDone = YES;
+        } failure:^(AFBBancBoxResponse *response, id obj) {
+            apiResponse = response;
+            retrieveLinkedExternalAccountDone = YES;
+        }];
+        
+        POLL(retrieveLinkedExternalAccountDone);
+        
+        __block BOOL updateLinkedExternalAccountDone = NO;
+        AFBBancBoxExternalAccountPaypal *ppAccount = [[AFBBancBoxExternalAccountPaypal alloc] initWithId:BANCBOX_LINK_EXTERNAL_ACCOUNT_PAYPAL_ID_2];
+        
+        // update account
+        [conn updateLinkedExternalAccount:ppAccount bancBoxId:@"" subscriberReferenceId:account.subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
+            apiResponse = response;
+            updateLinkedExternalAccountDone = YES;
+        } failure:^(AFBBancBoxResponse *response, id obj) {
+            apiResponse = response;
+            updateLinkedExternalAccountDone = YES;
+        }];
+        
+        it(@"should be successful", ^{
+            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
+        });
+        
+        POLL(updateLinkedExternalAccountDone);
+        
+        
+        __block BOOL retrieveLinkedExternalAccountAgainDone = NO;
+        
+        // get account again to confirm update was successful
+        [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
+            apiResponse = response;
+            retrievedAccounts = obj;
+            account = retrievedAccounts[0];
+            retrieveLinkedExternalAccountAgainDone = YES;
+        } failure:^(AFBBancBoxResponse *response, id obj) {
+            apiResponse = response;
+            retrieveLinkedExternalAccountAgainDone = YES;
+        }];
+        
+        // BancBox does not return the full PayPal ID in a query, so we just test the first four characters. Of course this means that the test accounts
+        // have to vary in the first four characters.
+        it(@"should update the linked account", ^{
+            [[expectFutureValue([account.paypalId substringToIndex:4]) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:[BANCBOX_LINK_EXTERNAL_ACCOUNT_PAYPAL_ID_2 substringToIndex:4]];
+        });
+        
+        POLL(retrieveLinkedExternalAccountAgainDone);
+    });
+    
+// ---- Delete linked external accounts
+    context(@"when deleting linked external accounts", ^{
+        __block AFBBancBoxResponse *apiResponse;
+        __block BOOL retrieveLinkedExternalAccountDone = NO;
+        __block NSArray *retrievedAccounts;
+        
+        // get existing linked accounts
+        [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
+            apiResponse = response;
+            retrievedAccounts = obj;
+            retrieveLinkedExternalAccountDone = YES;
+        } failure:^(AFBBancBoxResponse *response, id obj) {
+            apiResponse = response;
+            retrieveLinkedExternalAccountDone = YES;
+        }];
+        
+        POLL(retrieveLinkedExternalAccountDone);
+        
+        __block BOOL deleteAccountsDone;
+        [retrievedAccounts enumerateObjectsUsingBlock:^(AFBBancBoxExternalAccount *account, NSUInteger idx, BOOL *stop) {
+            [conn deleteLinkedExternalAccountForAccount:account success:^(AFBBancBoxResponse *response, id obj) {
+                it(@"should be successful", ^{
+                    [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+                });
+                
+                if (idx == 2) deleteAccountsDone = YES;
+            } failure:^(AFBBancBoxResponse *response, id obj) {
+                if (idx == 2) deleteAccountsDone = YES;
+            }];
+        }];
+        POLL(deleteAccountsDone);
+        
+        __block BOOL retrieveLinkedExternalAccountAgainDone = NO;
+        
+        // get account again to confirm update was successful
+        [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
+            retrievedAccounts = obj;
+            it(@"the linked external accounts should actually be deleted", ^{
+                [[theValue(retrievedAccounts.count) should] equal:theValue(0)];
+            });
+            retrieveLinkedExternalAccountAgainDone = YES;
+        } failure:^(AFBBancBoxResponse *response, id obj) {
+            retrieveLinkedExternalAccountAgainDone = YES;
+        }];    
+        POLL(retrieveLinkedExternalAccountAgainDone);
+    });
+    
 /*
 // ---- Canceling a client with existing accounts
     context(@"when canceling a client", ^{
