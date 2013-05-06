@@ -37,42 +37,42 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn createClient:client.dictionaryForCreate success:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
+            
+            it(@"should get a result", ^{
+                [[apiResponse should] beNonNil];
+            });
+            
+            it(@"should be successful", ^{
+                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
+            
+            it(@"should return a BancBox ID", ^{
+                [[apiResponse.response[@"clientId"][@"bancBoxId"] should] beNonNil];
+            });
+            
+            it(@"should return a subscriber reference ID equal to the one passed in" , ^{
+                [[apiResponse.response[@"clientId"][@"subscriberReferenceId"] should] equal:subscriberReferenceId];
+            });
+            
+            if (BANCBOX_USE_PRODUCTION) {
+                it(@"should return a CIP status of UNVERIFIED", ^{
+                    [[apiResponse.response[@"cipStatus"] should] equal:BancBoxClientCipStatusUnverified];
+                });
+            } else {
+                it(@"should return a CIP status of IGNORED", ^{
+                    [[apiResponse.response[@"cipStatus"] should] equal:BancBoxClientCipStatusIgnored];
+                });
+            }
+            
+            it(@"should return a valid client status", ^{
+                [[apiResponse.response[@"clientStatus"] should] beValidClientStatus];
+            });
+            
             addClientDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             addClientDone = YES;
         }];
-        
-        it(@"should get a result", ^{
-            [[expectFutureValue(apiResponse) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] beNonNil];
-        });
-        
-        it(@"should be successful", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
-        });
-        
-        it(@"should return a BancBox ID", ^{
-            [[expectFutureValue(apiResponse.response[@"clientId"][@"bancBoxId"]) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] beNonNil];
-        });
-        
-        it(@"should return a subscriber reference ID equal to the one passed in" , ^{
-            [[expectFutureValue(apiResponse.response[@"clientId"][@"subscriberReferenceId"]) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:subscriberReferenceId];
-        });
-        
-        if (BANCBOX_USE_PRODUCTION) {
-            it(@"should return a CIP status of UNVERIFIED", ^{
-                [[expectFutureValue(apiResponse.response[@"cipStatus"]) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxClientCipStatusUnverified];
-            });
-        } else {
-            it(@"should return a CIP status of IGNORED", ^{
-                [[expectFutureValue(apiResponse.response[@"cipStatus"]) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxClientCipStatusIgnored];
-            });
-        }
-        
-        it(@"should return a valid client status", ^{
-            [[expectFutureValue(apiResponse.response[@"clientStatus"]) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] beValidClientStatus];
-        });
-        
         POLL(addClientDone);
     });
     
@@ -88,16 +88,14 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn updateClient:client.dictionaryForUpdate success:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
+            it(@"should be successful", ^{
+                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
             updateClientDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             updateClientDone = YES;
         }];
-        
-        it(@"should be successful", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
-        });
-
         POLL(updateClientDone);
         
         __block BOOL getClientDone = NO;
@@ -107,15 +105,13 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn getClient:params success:^(AFBBancBoxResponse *response, id obj) {
             updatedClient = (AFBBancBoxClient *)obj;
+            it(@"should actually update the client", ^{
+                [[updatedClient.firstName should] equal:newFirstName];
+            });
             getClientDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             getClientDone = YES;
         }];
-        
-        it(@"should actually update the client", ^{
-            [[expectFutureValue(updatedClient.firstName) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:newFirstName];
-        });
-        
         POLL(getClientDone);
     });
 
@@ -123,44 +119,38 @@ describe(@"The BancBox API wrapper", ^{
     // The following spec will only pass in production. A new client in the Sandbox environment should have a CIP status of 'IGNORED', which will allow account creation without verification.
     
     if (BANCBOX_USE_PRODUCTION) {
-    
-    context(@"when verifying a client", ^{
-        NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId } };
-        
-        __block BOOL verifyClientDone = NO;
-        __block AFBBancBoxResponse *apiResponse;
-        
-        [conn verifyClient:params success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
-            verifyClientDone = YES;
-        } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
-            verifyClientDone = YES;
-        }];
-        
-        it(@"should have a success status", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
+        context(@"when verifying a client", ^{
+            NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId } };
+            
+            __block BOOL verifyClientDone = NO;
+            __block AFBBancBoxResponse *apiResponse;
+            
+            [conn verifyClient:params success:^(AFBBancBoxResponse *response, id obj) {
+                apiResponse = response;
+                it(@"should have a success status", ^{
+                    [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+                });
+                verifyClientDone = YES;
+            } failure:^(AFBBancBoxResponse *response, id obj) {
+                apiResponse = response;
+                verifyClientDone = YES;
+            }];
+            POLL(verifyClientDone);
+            
+            __block BOOL getClientDone = NO;
+            __block AFBBancBoxClient *updatedClient;
+            
+            [conn getClient:params success:^(AFBBancBoxResponse *response, id obj) {
+                updatedClient = (AFBBancBoxClient *)obj;
+                it(@"should update the client's status to VERIFIED", ^{
+                    [[updatedClient.cipStatus should] equal:BancBoxClientCipStatusVerified];      // this will only pass in production
+                });
+                getClientDone = YES;
+            } failure:^(AFBBancBoxResponse *response, id obj) {
+                getClientDone = YES;
+            }];
+            POLL(getClientDone);
         });
-        
-        POLL(verifyClientDone);
-        
-        __block BOOL getClientDone = NO;
-        __block AFBBancBoxClient *updatedClient;
-        
-        [conn getClient:params success:^(AFBBancBoxResponse *response, id obj) {
-            updatedClient = (AFBBancBoxClient *)obj;
-            getClientDone = YES;
-        } failure:^(AFBBancBoxResponse *response, id obj) {
-            getClientDone = YES;
-        }];
-        
-        it(@"should update the client's status to VERIFIED", ^{
-            [[expectFutureValue(updatedClient.cipStatus) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxClientCipStatusVerified];      // this will only pass in production
-        });
-        
-        POLL(getClientDone);
-    });
-        
     }
     
 #pragma mark - Update client status
@@ -173,16 +163,14 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn updateClientStatus:params success:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
+            it(@"should have a success status", ^{
+                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
             updateClientStatusDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             updateClientStatusDone = YES;
         }];
-        
-        it(@"should have a success status", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
-        });
-        
         POLL(updateClientStatusDone);
         
         __block BOOL getClientDone = NO;
@@ -192,15 +180,13 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn getClient:nextParams success:^(AFBBancBoxResponse *response, id obj) {
             updatedClient = (AFBBancBoxClient *)obj;
+            it(@"should actually update the client", ^{
+                [[updatedClient.clientStatus should] equal:newStatus];
+            });
             getClientDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             getClientDone = YES;
         }];
-        
-        it(@"should actually update the client", ^{
-            [[expectFutureValue(updatedClient.clientStatus) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:newStatus];
-        });
-        
         POLL(getClientDone);
     });
 
@@ -214,15 +200,13 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn searchClients:params success:^(AFBBancBoxResponse *response, id obj) {
             clients = (NSArray *)obj;
+            it(@"should find a client", ^{
+                [[clients should] haveCountOf:1];
+            });
             searchClientDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             searchClientDone = YES;
         }];
-        
-        it(@"should find a client", ^{
-            [[expectFutureValue(clients) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] haveCountOfAtLeast:1];      // this will allow the test to pass even if the BancBox account isn't cleared of data first, but it's not deterministic
-        });
-        
         POLL(searchClientDone);
     });
     
@@ -234,15 +218,13 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn searchClients:params success:^(AFBBancBoxResponse *response, id obj) {
             clients = (NSArray *)obj;
+            it(@"should find a client", ^{
+                [[clients should] haveCountOf:1];
+            });
             searchClientDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             searchClientDone = YES;
         }];
-        
-        it(@"should find a client", ^{
-            [[expectFutureValue(clients) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] haveCountOf:1];
-        });
-        
         POLL(searchClientDone);
     });
     
@@ -255,16 +237,14 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn cancelClient:params success:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
+            it(@"should have a success status", ^{
+                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
             cancelClientDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             cancelClientDone = YES;
         }];
-        
-        it(@"should have a success status", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
-        });
-        
         POLL(cancelClientDone);
         
         __block BOOL getClientDone = NO;
@@ -274,15 +254,13 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn getClient:nextParams success:^(AFBBancBoxResponse *response, id obj) {
             updatedClient = (AFBBancBoxClient *)obj;
+            it(@"should set the client's status to CANCELLED", ^{
+                [[updatedClient.clientStatus should] equal:BancBoxClientStatusCancelled];
+            });
             getClientDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             getClientDone = YES;
         }];
-        
-        it(@"should set the client's status to CANCELLED", ^{
-            [[expectFutureValue(updatedClient.clientStatus) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxClientStatusCancelled];
-        });
-        
         POLL(getClientDone);
     });
 });
