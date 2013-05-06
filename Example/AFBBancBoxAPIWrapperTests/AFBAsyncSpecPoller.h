@@ -10,7 +10,7 @@
 // http://codely.wordpress.com/2013/01/16/unit-testing-asynchronous-tasks-in-objective-c/
 
 #define POLL_INTERVAL 0.25      // 250ms
-#define N_SEC_TO_POLL 5.0       // poll for 1s
+#define N_SEC_TO_POLL 5.0       // poll for 5s
 #define MAX_POLL_COUNT N_SEC_TO_POLL / POLL_INTERVAL
 
 #define CAT(x, y) x ## y
