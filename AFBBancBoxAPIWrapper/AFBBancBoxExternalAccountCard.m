@@ -18,13 +18,14 @@
     return [super initWithExternalAccountFromDictionary:dict];
 }
 
-- (id)initFactoryWithExternalAccountFromDictionary:(NSDictionary *)dict
++ (id)externalAccountFromDictionary:(NSDictionary *)dict
 {
-    id instance = nil;
+    id instance;
     
-    if (dict[@"cardAccount"][@"creditCardAccount"]) instance = [[AFBBancBoxExternalAccountCardCredit alloc] initFactoryWithExternalAccountFromDictionary:dict];
-    if (dict[@"cardAccount"][@"debitCardAccount"])  instance = [[AFBBancBoxExternalAccountCardDebit alloc] initFactoryWithExternalAccountFromDictionary:dict];
-    if (dict[@"cardAccount"][@"giftCardAccount"])   instance = [[AFBBancBoxExternalAccountCardGift alloc] initFactoryWithExternalAccountFromDictionary:dict];
+    NSDictionary *cardAccountDict = dict[@"account"][@"cardAccount"];
+    if (cardAccountDict[@"creditCardAccount"]) instance = [AFBBancBoxExternalAccountCardCredit externalAccountFromDictionary:dict];
+    if (cardAccountDict[@"debitCardAccount"])  instance = [AFBBancBoxExternalAccountCardDebit externalAccountFromDictionary:dict];
+    if (cardAccountDict[@"giftCardAccount"])   instance = [AFBBancBoxExternalAccountCardGift externalAccountFromDictionary:dict];
     
     return instance;
 }

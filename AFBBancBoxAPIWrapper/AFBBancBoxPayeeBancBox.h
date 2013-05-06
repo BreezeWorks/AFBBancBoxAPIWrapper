@@ -13,6 +13,6 @@
 @property (nonatomic) NSInteger bancboxPayeeId;
 
 - (id)initWithPayeeFromDictionary:(NSDictionary *)dict;
-- (id)initFactoryWithPayeeFromDictionary:(NSDictionary *)dict;
++ (AFBBancBoxPayeeBancBox *)payeeFromDictionary:(NSDictionary *)dict;
 
 @end

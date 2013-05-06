@@ -10,9 +10,6 @@
 
 @interface AFBBancBoxInternalAccount : AFBBancBoxAccount
 
-@property (nonatomic, strong) NSDictionary *dictionary;
-@property (nonatomic) NSInteger bancBoxId;
-@property (nonatomic, strong) NSString *subscriberReferenceId;
 @property (nonatomic) BOOL routableForCredits;
 @property (nonatomic) BOOL routableForDebits;
 @property (nonatomic, strong) NSString *routingNumber;
@@ -21,6 +18,7 @@
 @property (nonatomic, strong) NSString *title;
 
 - (id)initWithAccountFromDictionary:(NSDictionary *)dict;
++ (AFBBancBoxInternalAccount *)accountFromDictionary:(NSDictionary *)dict;
 - (NSDictionary *)idDictionary;
 
 @end

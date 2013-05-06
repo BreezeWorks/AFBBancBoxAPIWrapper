@@ -8,6 +8,9 @@
 
 #import "AFBBancBoxExternalAccountBank.h"
 
+NSString * const BancBoxExternalAccountBankTypeSaving =     @"SAVING";
+NSString * const BancBoxExternalAccountBankTypeChecking =   @"CHECKING";
+
 @implementation AFBBancBoxExternalAccountBank
 
 - (id)initWithRoutingNumber:(NSString *)routingNumber accountNumber:(NSString *)accountNumber holderName:(NSString *)holderName bankAccountType:(NSString *)bankAccountType
@@ -31,10 +34,10 @@
     return self;
 }
 
-- (id)initFactoryWithExternalAccountFromDictionary:(NSDictionary *)dict
++ (AFBBancBoxExternalAccountBank *)externalAccountFromDictionary:(NSDictionary *)dict
 {
-    [self extractPropertiesFromDictionary:dict];
-    return self;
+    AFBBancBoxExternalAccountBank *account = [[AFBBancBoxExternalAccountBank alloc] initWithExternalAccountFromDictionary:dict];
+    return account;
 }
 
 - (void)extractPropertiesFromDictionary:(NSDictionary *)dict

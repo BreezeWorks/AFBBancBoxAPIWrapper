@@ -18,6 +18,10 @@ NSString * const BancBoxClientCipStatusUnverified = @"UNVERIFIED";
 NSString * const BancBoxClientCipStatusIgnored =    @"IGNORED";
 NSString * const BancBoxClientCipStatusRejected =   @"REJECTED";
 
+// Internal error responses
+NSString * const kBancBoxErrorCodeBadClientStatus = @"AFB-BB-001";
+NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is not one of: 'ACTIVE', 'INACTIVE', 'SUSPENDED','DELETED'";
+
 @implementation AFBBancBoxClient
 
 - (id)initWithClientFromDictionary:(NSDictionary *)dict
@@ -46,6 +50,11 @@ NSString * const BancBoxClientCipStatusRejected =   @"REJECTED";
         self.cipStatus = dict[@"cipStatus"];
     }
     return self;
+}
+
++ (AFBBancBoxClient *)clientFromDictionary:(NSDictionary *)dict
+{
+    return [[AFBBancBoxClient alloc] initWithClientFromDictionary:dict];
 }
 
 - (NSString *)description

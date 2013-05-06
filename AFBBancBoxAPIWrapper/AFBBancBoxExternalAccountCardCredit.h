@@ -22,4 +22,6 @@
 @property (nonatomic, strong) NSString *addressState;
 @property (nonatomic, strong) NSString *addressZipcode;
 
++ (AFBBancBoxExternalAccountCardCredit *)externalAccountFromDictionary:(NSDictionary *)dict;
+
 @end

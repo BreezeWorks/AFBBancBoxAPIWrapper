@@ -18,6 +18,6 @@
 @property (nonatomic, strong) NSString *addressZipCode;
 
 - (id)initWithPayeeFromDictionary:(NSDictionary *)dict;
-- (id)initFactoryWithPayeeFromDictionary:(NSDictionary *)dict;
++ (AFBBancBoxPayeeCheck *)payeeFromDictionary:(NSDictionary *)dict;
 
 @end

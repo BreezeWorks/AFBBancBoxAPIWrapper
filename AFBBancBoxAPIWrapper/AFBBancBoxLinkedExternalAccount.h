@@ -10,10 +10,7 @@
 
 @interface AFBBancBoxLinkedExternalAccount : AFBBancBoxAccount
 
-@property (nonatomic, strong) NSDictionary *dictionary;
-@property (nonatomic) NSInteger bancBoxId;
-@property (nonatomic, strong) NSString *subscriberReferenceId;
-
 - (id)initWithAccountFromDictionary:(NSDictionary *)dict;
++ (AFBBancBoxLinkedExternalAccount *)accountFromDictionary:(NSDictionary *)dict;
 
 @end

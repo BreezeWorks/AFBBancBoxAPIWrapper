@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         self.dictionary = dict;
-        self.bancBoxId = [dict[@"id"][@"bancBoxId"] integerValue];
+        self.bancBoxId = [dict[@"id"][@"bancBoxId"] longLongValue];
         self.subscriberReferenceId = dict[@"id"][@"subscriberReferenceId"];
         if ([dict[@"routable"][@"credits"] isEqualToString:@"YES"]) {
             self.routableForCredits = YES;
@@ -35,9 +35,14 @@
     return self;
 }
 
++ (AFBBancBoxInternalAccount *)accountFromDictionary:(NSDictionary *)dict
+{
+    return [[AFBBancBoxInternalAccount alloc] initWithAccountFromDictionary:dict];
+}
+
 - (NSDictionary *)idDictionary
 {
-    NSDictionary *dict = @{ @"bancBoxId": [NSNumber numberWithInteger:self.bancBoxId], @"subscriberReferenceId": self.subscriberReferenceId };
+    NSDictionary *dict = @{ @"bancBoxId": [NSNumber numberWithLongLong:self.bancBoxId], @"subscriberReferenceId": self.subscriberReferenceId };
     return dict;
 }
 

@@ -27,4 +27,9 @@
     return self;
 }
 
++ (AFBBancBoxPaymentItemStatus *)paymentItemStatusFromDictionary:(NSDictionary *)dict
+{
+    return [[AFBBancBoxPaymentItemStatus alloc] initWithPaymentItemStatusFromDictionary:dict];
+}
+
 @end

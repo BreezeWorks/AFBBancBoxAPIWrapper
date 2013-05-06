@@ -21,4 +21,9 @@
     return self;
 }
 
++ (AFBBancBoxVerificationQuestion *)questionFromDictionary:(NSDictionary *)dict
+{
+    return [[AFBBancBoxVerificationQuestion alloc] initWithQuestionFromDictionary:dict];
+}
+
 @end

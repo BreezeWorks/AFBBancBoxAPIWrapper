@@ -28,6 +28,11 @@
     return self;
 }
 
++ (AFBBancBoxSchedule *)scheduleFromDictionary:(NSDictionary *)dict
+{
+    return [[AFBBancBoxSchedule alloc] initWithScheduleFromDictionary:dict];
+}
+
 - (NSDate *)dateFromBancBoxDateString:(NSString *)dateString
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

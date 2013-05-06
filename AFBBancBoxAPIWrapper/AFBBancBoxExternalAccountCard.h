@@ -10,4 +10,6 @@
 
 @interface AFBBancBoxExternalAccountCard : AFBBancBoxExternalAccount
 
++ (id)externalAccountFromDictionary:(NSDictionary *)dict;
+
 @end

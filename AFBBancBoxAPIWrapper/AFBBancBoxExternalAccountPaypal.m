@@ -28,10 +28,10 @@
     return self;
 }
 
-- (id)initFactoryWithExternalAccountFromDictionary:(NSDictionary *)dict
++ (AFBBancBoxExternalAccountPaypal *)externalAccountFromDictionary:(NSDictionary *)dict
 {
-    [self extractPropertiesFromDictionary:dict];
-    return self;
+    AFBBancBoxExternalAccountPaypal *account = [[AFBBancBoxExternalAccountPaypal alloc] initWithExternalAccountFromDictionary:dict];
+    return account;
 }
 
 - (void)extractPropertiesFromDictionary:(NSDictionary *)dict

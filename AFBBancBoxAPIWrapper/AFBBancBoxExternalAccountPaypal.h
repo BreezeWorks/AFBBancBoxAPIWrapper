@@ -13,5 +13,6 @@
 @property (nonatomic, strong) NSString *paypalId;
 
 - (id)initWithId:(NSString *)paypalId;
++ (AFBBancBoxExternalAccountPaypal *)externalAccountFromDictionary:(NSDictionary *)dict;
 
 @end

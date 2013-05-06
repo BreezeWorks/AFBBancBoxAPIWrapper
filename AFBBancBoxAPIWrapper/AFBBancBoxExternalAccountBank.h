@@ -8,6 +8,9 @@
 
 #import "AFBBancBoxExternalAccount.h"
 
+extern NSString * const BancBoxExternalAccountBankTypeSaving;
+extern NSString * const BancBoxExternalAccountBankTypeChecking;
+
 @interface AFBBancBoxExternalAccountBank : AFBBancBoxExternalAccount
 
 @property (nonatomic, strong) NSString *routingNumber;
@@ -16,5 +19,6 @@
 @property (nonatomic, strong) NSString *bankAccountType;
 
 - (id)initWithRoutingNumber:(NSString *)routingNumber accountNumber:(NSString *)accountNumber holderName:(NSString *)holderName bankAccountType:(NSString *)bankAccountType;
++ (AFBBancBoxExternalAccountBank *)externalAccountFromDictionary:(NSDictionary *)dict;
 
 @end

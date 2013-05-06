@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSString *externalReferenceId;
 
 - (id)initWithScheduleFromDictionary:(NSDictionary *)dict;
++ (AFBBancBoxSchedule *)scheduleFromDictionary:(NSDictionary *)dict;
 + (BOOL)fundsRequestStatusIsValid:(NSString *)status;
 + (BOOL)scheduleStypeIsValid:(NSString *)type;
 

@@ -22,5 +22,6 @@
 @property (nonatomic, strong) NSString *externalReferenceId;
 
 - (id)initWithPaymentItemStatusFromDictionary:(NSDictionary *)dict;
++ (AFBBancBoxPaymentItemStatus *)paymentItemStatusFromDictionary:(NSDictionary *)dict;
 
 @end

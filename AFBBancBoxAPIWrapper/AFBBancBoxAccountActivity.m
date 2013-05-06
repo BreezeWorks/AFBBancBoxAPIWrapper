@@ -24,6 +24,11 @@
     return self;
 }
 
++ (AFBBancBoxAccountActivity *)activityFromDictionary:(NSDictionary *)dict
+{
+    return [[AFBBancBoxAccountActivity alloc] initWithActivityFromDictionary:dict];
+}
+
 - (NSDateFormatter *)activityDateFormatter
 {
     return [AFBBancBoxAccountActivity activityDateFormatter];

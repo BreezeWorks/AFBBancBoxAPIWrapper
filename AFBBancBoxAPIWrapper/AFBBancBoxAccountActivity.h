@@ -19,6 +19,7 @@
 @property (nonatomic) double balance;
 
 - (id)initWithActivityFromDictionary:(NSDictionary *)dict;
++ (AFBBancBoxAccountActivity *)activityFromDictionary:(NSDictionary *)dict;
 + (NSDateFormatter *)activityDateFormatter;
 
 @end

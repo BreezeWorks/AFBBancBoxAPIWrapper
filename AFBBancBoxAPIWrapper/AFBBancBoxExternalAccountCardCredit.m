@@ -19,12 +19,6 @@
     return self;
 }
 
-- (id)initFactoryWithExternalAccountFromDictionary:(NSDictionary *)dict
-{
-    [self extractPropertiesFromDictionary:dict];
-    return self;
-}
-
 - (void)extractPropertiesFromDictionary:(NSDictionary *)dict
 {
     self.tokenizedId = dict[@"account"][@"cardAccount"][@"creditCardAccount"][@"tokenizedId"];
@@ -40,6 +34,12 @@
     self.addressZipcode = dict[@"account"][@"cardAccount"][@"creditCardAccount"][@"creditCardDetails"][@"address"][@"zipcode"];
 }
 
++ (AFBBancBoxExternalAccountCardCredit *)externalAccountFromDictionary:(NSDictionary *)dict
+{
+    AFBBancBoxExternalAccountCardCredit *account = [[AFBBancBoxExternalAccountCardCredit alloc] initWithExternalAccountFromDictionary:dict];
+    return account;
+}
+
 - (NSDictionary *)dictionary
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[super dictionary]];
@@ -49,25 +49,28 @@
 
 - (NSDictionary *)accountDetailsDictionary
 {
-    NSDictionary *dict = @{ @"cardAccount":
-                                @{ @"creditCardAccount":
-                                       @{ @"tokenizedId": self.tokenizedId,
-                                          @"creditCardDetails":
-                                              @{ @"number": self.cardNumber,
-                                                 @"expiryDate": self.expiryDate,
-                                                 @"type": self.creditCardType,
-                                                 @"name": self.name,
-                                                 @"cvv": self.cvv,
-                                                 @"address": @{
-                                                         @"line1": self.addressLine1,
-                                                         @"line2": self.addressLine2,
-                                                         @"city": self.addressCity,
-                                                         @"state": self.addressState,
-                                                         @"zipcode": self.addressZipcode }
-                                                 }
-                                          }
-                                   }
-                            };
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"cardAccount"] = [NSMutableDictionary dictionary];
+    dict[@"cardAccount"][@"creditCardAccount"] = [NSMutableDictionary dictionary];
+    if (self.tokenizedId) dict[@"cardAccount"][@"creditCardAccount"][@"tokenizedId"] = self.tokenizedId;
+    
+    NSMutableDictionary *creditCardDetails = [NSMutableDictionary dictionary];
+    creditCardDetails[@"number"] = self.cardNumber;
+    creditCardDetails[@"expiryDate"] = self.expiryDate;
+    creditCardDetails[@"type"] = self.creditCardType;
+    creditCardDetails[@"name"] = self.name;
+    creditCardDetails[@"cvv"] = self.cvv;
+    
+    NSMutableDictionary *address = [NSMutableDictionary dictionary];
+    if (self.addressLine1) address[@"line1"] = self.addressLine1;
+    if (self.addressLine2) address[@"line2"] = self.addressLine2;
+    if (self.addressCity) address[@"city"] = self.addressCity;
+    if (self.addressState) address[@"state"] = self.addressState;
+    if (self.addressZipcode) address[@"zipcode"] = self.addressZipcode;
+    
+    creditCardDetails[@"address"] = address;
+    dict[@"cardAccount"][@"creditCardAccount"][@"creditCardDetails"] = creditCardDetails;
+    
     return dict;
 }
 

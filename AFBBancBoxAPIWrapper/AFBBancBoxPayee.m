@@ -18,25 +18,22 @@
 {
     self = [super init];
     if (self) {
+        NSString *idKey = nil;
+        if (dict[@"id"]) idKey = @"id";
+        if (dict[@"linkedPayeeId"]) idKey = @"linkedPayeeId";
         [self extractCommonElementsFromDictionary:dict idKey:@"id"];
     }
     return self;
 }
 
-- (id)initFactoryWithPayeeFromDictionary:(NSDictionary *)dict
++ (id)payeeFromDictionary:(NSDictionary *)dict
 {
-    id instance = nil;
-    if (dict[@"payee"][@"ach"])     instance = [[AFBBancBoxPayeeACH alloc] initFactoryWithPayeeFromDictionary:dict];
-    if (dict[@"payee"][@"bancbox"]) instance = [[AFBBancBoxPayeeBancBox alloc] initFactoryWithPayeeFromDictionary:dict];
-    if (dict[@"payee"][@"check"])   instance = [[AFBBancBoxPayeeCheck alloc] initFactoryWithPayeeFromDictionary:dict];
-    if (dict[@"payee"][@"paypal"])  instance = [[AFBBancBoxPayeePayPal alloc] initFactoryWithPayeeFromDictionary:dict];
+    id instance;
     
-    NSString *idKey = nil;
-    if (dict[@"id"]) idKey = @"id";
-    if (dict[@"linkedPayeeId"]) idKey = @"linkedPayeeId";
-    
-    self = instance;
-    [self extractCommonElementsFromDictionary:dict idKey:idKey];
+    if (dict[@"payee"][@"ach"])     instance = [AFBBancBoxPayeeACH payeeFromDictionary:dict];
+    if (dict[@"payee"][@"bancbox"]) instance = [AFBBancBoxPayeeBancBox payeeFromDictionary:dict];
+    if (dict[@"payee"][@"check"])   instance = [AFBBancBoxPayeeCheck payeeFromDictionary:dict];
+    if (dict[@"payee"][@"paypal"])  instance = [AFBBancBoxPayeePayPal payeeFromDictionary:dict];
     
     return instance;
 }

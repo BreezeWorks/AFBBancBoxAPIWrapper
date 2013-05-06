@@ -19,6 +19,6 @@
 @property (nonatomic, strong) NSString *memo;
 
 - (id)initWithPayeeFromDictionary:(NSDictionary *)dict;
-- (id)initFactoryWithPayeeFromDictionary:(NSDictionary *)dict;
++ (id)payeeFromDictionary:(NSDictionary *)dict;
 
 @end

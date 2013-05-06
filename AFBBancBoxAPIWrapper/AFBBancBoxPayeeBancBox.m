@@ -19,10 +19,9 @@
     return self;
 }
 
-- (id)initFactoryWithPayeeFromDictionary:(NSDictionary *)dict
++ (AFBBancBoxPayeeBancBox *)payeeFromDictionary:(NSDictionary *)dict
 {
-    [self extractPropertiesFromDictionary:dict];
-    return self;
+    return [[AFBBancBoxPayeeBancBox alloc] initWithPayeeFromDictionary:dict];
 }
 
 - (void)extractPropertiesFromDictionary:(NSDictionary *)dict

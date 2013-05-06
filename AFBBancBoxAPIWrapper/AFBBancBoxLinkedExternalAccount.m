@@ -15,16 +15,21 @@
     self = [super init];
     if (self) {
         self.dictionary = dict;
-        self.bancBoxId = [dict[@"bancBoxId"] integerValue];
+        self.bancBoxId = [dict[@"bancBoxId"] longLongValue];
         self.subscriberReferenceId = dict[@"subscriberReferenceId"];
     }
     return self;
 }
 
++ (AFBBancBoxLinkedExternalAccount *)accountFromDictionary:(NSDictionary *)dict
+{
+    return [[AFBBancBoxLinkedExternalAccount alloc] initWithAccountFromDictionary:dict];
+}
+
 - (NSDictionary *)dictionary
 {
     if (self.dictionary) return self.dictionary;
-    NSDictionary *dict = @{ @"bancBoxId": [NSNumber numberWithInteger:self.bancBoxId], @"subscriberReferenceId": self.subscriberReferenceId };
+    NSDictionary *dict = @{ @"bancBoxId": [NSNumber numberWithLongLong:self.bancBoxId], @"subscriberReferenceId": self.subscriberReferenceId };
     self.dictionary = dict;
     return dict;
 }

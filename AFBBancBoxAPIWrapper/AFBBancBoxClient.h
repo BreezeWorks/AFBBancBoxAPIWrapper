@@ -18,6 +18,9 @@ extern NSString * const BancBoxClientCipStatusUnverified;
 extern NSString * const BancBoxClientCipStatusIgnored;
 extern NSString * const BancBoxClientCipStatusRejected;
 
+extern NSString * const kBancBoxErrorCodeBadClientStatus;
+extern NSString * const kBancBoxErrorMessageBadClientStatus;
+
 @interface AFBBancBoxClient : NSObject
 
 @property (nonatomic, strong) NSDictionary *dictionary;
@@ -43,6 +46,7 @@ extern NSString * const BancBoxClientCipStatusRejected;
 @property (nonatomic) NSString *foo;
 
 - (id)initWithClientFromDictionary:(NSDictionary *)dict;
++ (AFBBancBoxClient *)clientFromDictionary:(NSDictionary *)dict;
 - (NSString *)description;
 - (NSDictionary *)dictionaryForCreate;
 - (NSDictionary *)dictionaryForUpdate;

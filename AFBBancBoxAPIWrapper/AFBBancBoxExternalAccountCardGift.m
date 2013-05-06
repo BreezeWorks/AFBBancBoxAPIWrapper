@@ -29,10 +29,10 @@
     return self;
 }
 
-- (id)initFactoryWithExternalAccountFromDictionary:(NSDictionary *)dict
++ (AFBBancBoxExternalAccountCardGift *)externalAccountFromDictionary:(NSDictionary *)dict
 {
-    [self extractPropertiesFromDictionary:dict];
-    return self;
+    AFBBancBoxExternalAccountCardGift *account = [[AFBBancBoxExternalAccountCardGift alloc] initWithExternalAccountFromDictionary:dict];
+    return account;
 }
 
 - (void)extractPropertiesFromDictionary:(NSDictionary *)dict

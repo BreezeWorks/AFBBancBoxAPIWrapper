@@ -16,6 +16,6 @@
 @property (nonatomic, strong) NSString *bankAccountType;
 
 - (id)initWithPayeeFromDictionary:(NSDictionary *)dict;
-- (id)initFactoryWithPayeeFromDictionary:(NSDictionary *)dict;
++ (AFBBancBoxPayeeACH *)payeeFromDictionary:(NSDictionary *)dict;
 
 @end

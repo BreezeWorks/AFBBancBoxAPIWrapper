@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSArray *answers;
 
 - (id)initWithQuestionFromDictionary:(NSDictionary *)dict;
++ (AFBBancBoxVerificationQuestion *)questionFromDictionary:(NSDictionary *)dict;
 
 @end

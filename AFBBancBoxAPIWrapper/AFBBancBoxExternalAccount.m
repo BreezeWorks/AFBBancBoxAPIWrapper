@@ -22,24 +22,22 @@
     return self;
 }
 
-- (id)initFactoryWithExternalAccountFromDictionary:(NSDictionary *)dict
++ (id)externalAccountFromDictionary:(NSDictionary *)dict
 {
-    id instance = nil;
-    if (dict[@"account"][@"bankAccount"])   instance = [[AFBBancBoxExternalAccountBank alloc] initFactoryWithExternalAccountFromDictionary:dict];
-    if (dict[@"account"][@"cardAccount"])   instance = [[AFBBancBoxExternalAccountCard alloc] initFactoryWithExternalAccountFromDictionary:dict];
-    if (dict[@"account"][@"paypalAccount"]) instance = [[AFBBancBoxExternalAccountPaypal alloc] initFactoryWithExternalAccountFromDictionary:dict];
+    id instance;
     
-    self = instance;
-    NSString *idKey = @"id";
-    [self extractCommonElementsFromDictionary:dict idKey:idKey];
+    if (dict[@"account"][@"bankAccount"])   instance = [AFBBancBoxExternalAccountBank externalAccountFromDictionary:dict];
+    if (dict[@"account"][@"cardAccount"])   instance = [AFBBancBoxExternalAccountCard externalAccountFromDictionary:dict];
+    if (dict[@"account"][@"paypalAccount"]) instance = [AFBBancBoxExternalAccountPaypal externalAccountFromDictionary:dict];
     
     return instance;
 }
 
+
 - (void)extractCommonElementsFromDictionary:(NSDictionary *)dict idKey:(NSString *)idKey
 {
     self.dictionary = dict;
-    self.bancBoxId = [dict[idKey][@"bancBoxId"] integerValue];
+    self.bancBoxId = [dict[idKey][@"bancBoxId"] longLongValue];
     self.subscriberReferenceId = dict[idKey][@"subscriberReferenceId"];
     self.externalAccountStatus = dict[@"externalAccountStatus"];
 }
@@ -48,7 +46,7 @@
 {
     NSDictionary *dict = @{
                            @"id": @{
-                                   @"bancBoxId": [NSNumber numberWithInteger:self.bancBoxId],
+                                   @"bancBoxId": [NSNumber numberWithLongLong:self.bancBoxId],
                                    @"subscriberReferenceId": self.subscriberReferenceId
                                    },
                            @"externalAccountStatus": self.externalAccountStatus
@@ -59,6 +57,11 @@
 - (NSDictionary *)accountDetailsDictionary
 {
     return [NSDictionary dictionary];
+}
+
+- (NSString *)description
+{
+    return self.dictionary.description;
 }
 
 @end

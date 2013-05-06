@@ -13,6 +13,6 @@
 @property (nonatomic, strong) NSString *id;
 
 - (id)initWithPayeeFromDictionary:(NSDictionary *)dict;
-- (id)initFactoryWithPayeeFromDictionary:(NSDictionary *)dict;
++ (AFBBancBoxPayeePayPal *)payeeFromDictionary:(NSDictionary *)dict;
 
 @end

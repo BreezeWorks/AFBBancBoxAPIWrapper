@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSString *pin;
 
 - (id)initWithNumber:(NSString *)number pin:(NSString *)pin;
++ (AFBBancBoxExternalAccountCardGift *)externalAccountFromDictionary:(NSDictionary *)dict;
 
 @end
