@@ -50,7 +50,7 @@ describe(@"The BancBox API wrapper", ^{
     // Account ID for newly created account, to be tested later
     __block uint64_t newAccountBancBoxId;
     
-#pragma mark - Open account
+// ---- Open account
     context(@"when adding an account for the client", ^{
         __block BOOL openAccountDone = NO;
         
@@ -92,7 +92,7 @@ describe(@"The BancBox API wrapper", ^{
         
     });
     
-#pragma mark - Get client accounts
+// ---- Get client accounts
     context(@"when getting the accounts for a client using a dictionary", ^{
         __block BOOL getClientAccountsUsingDictionaryDone = NO;
         NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId } };
@@ -156,7 +156,7 @@ describe(@"The BancBox API wrapper", ^{
         POLL(getClientAccountsUsingConvenienceMethodDone);
     });
     
-#pragma mark - Update account
+// ---- Update account
     __block NSString *testAccountTitle = @"Test Account";
     
     context(@"when updating an account", ^{
@@ -200,7 +200,7 @@ describe(@"The BancBox API wrapper", ^{
          */
     });
     
-#pragma mark - Link external accounts
+// ---- Link external accounts
     context(@"when linking an external PayPal account", ^{
         __block BOOL linkExternalAccountDone = NO;
         __block AFBBancBoxResponse *apiResponse;
@@ -372,7 +372,7 @@ describe(@"The BancBox API wrapper", ^{
     });
 
 /*
-#pragma mark - Canceling a client with existing accounts
+// ---- Canceling a client with existing accounts
     context(@"when canceling a client", ^{
         NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId } };
         
