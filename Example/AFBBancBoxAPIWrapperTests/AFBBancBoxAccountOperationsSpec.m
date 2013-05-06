@@ -62,32 +62,32 @@ describe(@"The BancBox API wrapper", ^{
             apiResponse = response;
             account = (AFBBancBoxInternalAccount *)obj;
             newAccountBancBoxId = account.bancBoxId;
+            
+            it(@"should be successful", ^{
+                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
+            
+            it(@"should return an open account", ^{
+                [[account.accountStatus should] equal:BancBoxAccountStatusOpen];
+            });
+            
+            it(@"should return a general account", ^{
+                [[account.accountType should] equal:BancBoxAccountTypeGeneral];
+            });
+            
+            it(@"should return a new BancBox ID", ^{
+                [[theValue(account.bancBoxId) should] beGreaterThan:theValue(0)];
+            });
+            
+            it(@"should return a routing number of the correct length", ^{
+                [[account.routingNumber should] haveLengthOf:9];
+            });
+            
             openAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             openAccountDone = YES;
-        }];
-        
-        it(@"should be successful", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
-        });
-        
-        it(@"should return an open account", ^{
-            [[expectFutureValue(account.accountStatus) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxAccountStatusOpen];
-        });
-        
-        it(@"should return a general account", ^{
-            [[expectFutureValue(account.accountType) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxAccountTypeGeneral];
-        });
-        
-        it(@"should return a new BancBox ID", ^{
-            [[expectFutureValue(theValue(account.bancBoxId)) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] beGreaterThan:theValue(0)];
-        });
-        
-        it(@"should return a routing number of the correct length", ^{
-            [[expectFutureValue(account.routingNumber) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] haveLengthOf:9];
-        });
-        
+        }];        
         POLL(openAccountDone);
         
     });
@@ -104,24 +104,24 @@ describe(@"The BancBox API wrapper", ^{
             apiResponse = response;
             accounts = (NSArray *)obj;
             account = accounts[0];
+            
+            it(@"should be successful", ^{
+                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
+            
+            it(@"should return an account", ^{
+                [[accounts should] haveCountOf:1];
+            });
+            
+            it(@"should return the account just created", ^{
+                [[theValue(account.bancBoxId) should] equal:theValue(newAccountBancBoxId)];
+            });
+            
             getClientAccountsUsingDictionaryDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             getClientAccountsUsingDictionaryDone = YES;
         }];
-        
-        it(@"should be successful", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
-        });
-        
-        it(@"should return an account", ^{
-            [[expectFutureValue(accounts) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] haveCountOf:1];
-        });
-        
-        it(@"should return the account just created", ^{
-            [[expectFutureValue(theValue(account.bancBoxId)) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:theValue(newAccountBancBoxId)];
-        });
-        
         POLL(getClientAccountsUsingDictionaryDone);
     });
     
@@ -135,24 +135,24 @@ describe(@"The BancBox API wrapper", ^{
             apiResponse = response;
             accounts = (NSArray *)obj;
             account = accounts[0];
+            
+            it(@"should be successful", ^{
+                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
+            
+            it(@"should return an account", ^{
+                [[accounts should] haveCountOf:1];
+            });
+            
+            it(@"should return the account just created", ^{
+                [[theValue(account.bancBoxId) should] equal:theValue(newAccountBancBoxId)];
+            });
+            
             getClientAccountsUsingConvenienceMethodDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             getClientAccountsUsingConvenienceMethodDone = YES;
-        }];
-        
-        it(@"should be successful", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
-        });
-        
-        it(@"should return an account", ^{
-            [[expectFutureValue(accounts) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] haveCountOf:1];
-        });
-        
-        it(@"should return the account just created", ^{
-            [[expectFutureValue(theValue(account.bancBoxId)) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:theValue(newAccountBancBoxId)];
-        });
-        
+        }];        
         POLL(getClientAccountsUsingConvenienceMethodDone);
     });
     
@@ -166,16 +166,14 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn updateAccount:params success:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
+            it(@"should be successful", ^{
+                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
             updateAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             updateAccountDone = YES;
         }];
-        
-        it(@"should be successful", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
-        });
-        
         POLL(updateAccountDone);
         
         /* the following test will not pass because BancBox is not including the "title" key in accounts returned by getClientAccounts
@@ -193,7 +191,7 @@ describe(@"The BancBox API wrapper", ^{
         }];
         
         it(@"should actually change the title", ^{
-            [[expectFutureValue(account.title) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:testAccountTitle];
+            [[account.title should] equal:testAccountTitle];
         });
         
         POLL(getClientAccountsUsingConvenienceMethodDone);
@@ -209,16 +207,14 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn linkExternalAccount:ppAccount accountReferenceId:paypalExternalAccountId bancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
+            it(@"should be successful", ^{
+                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
             linkExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             linkExternalAccountDone = YES;
-        }];
-        
-        it(@"should be successful", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
-        });
-        
+        }];        
         POLL(linkExternalAccountDone);
         
         __block BOOL retrieveLinkedExternalAccountDone = NO;
@@ -229,28 +225,28 @@ describe(@"The BancBox API wrapper", ^{
             apiResponse = response;
             retrievedAccounts = obj;
             account = retrievedAccounts.lastObject;
+            
+            it(@"should add the linked account", ^{
+                [[retrievedAccounts should] haveCountOf:1];
+            });
+            
+            it(@"should add a PayPal account", ^{
+                [[theValue([account isKindOfClass:[AFBBancBoxExternalAccountPaypal class]]) should] beTrue];
+            });
+            
+            it(@"should create an active account", ^{
+                [[account.externalAccountStatus should] equal:@"ACTIVE"];
+            });
+            
+            it(@"should create an account with the correct subscriber reference id", ^{
+                [[account.subscriberReferenceId should] equal:paypalExternalAccountId];
+            });
+            
             retrieveLinkedExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             retrieveLinkedExternalAccountDone = YES;
-        }];
-        
-        it(@"should add the linked account", ^{
-            [[expectFutureValue(retrievedAccounts) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] haveCountOf:1];
-        });
-        
-        it(@"should add a PayPal account", ^{
-            [[expectFutureValue(theValue([account isKindOfClass:[AFBBancBoxExternalAccountPaypal class]])) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] beTrue];
-        });
-        
-        it(@"should create an active account", ^{
-            [[expectFutureValue(account.externalAccountStatus) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:@"ACTIVE"];
-        });
-        
-        it(@"should create an account with the correct subscriber reference id", ^{
-            [[expectFutureValue(account.subscriberReferenceId) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:paypalExternalAccountId];
-        });
-        
+        }];        
         POLL(retrieveLinkedExternalAccountDone);
     });
 
@@ -269,7 +265,7 @@ describe(@"The BancBox API wrapper", ^{
         }];
         
         it(@"should be successful", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
+            [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
         });
         
         POLL(linkExternalAccountDone);
@@ -282,28 +278,28 @@ describe(@"The BancBox API wrapper", ^{
             apiResponse = response;
             retrievedAccounts = obj;
             account = retrievedAccounts.lastObject;
+            
+            it(@"should add the linked account", ^{
+                [[retrievedAccounts should] haveCountOf:2];
+            });
+            
+            it(@"should add a bank account", ^{
+                [[theValue([account isKindOfClass:[AFBBancBoxExternalAccountBank class]]) should] beTrue];
+            });
+            
+            it(@"should create an active account", ^{
+                [[account.externalAccountStatus should] equal:@"ACTIVE"];
+            });
+            
+            it(@"should create an account with the correct subscriber reference id", ^{
+                [[account.subscriberReferenceId should] equal:bankExternalAccountId];
+            });
+            
             retrieveLinkedExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             retrieveLinkedExternalAccountDone = YES;
         }];
-        
-        it(@"should add the linked account", ^{
-            [[expectFutureValue(retrievedAccounts) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] haveCountOf:2];
-        });
-        
-        it(@"should add a bank account", ^{
-            [[expectFutureValue(theValue([account isKindOfClass:[AFBBancBoxExternalAccountBank class]])) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] beTrue];
-        });
-        
-        it(@"should create an active account", ^{
-            [[expectFutureValue(account.externalAccountStatus) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:@"ACTIVE"];
-        });
-        
-        it(@"should create an account with the correct subscriber reference id", ^{
-            [[expectFutureValue(account.subscriberReferenceId) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:bankExternalAccountId];
-        });
-        
         POLL(retrieveLinkedExternalAccountDone);
     });
     
@@ -326,16 +322,14 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn linkExternalAccount:ccAccount accountReferenceId:ccExternalAccountId bancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
+            it(@"should be successful", ^{
+                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
             linkExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             linkExternalAccountDone = YES;
         }];
-        
-        it(@"should be successful", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
-        });
-        
         POLL(linkExternalAccountDone);
         
         __block BOOL retrieveLinkedExternalAccountDone = NO;
@@ -346,28 +340,28 @@ describe(@"The BancBox API wrapper", ^{
             apiResponse = response;
             retrievedAccounts = obj;
             account = retrievedAccounts.lastObject;
+            
+            it(@"should add the linked account", ^{
+                [[retrievedAccounts should] haveCountOf:3];
+            });
+            
+            it(@"should add a bank account", ^{
+                [[theValue([account isKindOfClass:[AFBBancBoxExternalAccountCardCredit class]]) should] beTrue];
+            });
+            
+            it(@"should create an active account", ^{
+                [[account.externalAccountStatus should] equal:@"ACTIVE"];
+            });
+            
+            it(@"should create an account with the correct subscriber reference id", ^{
+                [[account.subscriberReferenceId should] equal:ccExternalAccountId];
+            });
+            
             retrieveLinkedExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             retrieveLinkedExternalAccountDone = YES;
         }];
-        
-        it(@"should add the linked account", ^{
-            [[expectFutureValue(retrievedAccounts) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] haveCountOf:3];
-        });
-        
-        it(@"should add a bank account", ^{
-            [[expectFutureValue(theValue([account isKindOfClass:[AFBBancBoxExternalAccountCardCredit class]])) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] beTrue];
-        });
-        
-        it(@"should create an active account", ^{
-            [[expectFutureValue(account.externalAccountStatus) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:@"ACTIVE"];
-        });
-        
-        it(@"should create an account with the correct subscriber reference id", ^{
-            [[expectFutureValue(account.subscriberReferenceId) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:ccExternalAccountId];
-        });
-        
         POLL(retrieveLinkedExternalAccountDone);
     });
     
@@ -388,7 +382,6 @@ describe(@"The BancBox API wrapper", ^{
             apiResponse = response;
             retrieveLinkedExternalAccountDone = YES;
         }];
-        
         POLL(retrieveLinkedExternalAccountDone);
         
         __block BOOL updateLinkedExternalAccountDone = NO;
@@ -397,38 +390,34 @@ describe(@"The BancBox API wrapper", ^{
         // update account
         [conn updateLinkedExternalAccount:ppAccount bancBoxId:@"" subscriberReferenceId:account.subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
+            it(@"should be successful", ^{
+                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
             updateLinkedExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             updateLinkedExternalAccountDone = YES;
         }];
-        
-        it(@"should be successful", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:BancBoxResponseStatusDescriptionPass];
-        });
-        
         POLL(updateLinkedExternalAccountDone);
         
         
         __block BOOL retrieveLinkedExternalAccountAgainDone = NO;
-        
         // get account again to confirm update was successful
         [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             retrievedAccounts = obj;
             account = retrievedAccounts[0];
+            
+            // BancBox does not return the full PayPal ID in a query, so we just test the first four characters. Of course this means that the test accounts
+            // have to vary in the first four characters.
+            it(@"should update the linked account", ^{
+                [[[account.paypalId substringToIndex:4] should] equal:[BANCBOX_LINK_EXTERNAL_ACCOUNT_PAYPAL_ID_2 substringToIndex:4]];
+            });
             retrieveLinkedExternalAccountAgainDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             retrieveLinkedExternalAccountAgainDone = YES;
         }];
-        
-        // BancBox does not return the full PayPal ID in a query, so we just test the first four characters. Of course this means that the test accounts
-        // have to vary in the first four characters.
-        it(@"should update the linked account", ^{
-            [[expectFutureValue([account.paypalId substringToIndex:4]) shouldEventuallyBeforeTimingOutAfter(N_SEC_TO_POLL)] equal:[BANCBOX_LINK_EXTERNAL_ACCOUNT_PAYPAL_ID_2 substringToIndex:4]];
-        });
-        
         POLL(retrieveLinkedExternalAccountAgainDone);
     });
     
@@ -496,7 +485,7 @@ describe(@"The BancBox API wrapper", ^{
         }];
         
         it(@"should have a success status", ^{
-            [[expectFutureValue(apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:BancBoxResponseStatusDescriptionPass];
+            [[apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:BancBoxResponseStatusDescriptionPass];
         });
         
         POLL(cancelClientDone);
@@ -514,7 +503,7 @@ describe(@"The BancBox API wrapper", ^{
         }];
         
         it(@"should set the client's status to CANCELLED", ^{
-            [[expectFutureValue(updatedClient.clientStatus) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:BancBoxClientStatusCancelled];
+            [[updatedClient.clientStatus) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:BancBoxClientStatusCancelled];
         });
         
         POLL(getClientDone);
