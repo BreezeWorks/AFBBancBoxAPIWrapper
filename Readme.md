@@ -34,6 +34,26 @@ The library is set to use the BancBox sandbox server by default. To run against 
 # Tests #
 A series of Kiwi integration test specs can be found in __Example/AFBBancBoxAPIWrapperTests__. The asynchronous nature of the BancBox API calls makes the tests more verbose than usual.
 
+A private (gitignored) header file containing external bank/credit card/Paypal information is required to test the account creation routines. This file is called __AFBBancBoxPrivateExternalAccountData.h__ and must be visible to XCode for importing into specs. Its format is as follows:
+
+```
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_PAYPAL_ID @"gandalf@balrog.org"
+
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ROUTING_NUMBER @"111000222"
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ACCOUNT_NUMBER @"4444333222"
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_HOLDER_NAME @"Peregrin Took"
+
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_CC_NUMBER @"5544332299887766"
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_CC_EXPIRY_DATE @"09/09"
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_CC_TYPE @"MASTERCARD"
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_CC_NAME @"Sam Gamgee"
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_CC_CVV @"000"
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_CC_ADDRESS_LINE1 @"100 Main St"
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_CC_ADDRESS_CITY @"San Francisco"
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_CC_ZIPCODE @"94100"
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_CC_STATE @"CA"
+```
+
 # Contributors #
 AFBBancBoxAPIWrapper was written by Adam Block.
 
