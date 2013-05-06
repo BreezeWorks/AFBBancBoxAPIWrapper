@@ -17,4 +17,4 @@ DerivedData
 *.hmap
 
 # Authentication file for BancBox API
-AFBBancBoxPrivateAuthenticationItems.h
+AFBBancBoxPrivate*.h
