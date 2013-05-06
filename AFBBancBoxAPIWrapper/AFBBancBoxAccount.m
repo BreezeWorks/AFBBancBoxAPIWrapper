@@ -8,6 +8,16 @@
 
 #import "AFBBancBoxAccount.h"
 
+NSString * const BancBoxAccountTypeGeneral =    @"GENERAL";
+NSString * const BancBoxAccountTypeSpecial =    @"SPECIAL";
+NSString * const BancBoxAccountStatusOpen =     @"OPEN";
+NSString * const BancBoxAccountStatusClosed =   @"CLOSED";
+
 @implementation AFBBancBoxAccount
+
+- (NSString *)description
+{
+    return self.dictionary.description;
+}
 
 @end
