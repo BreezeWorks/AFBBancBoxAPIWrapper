@@ -38,6 +38,7 @@ A private (gitignored) header file containing external bank/credit card/Paypal i
 
 ```
 #define BANCBOX_LINK_EXTERNAL_ACCOUNT_PAYPAL_ID @"gandalf@balrog.org"
+#define BANCBOX_LINK_EXTERNAL_ACCOUNT_PAYPAL_ID_2 @"tomb@withywindle.come"
 
 #define BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ROUTING_NUMBER @"111000222"
 #define BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ACCOUNT_NUMBER @"4444333222"
