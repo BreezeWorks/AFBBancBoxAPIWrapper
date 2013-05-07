@@ -33,44 +33,41 @@ describe(@"The BancBox API wrapper", ^{
         client.ssn = @"555-55-5555";
         
         __block BOOL addClientDone = NO;        
-        __block AFBBancBoxResponse *apiResponse;
         
         [conn createClient:client.dictionaryForCreate success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             
             it(@"should get a result", ^{
-                [[apiResponse should] beNonNil];
+                [[response should] beNonNil];
             });
             
             it(@"should be successful", ^{
-                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+                [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
             });
             
             it(@"should return a BancBox ID", ^{
-                [[apiResponse.response[@"clientId"][@"bancBoxId"] should] beNonNil];
+                [[response.response[@"clientId"][@"bancBoxId"] should] beNonNil];
             });
             
             it(@"should return a subscriber reference ID equal to the one passed in" , ^{
-                [[apiResponse.response[@"clientId"][@"subscriberReferenceId"] should] equal:subscriberReferenceId];
+                [[response.response[@"clientId"][@"subscriberReferenceId"] should] equal:subscriberReferenceId];
             });
             
             if (BANCBOX_USE_PRODUCTION) {
                 it(@"should return a CIP status of UNVERIFIED", ^{
-                    [[apiResponse.response[@"cipStatus"] should] equal:BancBoxClientCipStatusUnverified];
+                    [[response.response[@"cipStatus"] should] equal:BancBoxClientCipStatusUnverified];
                 });
             } else {
                 it(@"should return a CIP status of IGNORED", ^{
-                    [[apiResponse.response[@"cipStatus"] should] equal:BancBoxClientCipStatusIgnored];
+                    [[response.response[@"cipStatus"] should] equal:BancBoxClientCipStatusIgnored];
                 });
             }
             
             it(@"should return a valid client status", ^{
-                [[apiResponse.response[@"clientStatus"] should] beValidClientStatus];
+                [[response.response[@"clientStatus"] should] beValidClientStatus];
             });
             
             addClientDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             addClientDone = YES;
         }];
         POLL(addClientDone);
@@ -84,16 +81,13 @@ describe(@"The BancBox API wrapper", ^{
         client.firstName = newFirstName;
         
         __block BOOL updateClientDone = NO;
-        __block AFBBancBoxResponse *apiResponse;
         
         [conn updateClient:client.dictionaryForUpdate success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             it(@"should be successful", ^{
-                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+                [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
             });
             updateClientDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             updateClientDone = YES;
         }];
         POLL(updateClientDone);
@@ -123,16 +117,13 @@ describe(@"The BancBox API wrapper", ^{
             NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId } };
             
             __block BOOL verifyClientDone = NO;
-            __block AFBBancBoxResponse *apiResponse;
             
             [conn verifyClient:params success:^(AFBBancBoxResponse *response, id obj) {
-                apiResponse = response;
                 it(@"should have a success status", ^{
-                    [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+                    [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
                 });
                 verifyClientDone = YES;
             } failure:^(AFBBancBoxResponse *response, id obj) {
-                apiResponse = response;
                 verifyClientDone = YES;
             }];
             POLL(verifyClientDone);
@@ -159,16 +150,13 @@ describe(@"The BancBox API wrapper", ^{
         NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId }, @"clientStatus": newStatus };
         
         __block BOOL updateClientStatusDone = NO;
-        __block AFBBancBoxResponse *apiResponse;
         
         [conn updateClientStatus:params success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             it(@"should have a success status", ^{
-                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+                [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
             });
             updateClientStatusDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             updateClientStatusDone = YES;
         }];
         POLL(updateClientStatusDone);
@@ -233,16 +221,13 @@ describe(@"The BancBox API wrapper", ^{
         NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId } };
         
         __block BOOL cancelClientDone = NO;
-        __block AFBBancBoxResponse *apiResponse;
         
         [conn cancelClient:params success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             it(@"should have a success status", ^{
-                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+                [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
             });
             cancelClientDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             cancelClientDone = YES;
         }];
         POLL(cancelClientDone);

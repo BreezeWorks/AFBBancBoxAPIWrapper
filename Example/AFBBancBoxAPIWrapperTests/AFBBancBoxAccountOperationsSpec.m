@@ -55,16 +55,14 @@ describe(@"The BancBox API wrapper", ^{
         __block BOOL openAccountDone = NO;
         
         NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId } };
-        __block AFBBancBoxResponse *apiResponse;
         __block AFBBancBoxInternalAccount *account;
         
         [conn openAccount:params success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             account = (AFBBancBoxInternalAccount *)obj;
             newAccountBancBoxId = account.bancBoxId;
             
             it(@"should be successful", ^{
-                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+                [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
             });
             
             it(@"should return an open account", ^{
@@ -85,7 +83,6 @@ describe(@"The BancBox API wrapper", ^{
             
             openAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             openAccountDone = YES;
         }];        
         POLL(openAccountDone);
@@ -96,17 +93,15 @@ describe(@"The BancBox API wrapper", ^{
     context(@"when getting the accounts for a client using a dictionary", ^{
         __block BOOL getClientAccountsUsingDictionaryDone = NO;
         NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId } };
-        __block AFBBancBoxResponse *apiResponse;
         __block NSArray *accounts;
         __block AFBBancBoxInternalAccount *account;
         
         [conn getClientAccounts:params success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             accounts = (NSArray *)obj;
             account = accounts[0];
             
             it(@"should be successful", ^{
-                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+                [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
             });
             
             it(@"should return an account", ^{
@@ -119,7 +114,6 @@ describe(@"The BancBox API wrapper", ^{
             
             getClientAccountsUsingDictionaryDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             getClientAccountsUsingDictionaryDone = YES;
         }];
         POLL(getClientAccountsUsingDictionaryDone);
@@ -127,17 +121,15 @@ describe(@"The BancBox API wrapper", ^{
     
     context(@"when getting the accounts for a client using a convenience method", ^{
         __block BOOL getClientAccountsUsingConvenienceMethodDone = NO;
-        __block AFBBancBoxResponse *apiResponse;
         __block NSArray *accounts;
         __block AFBBancBoxInternalAccount *account;
         
         [conn getClientAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             accounts = (NSArray *)obj;
             account = accounts[0];
             
             it(@"should be successful", ^{
-                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+                [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
             });
             
             it(@"should return an account", ^{
@@ -150,7 +142,6 @@ describe(@"The BancBox API wrapper", ^{
             
             getClientAccountsUsingConvenienceMethodDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             getClientAccountsUsingConvenienceMethodDone = YES;
         }];        
         POLL(getClientAccountsUsingConvenienceMethodDone);
@@ -162,16 +153,13 @@ describe(@"The BancBox API wrapper", ^{
     context(@"when updating an account", ^{
         __block BOOL updateAccountDone = NO;
         NSDictionary *params = @{ @"accountId": @{ @"bancBoxId": [NSNumber numberWithLongLong:newAccountBancBoxId] }, @"title": testAccountTitle };
-        __block AFBBancBoxResponse *apiResponse;
         
         [conn updateAccount:params success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             it(@"should be successful", ^{
-                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+                [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
             });
             updateAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             updateAccountDone = YES;
         }];
         POLL(updateAccountDone);
@@ -201,18 +189,15 @@ describe(@"The BancBox API wrapper", ^{
 // ---- Link external accounts
     context(@"when linking an external PayPal account", ^{
         __block BOOL linkExternalAccountDone = NO;
-        __block AFBBancBoxResponse *apiResponse;
         AFBBancBoxExternalAccountPaypal *ppAccount = [[AFBBancBoxExternalAccountPaypal alloc] initWithId:BANCBOX_LINK_EXTERNAL_ACCOUNT_PAYPAL_ID];
         NSString *paypalExternalAccountId = [NSString stringWithFormat:@"BancBoxTestExternalAccountPaypal-%i", (int)[[NSDate date] timeIntervalSince1970]];
         
         [conn linkExternalAccount:ppAccount accountReferenceId:paypalExternalAccountId bancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             it(@"should be successful", ^{
-                [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+                [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
             });
             linkExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             linkExternalAccountDone = YES;
         }];        
         POLL(linkExternalAccountDone);
@@ -222,7 +207,6 @@ describe(@"The BancBox API wrapper", ^{
         __block AFBBancBoxExternalAccount *account;
         
         [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             retrievedAccounts = obj;
             account = retrievedAccounts.lastObject;
             
@@ -231,7 +215,7 @@ describe(@"The BancBox API wrapper", ^{
             });
             
             it(@"should add a PayPal account", ^{
-                [[theValue([account isKindOfClass:[AFBBancBoxExternalAccountPaypal class]]) should] beTrue];
+                [[theValue([account isKindOfClass:[AFBBancBoxExternalAccountPaypal class]]) should] beYes];
             });
             
             it(@"should create an active account", ^{
@@ -244,7 +228,6 @@ describe(@"The BancBox API wrapper", ^{
             
             retrieveLinkedExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             retrieveLinkedExternalAccountDone = YES;
         }];        
         POLL(retrieveLinkedExternalAccountDone);
@@ -252,22 +235,17 @@ describe(@"The BancBox API wrapper", ^{
 
     context(@"when linking an external bank account", ^{
         __block BOOL linkExternalAccountDone = NO;
-        __block AFBBancBoxResponse *apiResponse;
         AFBBancBoxExternalAccountBank *bankAccount = [[AFBBancBoxExternalAccountBank alloc] initWithRoutingNumber:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ROUTING_NUMBER accountNumber:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ACCOUNT_NUMBER holderName:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_HOLDER_NAME bankAccountType:BancBoxExternalAccountBankTypeChecking];
         NSString *bankExternalAccountId = [NSString stringWithFormat:@"BancBoxTestExternalAccountBank-%i", (int)[[NSDate date] timeIntervalSince1970]];
         
         [conn linkExternalAccount:bankAccount accountReferenceId:bankExternalAccountId bancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
+            it(@"should be successful", ^{
+                [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
             linkExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             linkExternalAccountDone = YES;
         }];
-        
-        it(@"should be successful", ^{
-            [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
-        });
-        
         POLL(linkExternalAccountDone);
         
         __block BOOL retrieveLinkedExternalAccountDone = NO;
@@ -275,7 +253,6 @@ describe(@"The BancBox API wrapper", ^{
         __block AFBBancBoxExternalAccount *account;
         
         [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             retrievedAccounts = obj;
             account = retrievedAccounts.lastObject;
             
@@ -297,7 +274,6 @@ describe(@"The BancBox API wrapper", ^{
             
             retrieveLinkedExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             retrieveLinkedExternalAccountDone = YES;
         }];
         POLL(retrieveLinkedExternalAccountDone);
@@ -327,7 +303,6 @@ describe(@"The BancBox API wrapper", ^{
             });
             linkExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             linkExternalAccountDone = YES;
         }];
         POLL(linkExternalAccountDone);
@@ -337,7 +312,6 @@ describe(@"The BancBox API wrapper", ^{
         __block AFBBancBoxExternalAccount *account;
         
         [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             retrievedAccounts = obj;
             account = retrievedAccounts.lastObject;
             
@@ -359,7 +333,6 @@ describe(@"The BancBox API wrapper", ^{
             
             retrieveLinkedExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             retrieveLinkedExternalAccountDone = YES;
         }];
         POLL(retrieveLinkedExternalAccountDone);
@@ -374,12 +347,10 @@ describe(@"The BancBox API wrapper", ^{
         
         // get existing account for its subscriber ID
         [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             retrievedAccounts = obj;
             account = retrievedAccounts[0];
             retrieveLinkedExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             retrieveLinkedExternalAccountDone = YES;
         }];
         POLL(retrieveLinkedExternalAccountDone);
@@ -420,34 +391,31 @@ describe(@"The BancBox API wrapper", ^{
     
 // ---- Delete linked external accounts
     context(@"when deleting linked external accounts", ^{
-        __block AFBBancBoxResponse *apiResponse;
         __block BOOL retrieveLinkedExternalAccountDone = NO;
         __block NSArray *retrievedAccounts;
         
         // get existing linked accounts
         [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             retrievedAccounts = obj;
             retrieveLinkedExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             retrieveLinkedExternalAccountDone = YES;
         }];
         
         POLL(retrieveLinkedExternalAccountDone);
         
-        __block BOOL deleteAccountsDone;
+        __block NSMutableArray *deleteAccountsDoneBools = [NSMutableArray arrayWithArray:@[ [NSNumber numberWithBool:NO], [NSNumber numberWithBool:NO], [NSNumber numberWithBool:NO] ]];
         [retrievedAccounts enumerateObjectsUsingBlock:^(AFBBancBoxExternalAccount *account, NSUInteger idx, BOOL *stop) {
             [conn deleteLinkedExternalAccountForAccount:account success:^(AFBBancBoxResponse *response, id obj) {
                 it(@"should be successful", ^{
                     [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
                 });
-                if (idx == 2) deleteAccountsDone = YES;
+                deleteAccountsDoneBools[idx] = [NSNumber numberWithBool:YES];
             } failure:^(AFBBancBoxResponse *response, id obj) {
-                if (idx == 2) deleteAccountsDone = YES;
+                deleteAccountsDoneBools[idx] = [NSNumber numberWithBool:YES];
             }];
+            POLL([deleteAccountsDoneBools[idx] boolValue]);
         }];
-        POLL(deleteAccountsDone);
         
         __block BOOL retrieveLinkedExternalAccountAgainDone = NO;
         
@@ -486,13 +454,13 @@ describe(@"The BancBox API wrapper", ^{
         POLL(cancelClientDone);
     });
 
-// ---- Canceling a client with no open accounts
-    context(@"when canceling a client with no open accounts", ^{
+// ---- Closing accounts
+    context(@"when closing an internal account", ^{
         __block BOOL closeAccountDone = NO;
         
         NSDictionary *params = @{ @"accountId": @{ @"bancBoxId": [NSNumber numberWithLongLong:newAccountBancBoxId] } };
         [conn closeAccount:params success:^(AFBBancBoxResponse *response, id obj) {
-            it(@"closing the last account should be successful", ^{
+            it(@"closing the account should be successful", ^{
                 [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
             });
             closeAccountDone = YES;
@@ -501,6 +469,25 @@ describe(@"The BancBox API wrapper", ^{
         }];
         POLL(closeAccountDone);
         
+        __block BOOL getClientAccountsDone = NO;
+        __block NSArray *accounts;
+        __block AFBBancBoxInternalAccount *account;
+        
+        [conn getClientAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
+            accounts = (NSArray *)obj;
+            account = accounts[0];
+            it(@"the account's status should change to CLOSED", ^{
+                [[account.accountStatus should] equal:BancBoxAccountStatusClosed];
+            });
+            getClientAccountsDone = YES;
+        } failure:^(AFBBancBoxResponse *response, id obj) {
+            getClientAccountsDone = YES;
+        }];
+        POLL(getClientAccountsDone);
+    });
+    
+// ---- Canceling a client with no open accounts
+    context(@"when canceling a client with no open accounts", ^{
         __block BOOL cancelClientDone = NO;
         
         [conn cancelClientWithSubscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
