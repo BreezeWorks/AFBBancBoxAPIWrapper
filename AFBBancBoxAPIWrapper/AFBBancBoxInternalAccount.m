@@ -31,6 +31,8 @@
         self.accountStatus = dict[@"status"];
         self.accountType = dict[@"accountType"];
         self.title = dict[@"title"];
+        self.pendingBalance = [dict[@"pending_balance"] doubleValue];
+        self.currentBalance = [dict[@"current_balance"] doubleValue];
     }
     return self;
 }
@@ -38,6 +40,21 @@
 + (AFBBancBoxInternalAccount *)accountFromDictionary:(NSDictionary *)dict
 {
     return [[AFBBancBoxInternalAccount alloc] initWithAccountFromDictionary:dict];
+}
+
+- (NSDictionary *)dictionary
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:@{
+                           @"id": @{
+                                   @"bancBoxId": [NSNumber numberWithLongLong:self.bancBoxId],
+                                   @"subscriberReferenceId": self.subscriberReferenceId
+                                   } } ];
+    if (self.routingNumber) dict[@"routingNumber"] = self.routingNumber;
+    if (self.accountStatus) dict[@"status"] = self.accountStatus;
+    if (self.accountType) dict[@"accountType"] = self.accountType;
+    if (self.title) dict[@"title"] = self.title;
+
+    return dict;
 }
 
 - (NSDictionary *)idDictionary

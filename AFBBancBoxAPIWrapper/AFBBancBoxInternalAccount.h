@@ -16,6 +16,8 @@
 @property (nonatomic, strong) NSString *accountStatus;
 @property (nonatomic, strong) NSString *accountType;
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic) double currentBalance;
+@property (nonatomic) double pendingBalance;
 
 - (id)initWithAccountFromDictionary:(NSDictionary *)dict;
 + (AFBBancBoxInternalAccount *)accountFromDictionary:(NSDictionary *)dict;
