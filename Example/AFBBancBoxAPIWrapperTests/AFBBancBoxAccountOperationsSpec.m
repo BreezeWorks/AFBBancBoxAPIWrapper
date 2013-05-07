@@ -395,7 +395,6 @@ describe(@"The BancBox API wrapper", ^{
             });
             updateLinkedExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             updateLinkedExternalAccountDone = YES;
         }];
         POLL(updateLinkedExternalAccountDone);
@@ -404,7 +403,6 @@ describe(@"The BancBox API wrapper", ^{
         __block BOOL retrieveLinkedExternalAccountAgainDone = NO;
         // get account again to confirm update was successful
         [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             retrievedAccounts = obj;
             account = retrievedAccounts[0];
             
@@ -415,7 +413,6 @@ describe(@"The BancBox API wrapper", ^{
             });
             retrieveLinkedExternalAccountAgainDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             retrieveLinkedExternalAccountAgainDone = YES;
         }];
         POLL(retrieveLinkedExternalAccountAgainDone);
@@ -445,7 +442,6 @@ describe(@"The BancBox API wrapper", ^{
                 it(@"should be successful", ^{
                     [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
                 });
-                
                 if (idx == 2) deleteAccountsDone = YES;
             } failure:^(AFBBancBoxResponse *response, id obj) {
                 if (idx == 2) deleteAccountsDone = YES;
@@ -459,7 +455,7 @@ describe(@"The BancBox API wrapper", ^{
         [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
             retrievedAccounts = obj;
             it(@"the linked external accounts should actually be deleted", ^{
-                [[theValue(retrievedAccounts.count) should] equal:theValue(0)];
+                [[retrievedAccounts should] haveCountOf:0];
             });
             retrieveLinkedExternalAccountAgainDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
@@ -468,26 +464,59 @@ describe(@"The BancBox API wrapper", ^{
         POLL(retrieveLinkedExternalAccountAgainDone);
     });
     
-/*
+
 // ---- Canceling a client with existing accounts
-    context(@"when canceling a client", ^{
-        NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId } };
-        
+    context(@"when canceling a client with an existing account", ^{
         __block BOOL cancelClientDone = NO;
-        __block AFBBancBoxResponse *apiResponse;
         
-        [conn cancelClient:params success:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
+        [conn cancelClientWithSubscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
+            it(@"should have a success status", ^{
+                [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
+            
+            NSArray *openAccounts = obj;
+            it(@"the open account(s) should be returned", ^{
+                [[openAccounts should] haveCountOf:1];
+            });
+            
             cancelClientDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
-            apiResponse = response;
             cancelClientDone = YES;
         }];
+        POLL(cancelClientDone);
+    });
+
+// ---- Canceling a client with no open accounts
+    context(@"when canceling a client with no open accounts", ^{
+        __block BOOL closeAccountDone = NO;
         
-        it(@"should have a success status", ^{
-            [[apiResponse.statusDescription) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:BancBoxResponseStatusDescriptionPass];
-        });
+        NSDictionary *params = @{ @"accountId": @{ @"bancBoxId": [NSNumber numberWithLongLong:newAccountBancBoxId] } };
+        [conn closeAccount:params success:^(AFBBancBoxResponse *response, id obj) {
+            it(@"closing the last account should be successful", ^{
+                [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
+            closeAccountDone = YES;
+        } failure:^(AFBBancBoxResponse *response, id obj) {
+            closeAccountDone = YES;
+        }];
+        POLL(closeAccountDone);
         
+        __block BOOL cancelClientDone = NO;
+        
+        [conn cancelClientWithSubscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
+            it(@"should have a success status", ^{
+                [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
+            });
+            
+            NSArray *openAccounts = obj;
+            it(@"no accounts should be returned", ^{
+                [[openAccounts should] haveCountOf:0];      // this will fail due to a bug in BancBox that incorrectly returns a non-empty array
+            });
+            
+            cancelClientDone = YES;
+        } failure:^(AFBBancBoxResponse *response, id obj) {
+            cancelClientDone = YES;
+        }];
         POLL(cancelClientDone);
         
         __block BOOL getClientDone = NO;
@@ -497,19 +526,15 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn getClient:nextParams success:^(AFBBancBoxResponse *response, id obj) {
             updatedClient = (AFBBancBoxClient *)obj;
+            it(@"should set the client's status to CANCELLED", ^{
+                [[updatedClient.clientStatus should] equal:BancBoxClientStatusCancelled];
+            });
             getClientDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             getClientDone = YES;
         }];
-        
-        it(@"should set the client's status to CANCELLED", ^{
-            [[updatedClient.clientStatus) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:BancBoxClientStatusCancelled];
-        });
-        
         POLL(getClientDone);
     });
- */
-    
 });
 
 SPEC_END
