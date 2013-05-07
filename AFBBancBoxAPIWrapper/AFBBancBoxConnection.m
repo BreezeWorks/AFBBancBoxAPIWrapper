@@ -142,11 +142,6 @@
     return nil;
 }
 
-- (id)cancelClientObjectFromResponse:(AFBBancBoxResponse *)bbResponse
-{
-    return [NSNull null];
-}
-
 #pragma mark - cancelClient
 - (void)cancelClient:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
@@ -165,6 +160,11 @@
     [self cancelClient:params success:successBlock failure:failureBlock];
 }
 
+- (id)cancelClientObjectFromResponse:(AFBBancBoxResponse *)bbResponse
+{
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"openAccounts"] objectClass:[AFBBancBoxInternalAccount class] selector:@selector(accountFromDictionary:)];
+}
+
 #pragma mark - getSchedules
 - (void)getSchedules:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
@@ -173,7 +173,7 @@
 
 - (id)getSchedulesObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"schedules"] objectClass:[AFBBancBoxSchedule class] selector:@selector(scheduleFromDictionary:)];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"schedules"] objectClass:[AFBBancBoxSchedule class] selector:@selector(accountFromDictionary:)];
 }
 
 #pragma mark - getSchedules
