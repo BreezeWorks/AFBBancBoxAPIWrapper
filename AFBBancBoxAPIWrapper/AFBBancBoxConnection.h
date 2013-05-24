@@ -13,8 +13,8 @@
 @class AFBBancBoxExternalAccount;
 @class AFBBancBoxInternalAccount;
 
-#define BANCBOX_BASE_URL_PRODUCTION @"https://api.bancbox.com/v1/BBXPortRest/"
-#define BANCBOX_BASE_URL_SANDBOX @"https://sandbox-api.bancbox.com/v1/BBXPortRest/"
+#define BANCBOX_BASE_URL_PRODUCTION @"https://api.bancbox.com/v3/BBXPortRest/"
+#define BANCBOX_BASE_URL_SANDBOX @"https://sandbox-api.bancbox.com/v3/BBXPortRest/"
 
 // Set the following as appropriate for sandbox or production use
 #define BANCBOX_USE_PRODUCTION 0
