@@ -320,14 +320,14 @@
 		F94AD4131733395800160A31 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				F9F548ED173339D20032F86D /* AFBBancBoxConnection.h */,
+				F9F548EE173339D20032F86D /* AFBBancBoxConnection.m */,
 				F9F548E7173339D20032F86D /* AFBBancBoxAccount.h */,
 				F9F548E8173339D20032F86D /* AFBBancBoxAccount.m */,
 				F9F548E9173339D20032F86D /* AFBBancBoxAccountActivity.h */,
 				F9F548EA173339D20032F86D /* AFBBancBoxAccountActivity.m */,
 				F9F548EB173339D20032F86D /* AFBBancBoxClient.h */,
 				F9F548EC173339D20032F86D /* AFBBancBoxClient.m */,
-				F9F548ED173339D20032F86D /* AFBBancBoxConnection.h */,
-				F9F548EE173339D20032F86D /* AFBBancBoxConnection.m */,
 				F9F548EF173339D20032F86D /* AFBBancBoxExternalAccount.h */,
 				F9F548F0173339D20032F86D /* AFBBancBoxExternalAccount.m */,
 				F9F548F1173339D20032F86D /* AFBBancBoxExternalAccountBank.h */,

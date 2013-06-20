@@ -25,7 +25,17 @@ NSString* const kBancBoxMerchantOrganizationTypeGovernmentOrganization =        
     
     NSMutableDictionary *clientIdDict = [NSMutableDictionary dictionary];
     clientIdDict[@"bancBoxId"] = [NSNumber numberWithInteger:self.clientIdBancBoxId];
-    clientIdDict[@"subscriberReferenceId"] = self.clientIdSubscriberReferenceId;
+    clientIdDict[@"subscriberReferenceId"] = self.clientIdSubscriberReferenceId;    
+    dict[@"clientId"] = clientIdDict;
+    
+    [dict addEntriesFromDictionary:[self detailsDictionary]];
+    
+    return dict;
+}
+
+- (NSDictionary *)detailsDictionary
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     NSMutableDictionary *bankBusinessAccountDict = [NSMutableDictionary dictionary];
     bankBusinessAccountDict[@"routingNumber"] = self.bankBusinessAccount.routingNumber;
@@ -47,18 +57,18 @@ NSString* const kBancBoxMerchantOrganizationTypeGovernmentOrganization =        
     primaryContactDict[@"phone"] = self.primaryContactPhone;
     primaryContactDict[@"emailAddress"] = self.primaryContactEmailAddress;
     
-    dict[@"clientId"] = clientIdDict;
     dict[@"bankBusinessAccount"] = bankBusinessAccountDict;
     dict[@"merchantDetails"] = merchantDetailsDict;
     dict[@"primaryContact"] = primaryContactDict;
     
-    dict[@"createCredentials"] = [NSNumber numberWithBool:self.createCredentials];
-    dict[@"hasAcceptedCreditCards"] = [NSNumber numberWithBool:self.hasAcceptedCreditCards];
-    dict[@"visaAnnualSalesVolume"] = [NSNumber numberWithInteger:self.visaAnnualSalesVolume];
-    dict[@"organizationType"] = self.organizationType;
+    if (self.createCredentials) dict[@"createCredentials"] = [NSNumber numberWithBool:self.createCredentials];
+    if (self.hasAcceptedCreditCards) dict[@"hasAcceptedCreditCards"] = [NSNumber numberWithBool:self.hasAcceptedCreditCards];
+    if (self.visaAnnualSalesVolume) dict[@"visaAnnualSalesVolume"] = [NSNumber numberWithInteger:self.visaAnnualSalesVolume];
+    if (self.organizationType) dict[@"organizationType"] = self.organizationType;
     if (self.taxId) dict[@"taxId"] = self.taxId;
     
     return dict;
+
 }
 
 @end

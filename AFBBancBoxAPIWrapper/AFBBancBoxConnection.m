@@ -27,6 +27,7 @@
 #import "AFBBancBoxAccountActivity.h"
 #import "AFBBancBoxMerchantData.h"
 #import "AFBBancBoxPrivateAuthenticationItems.h"
+#import "AFBBancBoxPerson.h"
 
 @implementation AFBBancBoxConnection
 
@@ -330,7 +331,16 @@
     [self executeRequestForPath:@"collectFunds" params:params success:successBlock failure:failureBlock];
 }
 
-- (void)collectFundsFrom:(id)source method:(NSString *)method items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+- (NSDictionary *)itemDictionariesFromItems:(NSArray *)items
+{
+    NSMutableArray *itemDictionaries = [NSMutableArray array];
+    [items enumerateObjectsUsingBlock:^(AFBBancBoxPaymentItem *item, NSUInteger idx, BOOL *stop) {
+        [itemDictionaries addObject:item.dictionary];
+    }];
+    return itemDictionaries;
+}
+
+- (void)collectFundsFrom:(id)source destination:(AFBBancBoxAccount *)destination method:(NSString *)method items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
@@ -344,11 +354,21 @@
         params[@"source"] = @{ @"newExternalAccount": ((AFBBancBoxExternalAccount *)source).accountDetailsDictionary };
     }
     
-    NSMutableArray *itemsDict = [NSMutableArray array];
-    [items enumerateObjectsUsingBlock:^(AFBBancBoxPaymentItem *item, NSUInteger idx, BOOL *stop) {
-        [itemsDict addObject:item.dictionary];
-    }];
-    params[@"items"] = itemsDict;
+    params[@"destinationAccount"] = destination.dictionary;
+    params[@"items"] = [self itemDictionariesFromItems:items];
+    
+    [self collectFunds:params success:successBlock failure:failureBlock];
+}
+
+- (void)collectCreditCardFunds:(AFBBancBoxExternalAccountCard *)cardAccount destination:(AFBBancBoxAccount *)destination merchantId:(NSString *)merchantId items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    params[@"method"] = @"creditcard";
+    params[@"merchantId"] = merchantId;
+    params[@"source"] = @{ @"newExternalAccount": cardAccount.accountDetailsDictionary };
+    params[@"destinationAccount"] = destination.dictionary;
+    params[@"items"] = [self itemDictionariesFromItems:items];
     
     [self collectFunds:params success:successBlock failure:failureBlock];
 }
@@ -498,23 +518,27 @@
 
 - (id)deleteLinkedExternalAccountObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [NSNull null];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"activities"] objectClass:[AFBBancBoxAccountActivity class] selector:@selector(activityFromDictionary:)];
 }
 
-#pragma mark - assignMerchantId
-- (void)assignMerchantId:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+#pragma mark - createMerchant
+- (void)createMerchant:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
-    [self executeRequestForPath:@"assignMerchantId" params:params success:successBlock failure:failureBlock];
+    [self executeRequestForPath:@"createMerchant" params:params success:successBlock failure:failureBlock];
 }
 
-- (void)assignMerchantIdWithData:(AFBBancBoxMerchantData *)merchantData success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+- (void)createMerchantWithMerchantData:(AFBBancBoxMerchantData *)merchantData person:(AFBBancBoxPerson *)person success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
-    [self executeRequestForPath:@"assignMerchantId" params:[merchantData dictionary] success:successBlock failure:failureBlock];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addEntriesFromDictionary:person.dictionary];
+    [params addEntriesFromDictionary:merchantData.detailsDictionary];
+    [self createMerchant:params success:successBlock failure:failureBlock];
 }
 
-- (id)assignMerchantIdObjectFromResponse:(AFBBancBoxResponse *)bbResponse
+- (id)createMerchantObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [NSNull null];
+    NSString *merchantId = bbResponse.response[@"merchantId"];
+    return merchantId;
 }
 
 #pragma  mark - sendFunds

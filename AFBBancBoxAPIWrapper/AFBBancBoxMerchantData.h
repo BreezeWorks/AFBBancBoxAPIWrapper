@@ -40,5 +40,6 @@ extern NSString* const kBancBoxMerchantOrganizationTypeGovernmentOrganization;
 @property (nonatomic, strong) NSString *taxId;
 
 - (NSDictionary *)dictionary;
+- (NSDictionary *)detailsDictionary;
 
 @end

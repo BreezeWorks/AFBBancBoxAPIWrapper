@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 @class AFBBancBoxResponse;
 @class AFBBancBoxPayee;
+@class AFBBancBoxAccount;
 @class AFBBancBoxExternalAccount;
 @class AFBBancBoxInternalAccount;
 @class AFBBancBoxMerchantData;
@@ -113,7 +114,7 @@ While createClient will not fail if you do not provide the DOB and SSN, you will
 
 // The collectFunds method allows you to bring funds into your client's BancBox account from an external source, another BancBox acount, or credit card . Possible methods include funding using ACH, Credit Card and internal Book transfers. You can schedule funds movement in the future by specifying a date, give multiple dates for recurring payments, or have BancBox execute immediately by not specifying a date.
 - (void)collectFunds:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
-- (void)collectFundsFrom:(id)source method:(NSString *)method items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
+- (void)collectFundsFrom:(id)source toDestination:(AFBBancBoxAccount *)destination method:(NSString *)method items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
 
 // This method allows a subscriber to open a BancBox account under a specified client.
 - (void)openAccount:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;

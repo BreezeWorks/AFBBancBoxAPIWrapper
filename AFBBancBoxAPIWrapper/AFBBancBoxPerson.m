@@ -13,6 +13,7 @@
 - (NSDictionary *)dictionary
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
     if (self.firstName) dict[@"firstName"] = self.firstName;
     if (self.lastName) dict[@"lastName"] = self.lastName;
     if (self.middleInitial) dict[@"middleInitial"] = self.middleInitial;
@@ -26,7 +27,6 @@
     if (self.addressCity) address[@"city"] = self.addressCity;
     if (self.addressState) address[@"state"] = self.addressState;
     if (self.addressZipCode) address[@"zipcode"] = self.addressZipCode;
-    
     if ([address count] > 0) dict[@"address"] = address;
     
     return dict;

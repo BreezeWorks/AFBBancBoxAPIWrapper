@@ -20,4 +20,14 @@ NSString * const BancBoxAccountStatusClosed =   @"CLOSED";
     return self.dictionary.description;
 }
 
+- (NSDictionary *)dictionary
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    if (self.bancBoxId) dict[@"bancBoxId"] = self.bancBoxId;
+    if (self.subscriberReferenceId) dict[@"subscriberReferenceId"] = self.subscriberReferenceId;
+    
+    return dict;
+}
+
 @end
