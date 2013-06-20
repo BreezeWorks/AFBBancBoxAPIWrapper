@@ -7,6 +7,7 @@
 //
 
 #import "AFBBancBoxClient.h"
+#import "AFBBancBoxPerson.h"
 
 NSString * const BancBoxClientStatusActive =        @"ACTIVE";
 NSString * const BancBoxClientStatusInactive =      @"INACTIVE";
@@ -91,7 +92,7 @@ NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is not on
     if (self.lastName) dict[@"lastName"] = self.lastName;
     if (self.middleInitial) dict[@"middleInitial"] = self.middleInitial;
     if (self.ssn) dict[@"ssn"] = self.ssn;
-    if (self.dob) dict[@"dob"] = [[self birthdateDateFormatter] stringFromDate:self.dob];
+    if (self.dob) dict[@"dob"] = [[AFBBancBoxPerson birthdateDateFormatter] stringFromDate:self.dob];
     
     NSMutableDictionary *address = [NSMutableDictionary dictionary];
     if (self.addressLine1) address[@"line1"] = self.addressLine1;
@@ -120,13 +121,6 @@ NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is not on
 {
     NSSet *cipStatuses = [NSSet setWithObjects:BancBoxClientCipStatusVerified, BancBoxClientCipStatusRejected, BancBoxClientCipStatusIgnored, BancBoxClientCipStatusUnverified, nil];
     return [cipStatuses containsObject:status];
-}
-
-- (NSDateFormatter *)birthdateDateFormatter
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-DD"];
-    return dateFormatter;
 }
 
 @end

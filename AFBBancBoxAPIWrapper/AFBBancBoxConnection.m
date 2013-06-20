@@ -25,6 +25,7 @@
 #import "AFBBancBoxLinkedExternalAccount.h"
 #import "AFBBancBoxExternalAccountCard.h"
 #import "AFBBancBoxAccountActivity.h"
+#import "AFBBancBoxMerchantData.h"
 #import "AFBBancBoxPrivateAuthenticationItems.h"
 
 @implementation AFBBancBoxConnection
@@ -496,6 +497,22 @@
 }
 
 - (id)deleteLinkedExternalAccountObjectFromResponse:(AFBBancBoxResponse *)bbResponse
+{
+    return [NSNull null];
+}
+
+#pragma mark - assignMerchantId
+- (void)assignMerchantId:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+{
+    [self executeRequestForPath:@"assignMerchantId" params:params success:successBlock failure:failureBlock];
+}
+
+- (void)assignMerchantIdWithData:(AFBBancBoxMerchantData *)merchantData success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+{
+    [self executeRequestForPath:@"assignMerchantId" params:[merchantData dictionary] success:successBlock failure:failureBlock];
+}
+
+- (id)assignMerchantIdObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
     return [NSNull null];
 }

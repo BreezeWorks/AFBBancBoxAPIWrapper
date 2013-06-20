@@ -12,6 +12,8 @@
 @class AFBBancBoxPayee;
 @class AFBBancBoxExternalAccount;
 @class AFBBancBoxInternalAccount;
+@class AFBBancBoxMerchantData;
+@class AFBBancBoxPerson;
 
 #define BANCBOX_BASE_URL_PRODUCTION @"https://api.bancbox.com/v3/BBXPortRest/"
 #define BANCBOX_BASE_URL_SANDBOX @"https://sandbox-api.bancbox.com/v3/BBXPortRest/"
@@ -145,6 +147,10 @@ While createClient will not fail if you do not provide the DOB and SSN, you will
 // Use the delete linked external account API to delete a linked external account.
 - (void)deleteLinkedExternalAccount:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
 - (void)deleteLinkedExternalAccountForAccount:(AFBBancBoxExternalAccount *)account success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
+
+//This method allows creating a Merchant ID for each merchant, which is used internally for all the Credit Card transactions done by the client. This Merchant ID is a unique numeric code that has been assigned to the Merchant for Credit Cards transaction processing. The API call creates two accounts - the Merchant Settlement account and the Merchant Reserve Account by default for the Merchant. These accounts are system purpose accounts used for future enhancements and chargeback handling scenarios. The API also creates a Legal entity ID with Litle.
+- (void)createMerchant:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
+- (void)createMerchantWithMerchantData:(AFBBancBoxMerchantData *)merchantData person:(AFBBancBoxPerson *)person success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
 
 // Use the sendFunds API to send funds out of a BancBox client's account.
 - (void)sendFunds:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;

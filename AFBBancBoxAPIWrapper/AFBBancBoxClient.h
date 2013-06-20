@@ -43,7 +43,6 @@ extern NSString * const kBancBoxErrorMessageBadClientStatus;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *clientStatus;
 @property (nonatomic, strong) NSString *cipStatus;
-@property (nonatomic) NSString *foo;
 
 - (id)initWithClientFromDictionary:(NSDictionary *)dict;
 + (AFBBancBoxClient *)clientFromDictionary:(NSDictionary *)dict;

@@ -21,6 +21,10 @@
 		F94AD3FE1733394B00160A31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3DE1733394B00160A31 /* UIKit.framework */; };
 		F94AD3FF1733394B00160A31 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3E01733394B00160A31 /* Foundation.framework */; };
 		F94AD4071733394B00160A31 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F94AD4051733394B00160A31 /* InfoPlist.strings */; };
+		F97811D71772882E00B4239B /* AFBBancBoxPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = F97811D61772882E00B4239B /* AFBBancBoxPerson.m */; };
+		F97811D81772882E00B4239B /* AFBBancBoxPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = F97811D61772882E00B4239B /* AFBBancBoxPerson.m */; };
+		F99E4E071750109E00386320 /* AFBBancBoxMerchantData.m in Sources */ = {isa = PBXBuildFile; fileRef = F99E4E061750109E00386320 /* AFBBancBoxMerchantData.m */; };
+		F99E4E081750109E00386320 /* AFBBancBoxMerchantData.m in Sources */ = {isa = PBXBuildFile; fileRef = F99E4E061750109E00386320 /* AFBBancBoxMerchantData.m */; };
 		F9F548DE173339C00032F86D /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548CC173339C00032F86D /* AFHTTPClient.m */; };
 		F9F548DF173339C00032F86D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548CE173339C00032F86D /* AFHTTPRequestOperation.m */; };
 		F9F548E0173339C00032F86D /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548D0173339C00032F86D /* AFImageRequestOperation.m */; };
@@ -122,6 +126,10 @@
 		F94AD3FC1733394B00160A31 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F94AD4041733394B00160A31 /* AFBBancBoxAPIWrapperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AFBBancBoxAPIWrapperTests-Info.plist"; sourceTree = "<group>"; };
 		F94AD4061733394B00160A31 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F97811D51772882E00B4239B /* AFBBancBoxPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxPerson.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPerson.h; sourceTree = "<group>"; };
+		F97811D61772882E00B4239B /* AFBBancBoxPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxPerson.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPerson.m; sourceTree = "<group>"; };
+		F99E4E051750109E00386320 /* AFBBancBoxMerchantData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxMerchantData.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxMerchantData.h; sourceTree = "<group>"; };
+		F99E4E061750109E00386320 /* AFBBancBoxMerchantData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFBBancBoxMerchantData.m; path = ../AFBBancBoxAPIWrapper/AFBBancBoxMerchantData.m; sourceTree = "<group>"; };
 		F9F548CB173339C00032F86D /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		F9F548CC173339C00032F86D /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		F9F548CD173339C00032F86D /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -361,6 +369,10 @@
 				F9F54915173339D20032F86D /* AFBBancBoxVerificationQuestion.h */,
 				F9F54916173339D20032F86D /* AFBBancBoxVerificationQuestion.m */,
 				F91F227E17350E70007B489B /* AFBBancBoxPrivateAuthenticationItems.h */,
+				F99E4E051750109E00386320 /* AFBBancBoxMerchantData.h */,
+				F99E4E061750109E00386320 /* AFBBancBoxMerchantData.m */,
+				F97811D51772882E00B4239B /* AFBBancBoxPerson.h */,
+				F97811D61772882E00B4239B /* AFBBancBoxPerson.m */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -587,6 +599,8 @@
 				F9F5492C173339D20032F86D /* AFBBancBoxSchedule.m in Sources */,
 				F9F5492D173339D20032F86D /* AFBBancBoxVerificationAnswer.m in Sources */,
 				F9F5492E173339D20032F86D /* AFBBancBoxVerificationQuestion.m in Sources */,
+				F99E4E071750109E00386320 /* AFBBancBoxMerchantData.m in Sources */,
+				F97811D71772882E00B4239B /* AFBBancBoxPerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +611,8 @@
 				F9F54C1517340DAF0032F86D /* AFBBancBoxClientOperationsSpec.m in Sources */,
 				F9F54C171734151F0032F86D /* AFBBancBoxSpecValidEnumerationMatcher.m in Sources */,
 				F91F22831736EDB4007B489B /* AFBBancBoxAccountOperationsSpec.m in Sources */,
+				F99E4E081750109E00386320 /* AFBBancBoxMerchantData.m in Sources */,
+				F97811D81772882E00B4239B /* AFBBancBoxPerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
