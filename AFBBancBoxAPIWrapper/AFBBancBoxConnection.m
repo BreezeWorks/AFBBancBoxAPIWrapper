@@ -331,7 +331,7 @@
     [self executeRequestForPath:@"collectFunds" params:params success:successBlock failure:failureBlock];
 }
 
-- (NSDictionary *)itemDictionariesFromItems:(NSArray *)items
+- (NSArray *)itemDictionariesFromItems:(NSArray *)items
 {
     NSMutableArray *itemDictionaries = [NSMutableArray array];
     [items enumerateObjectsUsingBlock:^(AFBBancBoxPaymentItem *item, NSUInteger idx, BOOL *stop) {
@@ -340,7 +340,7 @@
     return itemDictionaries;
 }
 
-- (void)collectFundsFrom:(id)source destination:(AFBBancBoxAccount *)destination method:(NSString *)method items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+- (void)collectFundsFromSource:(AFBBancBoxAccount *)source destination:(AFBBancBoxAccount *)destination method:(NSString *)method items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
