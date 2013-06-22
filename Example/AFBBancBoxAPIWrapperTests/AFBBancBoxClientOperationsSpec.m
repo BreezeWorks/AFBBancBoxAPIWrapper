@@ -14,6 +14,7 @@
 #import "AFBBancBoxConnection.h"
 #import "AFBBancBoxClient.h"
 #import "AFBBancBoxResponse.h"
+#import "AFBBancBoxPerson.h"
 
 SPEC_BEGIN(ClientOperationsSpec)
 
@@ -29,7 +30,7 @@ describe(@"The BancBox API wrapper", ^{
         client.clientIdSubscriberReferenceId = subscriberReferenceId;
         client.firstName = @"Bilbo";
         client.lastName = @"Baggins";
-        client.dob = [[client birthdateDateFormatter] dateFromString:@"1972-01-04"];
+        client.dob = [[AFBBancBoxPerson birthdateDateFormatter] dateFromString:@"1972-01-04"];
         client.ssn = @"555-55-5555";
         
         __block BOOL addClientDone = NO;        
@@ -37,7 +38,7 @@ describe(@"The BancBox API wrapper", ^{
         [conn createClient:client.dictionaryForCreate success:^(AFBBancBoxResponse *response, id obj) {
             
             it(@"should get a result", ^{
-                [[response should] beNonNil];
+                [response shouldNotBeNil];
             });
             
             it(@"should be successful", ^{
@@ -45,7 +46,7 @@ describe(@"The BancBox API wrapper", ^{
             });
             
             it(@"should return a BancBox ID", ^{
-                [[response.response[@"clientId"][@"bancBoxId"] should] beNonNil];
+                [response.response[@"clientId"][@"bancBoxId"] shouldNotBeNil];
             });
             
             it(@"should return a subscriber reference ID equal to the one passed in" , ^{

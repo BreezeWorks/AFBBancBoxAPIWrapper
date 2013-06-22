@@ -18,6 +18,7 @@
 #import "AFBBancBoxExternalAccountCardCredit.h"
 #import "AFBBancBoxExternalAccountPaypal.h"
 #import "AFBBancBoxMerchantData.h"
+#import "AFBBancBoxPerson.h"
 
 // Note that in order for these tests to run you need to create a header file called "AFBBancBoxPrivateExternalAccountData.h"
 // containing account details for linked external accounts.
@@ -34,7 +35,7 @@ describe(@"The BancBox API wrapper", ^{
     client.clientIdSubscriberReferenceId = subscriberReferenceId;
     client.firstName = @"Bilbo";
     client.lastName = @"Baggins";
-    client.dob = [[client birthdateDateFormatter] dateFromString:@"1972-01-04"];
+    client.dob = [[AFBBancBoxPerson birthdateDateFormatter] dateFromString:@"1972-01-04"];
     client.ssn = @"555-55-5555";
     
     // first create a new client we can work with
@@ -187,6 +188,7 @@ describe(@"The BancBox API wrapper", ^{
     });
     
 // ---- Assign Merchant ID
+    /*
     context(@"when assigning a merchant ID", ^{
         __block BOOL assignMerchantIdDone = NO;
         
@@ -224,6 +226,7 @@ describe(@"The BancBox API wrapper", ^{
         
         POLL(assignMerchantIdDone);
     });
+     */
     
 // ---- Link external accounts
     context(@"when linking an external PayPal account", ^{

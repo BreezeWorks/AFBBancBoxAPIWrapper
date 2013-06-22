@@ -51,6 +51,5 @@ extern NSString * const kBancBoxErrorMessageBadClientStatus;
 - (NSDictionary *)dictionaryForUpdate;
 + (BOOL)clientStatusIsValid:(NSString *)status;
 + (BOOL)cipStatusIsValid:(NSString *)status;
-- (NSDateFormatter *)birthdateDateFormatter;
 
 @end
