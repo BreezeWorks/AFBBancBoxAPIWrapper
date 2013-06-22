@@ -19,7 +19,7 @@
     return self;
 }
 
-- (AFBBancBoxPayeePayPal *)payeeFromDictionary:(NSDictionary *)dict
++ (AFBBancBoxPayeePayPal *)payeeFromDictionary:(NSDictionary *)dict
 {
     return [[AFBBancBoxPayeePayPal alloc] initWithPayeeFromDictionary:dict];
 }
