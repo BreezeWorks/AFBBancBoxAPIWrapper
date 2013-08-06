@@ -296,7 +296,7 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
             retrievedAccounts = obj;
-            account = retrievedAccounts.lastObject;
+            account = retrievedAccounts[0];
             
             it(@"should add the linked account", ^{
                 [[retrievedAccounts should] haveCountOf:2];
@@ -355,7 +355,7 @@ describe(@"The BancBox API wrapper", ^{
         
         [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
             retrievedAccounts = obj;
-            account = retrievedAccounts.lastObject;
+            account = retrievedAccounts[0];
             
             it(@"should add the linked account", ^{
                 [[retrievedAccounts should] haveCountOf:3];
@@ -390,7 +390,7 @@ describe(@"The BancBox API wrapper", ^{
         // get existing account for its subscriber ID
         [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
             retrievedAccounts = obj;
-            account = retrievedAccounts[0];
+            account = retrievedAccounts[2];
             retrieveLinkedExternalAccountDone = YES;
         } failure:^(AFBBancBoxResponse *response, id obj) {
             retrieveLinkedExternalAccountDone = YES;
@@ -417,7 +417,7 @@ describe(@"The BancBox API wrapper", ^{
         // get account again to confirm update was successful
         [conn getClientLinkedExternalAccountsForBancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
             retrievedAccounts = obj;
-            account = retrievedAccounts[0];
+            account = retrievedAccounts.lastObject;
             
             // BancBox does not return the full PayPal ID in a query, so we just test the first four characters. Of course this means that the test accounts
             // have to vary in the first four characters.

@@ -595,7 +595,7 @@
             id obj = [self performSelector:selector withObject:bbResponse];
             successBlock(bbResponse, obj);
         } else {
-            NSLog(@"Error returned by BancBox for '%@': %@", path, bbResponse);
+            NSLog(@"Error returned by BancBox for '%@': %@. Params: %@", path, bbResponse, authenticatedParams);
             failureBlock(bbResponse, bbResponse.errors);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
