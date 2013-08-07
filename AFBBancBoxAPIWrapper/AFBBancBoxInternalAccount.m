@@ -44,11 +44,11 @@
 
 - (NSDictionary *)dictionary
 {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:@{
-                           @"id": @{
-                                   @"bancBoxId": [NSNumber numberWithLongLong:self.bancBoxId],
-                                   @"subscriberReferenceId": self.subscriberReferenceId
-                                   } } ];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if (self.bancBoxId > 0 || self.subscriberReferenceId) {
+        NSDictionary *idDict = [self idDictionary];
+        if (idDict.count > 0) dict[@"id"] = idDict;
+    }
     if (self.routingNumber) dict[@"routingNumber"] = self.routingNumber;
     if (self.accountStatus) dict[@"status"] = self.accountStatus;
     if (self.accountType) dict[@"accountType"] = self.accountType;
@@ -59,8 +59,10 @@
 
 - (NSDictionary *)idDictionary
 {
-    NSDictionary *dict = @{ @"bancBoxId": [NSNumber numberWithLongLong:self.bancBoxId], @"subscriberReferenceId": self.subscriberReferenceId };
-    return dict;
+    NSMutableDictionary *idDict = [NSMutableDictionary dictionary];
+    if (self.bancBoxId > 0) idDict[@"bancBoxId"] = [NSNumber numberWithLongLong:self.bancBoxId];
+    if (self.subscriberReferenceId) idDict[@"subscriberReferenceId"] = self.subscriberReferenceId;
+    return idDict;
 }
 
 @end
