@@ -42,8 +42,10 @@ describe(@"The BancBox API wrapper", ^{
     
     // first create a new client we can work with
     __block BOOL addClientDone = NO;
+    __block AFBBancBoxClient *createdClient;
     
-    [conn createClient:client.dictionaryForCreate success:^(AFBBancBoxResponse *response, id obj) {
+    [conn createClientWithObject:client success:^(AFBBancBoxResponse *response, id obj) {
+        createdClient = obj;
         addClientDone = YES;
     } failure:^(AFBBancBoxResponse *response, id obj) {
         addClientDone = YES;
@@ -54,10 +56,8 @@ describe(@"The BancBox API wrapper", ^{
     // Open account
     __block BOOL openAccountDone = NO;
     
-    NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId } };
-    
     __block AFBBancBoxInternalAccount *internalAccount;
-    [conn openAccount:params success:^(AFBBancBoxResponse *response, id obj) {
+    [conn openRoutableAccountForClient:createdClient title:@"Joe's Bank Account" success:^(AFBBancBoxResponse *response, id obj) {
         openAccountDone = YES;
         internalAccount = obj;
     } failure:^(AFBBancBoxResponse *response, id obj) {

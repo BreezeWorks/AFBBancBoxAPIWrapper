@@ -60,9 +60,27 @@ NSString * const BancBoxSendFundsMethodAch = @"ach";
     [self executeRequestForPath:@"createClient" params:params success:successBlock failure:failureBlock];
 }
 
+- (void)createClientWithObject:(AFBBancBoxClient *)client success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+{
+    NSDictionary *params = [client dictionaryForCreate];
+    [self executeRequestForPath:@"createClient" params:params success:successBlock failure:failureBlock];
+}
+
 - (id)createClientObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [NSNull null];
+    if (bbResponse.response[@"clientId"]) {
+        NSDictionary *resp = bbResponse.response;
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"clientId"] = [NSMutableDictionary dictionary];
+        if (resp[@"clientId"][@"bancBoxId"]) dict[@"clientId"][@"bancBoxId"] = resp[@"clientId"][@"bancBoxId"];
+        if (resp[@"clientId"][@"subscriberReferenceId"]) dict[@"clientId"][@"subscriberReferenceId"] = resp[@"clientId"][@"subscriberReferenceId"];
+        if (resp[@"clientStatus"]) dict[@"clientStatus"] = resp[@"clientStatus"];
+        if (resp[@"cipStatus"]) dict[@"cipStatus"] = resp[@"cipStatus"];
+        if (resp[@"username"]) dict[@"username"] = resp[@"username"];
+        AFBBancBoxClient *client = [[AFBBancBoxClient alloc] initWithClientFromDictionary:dict];
+        return client;
+    }
+    return nil;
 }
 
 #pragma mark - updateClient
@@ -307,7 +325,10 @@ NSString * const BancBoxSendFundsMethodAch = @"ach";
 
 - (id)verifyClientObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"questions"] objectClass:[AFBBancBoxVerificationQuestion class] selector:@selector(questionFromDictionary:)];
+    NSMutableDictionary *response = [NSMutableDictionary dictionary];
+    response[@"cipStatus"] = bbResponse.response[@"cipStatus"];
+    response[@"questions"] = [self objectsFromResponseDictionaries:bbResponse.response[@"questions"] objectClass:[AFBBancBoxVerificationQuestion class] selector:@selector(questionFromDictionary:)];
+    return response;
 }
 
 #pragma mark - submitVerificationAnswers
@@ -369,7 +390,6 @@ NSString * const BancBoxSendFundsMethodAch = @"ach";
 - (void)collectCreditCardFunds:(AFBBancBoxExternalAccountCard *)cardAccount destination:(AFBBancBoxAccount *)destination merchantId:(NSString *)merchantId items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
     params[@"method"] = @"creditcard";
     params[@"merchantId"] = merchantId;
     params[@"source"] = @{ @"newExternalAccount": cardAccount.accountDetailsDictionary };
@@ -387,7 +407,24 @@ NSString * const BancBoxSendFundsMethodAch = @"ach";
 #pragma mark - openAccount
 - (void)openAccount:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
-    [self executeRequestForPath:@"openAccount" params:params success:successBlock failure:failureBlock];
+    NSMutableDictionary *mParams = [params mutableCopy];
+    if (params[@"title"]) {
+        NSMutableString *original = [params[@"title"] mutableCopy];
+        [original replaceOccurrencesOfString:@"'" withString:@"" options:0 range:NSMakeRange(0, original.length)];
+        if (original.length > 45) [original deleteCharactersInRange:NSMakeRange(45, original.length - 45)];
+        mParams[@"title"] = original;
+    }
+    [self executeRequestForPath:@"openAccount" params:mParams success:successBlock failure:failureBlock];
+}
+
+- (void)openRoutableAccountForClient:(AFBBancBoxClient *)client title:(NSString *)title success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addEntriesFromDictionary:client.clientIdDictionary];
+    params[@"routable"] = @{ @"credits": @"YES", @"debits": @"YES" };
+    params[@"title"] = title;
+    
+    [self openAccount:params success:successBlock failure:failureBlock];
 }
 
 - (id)openAccountObjectFromResponse:(AFBBancBoxResponse *)bbResponse

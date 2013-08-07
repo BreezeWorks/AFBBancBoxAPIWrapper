@@ -76,12 +76,18 @@ NSString * const kBancBoxErrorMessageBadClientStatus = @"Client status is not on
 - (NSDictionary *)dictionaryForUpdate
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict addEntriesFromDictionary:[self clientIdDictionary]];
+    [dict addEntriesFromDictionary:[self detailsDictionary]];
+    
+    return dict;
+}
+
+- (NSDictionary *)clientIdDictionary
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"clientId"] = [NSMutableDictionary dictionary];
     if (self.clientIdSubscriberReferenceId) dict[@"clientId"][@"subscriberReferenceId"] = self.clientIdSubscriberReferenceId;
     if (self.clientIdBancBoxId) dict[@"clientId"][@"bancBoxId"] = [NSNumber numberWithInteger:self.clientIdBancBoxId];
-    
-    [dict addEntriesFromDictionary:[self detailsDictionary]];
-    
     return dict;
 }
 

@@ -49,6 +49,7 @@ extern NSString * const kBancBoxErrorMessageBadClientStatus;
 - (NSString *)description;
 - (NSDictionary *)dictionaryForCreate;
 - (NSDictionary *)dictionaryForUpdate;
+- (NSDictionary *)clientIdDictionary;
 + (BOOL)clientStatusIsValid:(NSString *)status;
 + (BOOL)cipStatusIsValid:(NSString *)status;
 

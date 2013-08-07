@@ -8,6 +8,7 @@
 //  Version 0.2 for BancBox API Version 1
 
 #import <Foundation/Foundation.h>
+@class AFBBancBoxClient;
 @class AFBBancBoxResponse;
 @class AFBBancBoxPayee;
 @class AFBBancBoxAccount;
@@ -51,6 +52,7 @@ While createClient will not fail if you do not provide the DOB and SSN, you will
 */
 
 - (void)createClient:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
+- (void)createClientWithObject:(AFBBancBoxClient *)client success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
 
 // Use the updateClient API to change the details of an already existing client.
 - (void)updateClient:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
@@ -126,6 +128,7 @@ While createClient will not fail if you do not provide the DOB and SSN, you will
 
 // This method allows a subscriber to open a BancBox account under a specified client.
 - (void)openAccount:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
+- (void)openRoutableAccountForClient:(AFBBancBoxClient *)client title:(NSString *)title success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
 
 // Use the linkExternalAccount API to link an external bank, card, or paypal account to a client.
 - (void)linkExternalAccount:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
