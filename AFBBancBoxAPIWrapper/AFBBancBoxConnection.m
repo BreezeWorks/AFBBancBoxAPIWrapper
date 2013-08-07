@@ -344,7 +344,7 @@ NSString * const BancBoxCollectPaymentMethodCreditCard = @"creditcard";
     return itemDictionaries;
 }
 
-- (void)collectFundsFromSource:(AFBBancBoxAccount *)source destination:(AFBBancBoxAccount *)destination method:(NSString *)method items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+- (void)collectFundsFromSource:(AFBBancBoxAccount *)source destination:(AFBBancBoxInternalAccount *)destination method:(NSString *)method items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
@@ -358,7 +358,7 @@ NSString * const BancBoxCollectPaymentMethodCreditCard = @"creditcard";
         params[@"source"] = @{ @"newExternalAccount": ((AFBBancBoxExternalAccount *)source).accountDetailsDictionary };
     }
     
-    params[@"destinationAccount"] = destination.dictionary;
+    params[@"destinationAccount"] = destination.idDictionary;
     params[@"items"] = [self itemDictionariesFromItems:items];
     
     [self collectFunds:params success:successBlock failure:failureBlock];
@@ -592,6 +592,7 @@ NSString * const BancBoxCollectPaymentMethodCreditCard = @"creditcard";
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:BANCBOX_SELECTED_SERVER_BASE_URL]];
     [client setParameterEncoding:AFJSONParameterEncoding];
     [client postPath:path parameters:authenticatedParams success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //[self requestAndResponseLoggerForOperation:operation];
         NSError *error;
         NSDictionary *responseDictionary = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
         AFBBancBoxResponse *bbResponse = [[AFBBancBoxResponse alloc] initWithResponse:responseDictionary];
@@ -604,6 +605,7 @@ NSString * const BancBoxCollectPaymentMethodCreditCard = @"creditcard";
             failureBlock(bbResponse, bbResponse.errors);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //[self requestAndResponseLoggerForOperation:operation];
         NSLog(@"Error while requesting BancBox '%@': %@", path, error.localizedDescription);
     }];
 }
@@ -633,5 +635,13 @@ NSString * const BancBoxCollectPaymentMethodCreditCard = @"creditcard";
     
     return objects;
 }
+
+- (void)requestAndResponseLoggerForOperation:(AFHTTPRequestOperation *)operation
+{
+    NSLog(@"%@ request to URL: %@", operation.request.HTTPMethod, operation.request.URL);
+    NSLog(@"Request body: %@", [[NSString alloc] initWithData:operation.request.HTTPBody encoding:NSUTF8StringEncoding]);
+    NSLog(@"Response body: %@", operation.responseString);
+}
+
 
 @end

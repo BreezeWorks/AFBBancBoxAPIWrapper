@@ -54,8 +54,10 @@ describe(@"The BancBox API wrapper", ^{
     
     NSDictionary *params = @{ @"clientId": @{ @"subscriberReferenceId": subscriberReferenceId } };
     
+    __block AFBBancBoxInternalAccount *internalAccount;
     [conn openAccount:params success:^(AFBBancBoxResponse *response, id obj) {
         openAccountDone = YES;
+        internalAccount = obj;
     } failure:^(AFBBancBoxResponse *response, id obj) {
         openAccountDone = YES;
     }];
@@ -68,10 +70,7 @@ describe(@"The BancBox API wrapper", ^{
     AFBBancBoxExternalAccountBank *bankAccount = [[AFBBancBoxExternalAccountBank alloc] initWithRoutingNumber:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ROUTING_NUMBER accountNumber:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ACCOUNT_NUMBER holderName:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_HOLDER_NAME bankAccountType:BancBoxExternalAccountBankTypeChecking];
     NSString *bankExternalAccountId = [NSString stringWithFormat:@"ExAcctBk-%i", (int)[[NSDate date] timeIntervalSince1970]];
     
-    __block AFBBancBoxLinkedExternalAccount *linkedAccount;
-    
     [conn linkExternalAccount:bankAccount accountReferenceId:bankExternalAccountId bancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
-        linkedAccount = obj;
         linkExternalAccountDone = YES;
     } failure:^(AFBBancBoxResponse *response, id obj) {
         linkExternalAccountDone = YES;
@@ -85,8 +84,7 @@ describe(@"The BancBox API wrapper", ^{
         AFBBancBoxExternalAccountBank *sourceAccount = [[AFBBancBoxExternalAccountBank alloc] initWithRoutingNumber:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ROUTING_NUMBER_2 accountNumber:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ACCOUNT_NUMBER_2 holderName:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_HOLDER_NAME_2 bankAccountType:BancBoxExternalAccountBankTypeChecking];
         
         AFBBancBoxPaymentItem *item = [[AFBBancBoxPaymentItem alloc] initWithPaymentAmount:100.0 scheduleDate:nil referenceId:@"123" memo:@"Untitled job"];
-        AFBBancBoxLinkedExternalAccount *destination = [[AFBBancBoxLinkedExternalAccount alloc] initWithAccountFromDictionary:@{ @"subscriberReferenceId": linkedAccount.subscriberReferenceId }];
-        [conn collectFundsFromSource:sourceAccount destination:destination method:BancBoxCollectPaymentMethodAch items:@[ item ] success:^(AFBBancBoxResponse *response, id obj) {
+        [conn collectFundsFromSource:sourceAccount destination:internalAccount method:BancBoxCollectPaymentMethodAch items:@[ item ] success:^(AFBBancBoxResponse *response, id obj) {
             __block NSArray *paymentItemStatuses = (NSArray *)obj;
             
             it(@"should be successful", ^{
