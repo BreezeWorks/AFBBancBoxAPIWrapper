@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F935C0BF17B2B407001C6ACA /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F935C0BE17B2B407001C6ACA /* NSDate+Utilities.m */; };
+		F935C0C517B2E061001C6ACA /* AFBBancBoxClientOperationsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54C1417340DAF0032F86D /* AFBBancBoxClientOperationsSpec.m */; };
+		F935C0C617B2E061001C6ACA /* AFBBancBoxAccountOperationsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F91F22821736EDB4007B489B /* AFBBancBoxAccountOperationsSpec.m */; };
 		F94AD3DF1733394B00160A31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3DE1733394B00160A31 /* UIKit.framework */; };
 		F94AD3E11733394B00160A31 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3E01733394B00160A31 /* Foundation.framework */; };
 		F94AD3E31733394B00160A31 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3E21733394B00160A31 /* CoreGraphics.framework */; };
@@ -23,8 +26,6 @@
 		F97811D71772882E00B4239B /* AFBBancBoxPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = F97811D61772882E00B4239B /* AFBBancBoxPerson.m */; };
 		F997B21517B1CCCF00DF6993 /* AFBBancBoxTransactionOperationsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F997B21317B1C40300DF6993 /* AFBBancBoxTransactionOperationsSpec.m */; };
 		F99E4E071750109E00386320 /* AFBBancBoxMerchantData.m in Sources */ = {isa = PBXBuildFile; fileRef = F99E4E061750109E00386320 /* AFBBancBoxMerchantData.m */; };
-		F9EA25E017B21F33008CCDDF /* AFBBancBoxClientOperationsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54C1417340DAF0032F86D /* AFBBancBoxClientOperationsSpec.m */; };
-		F9EA25E117B21F33008CCDDF /* AFBBancBoxAccountOperationsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F91F22821736EDB4007B489B /* AFBBancBoxAccountOperationsSpec.m */; };
 		F9F548DE173339C00032F86D /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548CC173339C00032F86D /* AFHTTPClient.m */; };
 		F9F548DF173339C00032F86D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548CE173339C00032F86D /* AFHTTPRequestOperation.m */; };
 		F9F548E0173339C00032F86D /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F548D0173339C00032F86D /* AFImageRequestOperation.m */; };
@@ -108,6 +109,8 @@
 		F91F227E17350E70007B489B /* AFBBancBoxPrivateAuthenticationItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFBBancBoxPrivateAuthenticationItems.h; path = ../AFBBancBoxAPIWrapper/AFBBancBoxPrivateAuthenticationItems.h; sourceTree = "<group>"; };
 		F91F22821736EDB4007B489B /* AFBBancBoxAccountOperationsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFBBancBoxAccountOperationsSpec.m; sourceTree = "<group>"; };
 		F91F228517370E48007B489B /* AFBBancBoxPrivateExternalAccountData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFBBancBoxPrivateExternalAccountData.h; sourceTree = "<group>"; };
+		F935C0BD17B2B407001C6ACA /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		F935C0BE17B2B407001C6ACA /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		F94AD3DB1733394B00160A31 /* AFBBancBoxAPIWrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AFBBancBoxAPIWrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F94AD3DE1733394B00160A31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F94AD3E01733394B00160A31 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -298,6 +301,8 @@
 			isa = PBXGroup;
 			children = (
 				F94AD4031733394B00160A31 /* Supporting Files */,
+				F935C0BD17B2B407001C6ACA /* NSDate+Utilities.h */,
+				F935C0BE17B2B407001C6ACA /* NSDate+Utilities.m */,
 				F9F54C191734E4A70032F86D /* AFBAsyncSpecPoller.h */,
 				F91F228517370E48007B489B /* AFBBancBoxPrivateExternalAccountData.h */,
 				F9F54C181734194D0032F86D /* AFBBancBoxSpecValidEnumerationMatcher.h */,
@@ -609,10 +614,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9EA25E017B21F33008CCDDF /* AFBBancBoxClientOperationsSpec.m in Sources */,
-				F9EA25E117B21F33008CCDDF /* AFBBancBoxAccountOperationsSpec.m in Sources */,
+				F935C0C517B2E061001C6ACA /* AFBBancBoxClientOperationsSpec.m in Sources */,
+				F935C0C617B2E061001C6ACA /* AFBBancBoxAccountOperationsSpec.m in Sources */,
 				F997B21517B1CCCF00DF6993 /* AFBBancBoxTransactionOperationsSpec.m in Sources */,
 				F9F54C171734151F0032F86D /* AFBBancBoxSpecValidEnumerationMatcher.m in Sources */,
+				F935C0BF17B2B407001C6ACA /* NSDate+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
