@@ -29,6 +29,10 @@
 #import "AFBBancBoxPrivateAuthenticationItems.h"
 #import "AFBBancBoxPerson.h"
 
+NSString * const BancBoxCollectPaymentMethodBook = @"book";
+NSString * const BancBoxCollectPaymentMethodAch = @"ach";
+NSString * const BancBoxCollectPaymentMethodCreditCard = @"creditcard";
+
 @implementation AFBBancBoxConnection
 
 /*
@@ -404,7 +408,8 @@
 
 - (id)linkExternalAccountObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [NSNull null];
+    AFBBancBoxLinkedExternalAccount *linkedAccount = [[AFBBancBoxLinkedExternalAccount alloc] initWithAccountFromDictionary:bbResponse.response[@"id"]];
+    return linkedAccount;
 }
 
 #pragma mark - updateAccount
