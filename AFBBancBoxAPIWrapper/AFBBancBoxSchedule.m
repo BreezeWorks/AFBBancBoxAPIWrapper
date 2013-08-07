@@ -36,7 +36,7 @@
 - (NSDate *)dateFromBancBoxDateString:(NSString *)dateString
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-DDTHH:MM:S"];
+    [dateFormatter setDateFormat:@"YYYY-MM-ddTHH:MM:S"];
     NSDate *date = [dateFormatter dateFromString:dateString];
     return date;
 }

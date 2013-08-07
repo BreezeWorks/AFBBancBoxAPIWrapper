@@ -35,7 +35,7 @@
 + (NSDateFormatter *)birthdateDateFormatter
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-DD"];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
     return dateFormatter;
 }
 
