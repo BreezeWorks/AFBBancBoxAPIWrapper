@@ -29,6 +29,10 @@
 #define BANCBOX_SELECTED_SERVER_BASE_URL BANCBOX_BASE_URL_SANDBOX
 #endif
 
+extern NSString * const BancBoxCollectPaymentMethodBook;
+extern NSString * const BancBoxCollectPaymentMethodAch;
+extern NSString * const BancBoxCollectPaymentMethodCreditCard;
+
 @interface AFBBancBoxConnection : NSObject
 
 typedef void(^ BancBoxResponseBlock)(AFBBancBoxResponse *response, id obj);
