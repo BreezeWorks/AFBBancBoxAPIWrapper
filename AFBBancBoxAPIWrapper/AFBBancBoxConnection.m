@@ -33,6 +33,8 @@ NSString * const BancBoxCollectPaymentMethodBook = @"book";
 NSString * const BancBoxCollectPaymentMethodAch = @"ach";
 NSString * const BancBoxCollectPaymentMethodCreditCard = @"creditcard";
 
+NSString * const BancBoxSendFundsMethodAch = @"ach";
+
 @implementation AFBBancBoxConnection
 
 /*
@@ -179,7 +181,7 @@ NSString * const BancBoxCollectPaymentMethodCreditCard = @"creditcard";
 
 - (id)getSchedulesObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    return [self objectsFromResponseDictionaries:bbResponse.response[@"schedules"] objectClass:[AFBBancBoxSchedule class] selector:@selector(accountFromDictionary:)];
+    return [self objectsFromResponseDictionaries:bbResponse.response[@"schedules"] objectClass:[AFBBancBoxSchedule class] selector:@selector(scheduleFromDictionary:)];
 }
 
 #pragma mark - getSchedules
@@ -467,16 +469,14 @@ NSString * const BancBoxCollectPaymentMethodCreditCard = @"creditcard";
 {
     NSDateFormatter *df = [AFBBancBoxAccountActivity activityDateFormatter];
     NSDictionary *params = @{
-                             @"accountId": @{
-                                     @"bancBoxId": [NSNumber numberWithInteger:account.bancBoxId], @"subscriberReferenceId": account.subscriberReferenceId
-                                     },
+                             @"accountId": [account idDictionary],
                              @"fromDate": [df stringFromDate:fromDate],
                              @"toDate": [df stringFromDate:toDate]
                              };
     [self getAccountActivity:params success:successBlock failure:failureBlock];
 }
 
-- (id)getAccountActivityForAccountObjectFromResponse:(AFBBancBoxResponse *)bbResponse
+- (id)getAccountActivityObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
     return [self objectsFromResponseDictionaries:bbResponse.response[@"activities"] objectClass:[AFBBancBoxAccountActivity class] selector:@selector(activityFromDictionary:)];
 }
@@ -547,10 +547,31 @@ NSString * const BancBoxCollectPaymentMethodCreditCard = @"creditcard";
 }
 
 #pragma  mark - sendFunds
-// The REST API here is confusing, so no convenience methods for the moment
 - (void)sendFunds:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
     [self executeRequestForPath:@"sendFunds" params:params success:successBlock failure:failureBlock];
+}
+
+- (void)sendFundsViaAchFromAccount:(AFBBancBoxInternalAccount *)sourceAccount toDestination:(AFBBancBoxExternalAccountBank *)destinationAccount items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"sourceAccount"] = sourceAccount.idDictionary;
+    params[@"method"] = BancBoxSendFundsMethodAch;
+    params[@"destinationAccount"] = @{ @"newExternalAccount": destinationAccount.accountDetailsDictionary };
+    params[@"items"] = [self itemDictionariesFromItems:items];
+    
+    [self sendFunds:params success:successBlock failure:failureBlock];
+}
+
+- (void)sendFundsViaAchFromAccount:(AFBBancBoxInternalAccount *)sourceAccount toLinkedExternalAccount:(AFBBancBoxLinkedExternalAccount *)linkedAccount items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"sourceAccount"] = sourceAccount.idDictionary;
+    params[@"method"] = BancBoxSendFundsMethodAch;
+    params[@"destinationAccount"] = @{ @"linkedExternalAccountId": linkedAccount.dictionary };
+    params[@"items"] = [self itemDictionariesFromItems:items];
+    
+    [self sendFunds:params success:successBlock failure:failureBlock];
 }
 
 - (id)sendFundsObjectFromResponse:(AFBBancBoxResponse *)bbResponse

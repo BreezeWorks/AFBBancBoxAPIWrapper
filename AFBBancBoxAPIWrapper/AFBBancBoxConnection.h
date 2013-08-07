@@ -12,7 +12,9 @@
 @class AFBBancBoxPayee;
 @class AFBBancBoxAccount;
 @class AFBBancBoxExternalAccount;
+@class AFBBancBoxExternalAccountBank;
 @class AFBBancBoxInternalAccount;
+@class AFBBancBoxLinkedExternalAccount;
 @class AFBBancBoxMerchantData;
 @class AFBBancBoxPerson;
 @class AFBBancBoxExternalAccountCard;
@@ -161,6 +163,8 @@ While createClient will not fail if you do not provide the DOB and SSN, you will
 
 // Use the sendFunds API to send funds out of a BancBox client's account.
 - (void)sendFunds:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
+- (void)sendFundsViaAchFromAccount:(AFBBancBoxInternalAccount *)sourceAccount toDestination:(AFBBancBoxExternalAccountBank *)destinationAccount items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
+- (void)sendFundsViaAchFromAccount:(AFBBancBoxInternalAccount *)sourceAccount toLinkedExternalAccount:(AFBBancBoxLinkedExternalAccount *)linkedAccount items:(NSArray *)items success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
 
 // Use to transfer funds from one BancBox account to another BancBox account.
 - (void)transferFunds:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
