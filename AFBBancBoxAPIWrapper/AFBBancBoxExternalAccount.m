@@ -44,13 +44,17 @@
 
 - (NSDictionary *)dictionary
 {
-    NSDictionary *dict = @{
-                           @"id": @{
-                                   @"bancBoxId": [NSNumber numberWithLongLong:self.bancBoxId],
-                                   @"subscriberReferenceId": self.subscriberReferenceId
-                                   },
-                           @"externalAccountStatus": self.externalAccountStatus
-                           };
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    if (self.bancBoxId > 0 || self.subscriberReferenceId) {
+        NSMutableDictionary *idDict = [NSMutableDictionary dictionary];
+        if (self.bancBoxId > 0) idDict[@"bancBoxId"] = [NSNumber numberWithLongLong:self.bancBoxId];
+        if (self.subscriberReferenceId) idDict[@"subscriberReferenceId"] = self.subscriberReferenceId;
+        dict[@"id"] = idDict;
+    }
+    
+    if (self.externalAccountStatus) dict[@"externalAccountStatus"] = self.externalAccountStatus;
+    
     return dict;
 }
 

@@ -26,12 +26,4 @@
     return [[AFBBancBoxLinkedExternalAccount alloc] initWithAccountFromDictionary:dict];
 }
 
-- (NSDictionary *)dictionary
-{
-    if (self.dictionary) return self.dictionary;
-    NSDictionary *dict = @{ @"bancBoxId": [NSNumber numberWithLongLong:self.bancBoxId], @"subscriberReferenceId": self.subscriberReferenceId };
-    self.dictionary = dict;
-    return dict;
-}
-
 @end

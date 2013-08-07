@@ -46,21 +46,22 @@
 
 - (NSDictionary *)dictionary
 {
-    if (self.dictionary) return self.dictionary;
-    NSDictionary *dict = @{
-                           @"referenceId": self.referenceId,
-                           @"amount": [NSNumber numberWithDouble:self.amount],
-                           @"memo": self.memo,
-                           @"scheduleDate": [[self paymentItemDateFormatter] stringFromDate:self.scheduleDate]
-                           };
-    self.dictionary = dict;
+    if (_dictionary) return _dictionary;
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if (self.referenceId) dict[@"referenceId"] = self.referenceId;
+    if (self.amount) dict[@"amount"] = [NSNumber numberWithDouble:self.amount];
+    if (self.memo) dict[@"memo"] = self.memo;
+    if (self.scheduleDate) dict[@"scheduleDate"] = [[self paymentItemDateFormatter] stringFromDate:self.scheduleDate];
+    
+    _dictionary = dict;
     return dict;
 }
 
 - (NSDateFormatter *)paymentItemDateFormatter
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-DD"];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
     return dateFormatter;
 }
 
