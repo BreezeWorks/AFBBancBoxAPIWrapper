@@ -8,26 +8,6 @@
 
 #import "AFNetworking.h"
 #import "AFBBancBoxConnection.h"
-#import "AFBBancBoxResponse.h"
-#import "AFBBancBoxClient.h"
-#import "AFBBancBoxSchedule.h"
-#import "AFBBancBoxPaymentItem.h"
-#import "AFBBancBoxPaymentItemStatus.h"
-#import "AFBBancBoxPayee.h"
-#import "AFBBancBoxPayeeACH.h"
-#import "AFBBancBoxPayeeBancBox.h"
-#import "AFBBancBoxPayeeCheck.h"
-#import "AFBBancBoxPayeePayPal.h"
-#import "AFBBancBoxVerificationQuestion.h"
-#import "AFBBancBoxVerificationAnswer.h"
-#import "AFBBancBoxAccount.h"
-#import "AFBBancBoxInternalAccount.h"
-#import "AFBBancBoxLinkedExternalAccount.h"
-#import "AFBBancBoxExternalAccountCard.h"
-#import "AFBBancBoxAccountActivity.h"
-#import "AFBBancBoxMerchantData.h"
-#import "AFBBancBoxPrivateAuthenticationItems.h"
-#import "AFBBancBoxPerson.h"
 
 NSString * const BancBoxCollectPaymentMethodBook = @"book";
 NSString * const BancBoxCollectPaymentMethodAch = @"ach";

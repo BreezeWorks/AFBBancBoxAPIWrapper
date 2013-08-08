@@ -8,17 +8,7 @@
 //  Version 0.2 for BancBox API Version 1
 
 #import <Foundation/Foundation.h>
-@class AFBBancBoxClient;
-@class AFBBancBoxResponse;
-@class AFBBancBoxPayee;
-@class AFBBancBoxAccount;
-@class AFBBancBoxExternalAccount;
-@class AFBBancBoxExternalAccountBank;
-@class AFBBancBoxInternalAccount;
-@class AFBBancBoxLinkedExternalAccount;
-@class AFBBancBoxMerchantData;
-@class AFBBancBoxPerson;
-@class AFBBancBoxExternalAccountCard;
+#import "AFBBancBox.h"
 
 #define BANCBOX_BASE_URL_PRODUCTION @"https://api.bancbox.com/v3/BBXPortRest/"
 #define BANCBOX_BASE_URL_SANDBOX @"https://sandbox-api.bancbox.com/v3/BBXPortRest/"

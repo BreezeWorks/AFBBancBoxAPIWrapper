@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F935C0BF17B2B407001C6ACA /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F935C0BE17B2B407001C6ACA /* NSDate+Utilities.m */; };
-		F935C0C717B2F4C0001C6ACA /* AFBBancBoxClientOperationsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54C1417340DAF0032F86D /* AFBBancBoxClientOperationsSpec.m */; };
-		F935C0C817B2F4C0001C6ACA /* AFBBancBoxAccountOperationsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F91F22821736EDB4007B489B /* AFBBancBoxAccountOperationsSpec.m */; };
+		F935C13117B350E4001C6ACA /* AFBBancBoxClientOperationsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F54C1417340DAF0032F86D /* AFBBancBoxClientOperationsSpec.m */; };
+		F935C13217B350E4001C6ACA /* AFBBancBoxAccountOperationsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F91F22821736EDB4007B489B /* AFBBancBoxAccountOperationsSpec.m */; };
 		F94AD3DF1733394B00160A31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3DE1733394B00160A31 /* UIKit.framework */; };
 		F94AD3E11733394B00160A31 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3E01733394B00160A31 /* Foundation.framework */; };
 		F94AD3E31733394B00160A31 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F94AD3E21733394B00160A31 /* CoreGraphics.framework */; };
@@ -111,6 +111,8 @@
 		F91F228517370E48007B489B /* AFBBancBoxPrivateExternalAccountData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFBBancBoxPrivateExternalAccountData.h; sourceTree = "<group>"; };
 		F935C0BD17B2B407001C6ACA /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		F935C0BE17B2B407001C6ACA /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		F935C12F17B336AB001C6ACA /* AFBBancBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AFBBancBox.h; path = ../AFBBancBoxAPIWrapper/AFBBancBox.h; sourceTree = "<group>"; };
+		F935C13017B3402A001C6ACA /* BWConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BWConstants.h; path = ../BWConstants.h; sourceTree = "<group>"; };
 		F94AD3DB1733394B00160A31 /* AFBBancBoxAPIWrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AFBBancBoxAPIWrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F94AD3DE1733394B00160A31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F94AD3E01733394B00160A31 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -301,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				F94AD4031733394B00160A31 /* Supporting Files */,
+				F935C13017B3402A001C6ACA /* BWConstants.h */,
 				F935C0BD17B2B407001C6ACA /* NSDate+Utilities.h */,
 				F935C0BE17B2B407001C6ACA /* NSDate+Utilities.m */,
 				F9F54C191734E4A70032F86D /* AFBAsyncSpecPoller.h */,
@@ -326,6 +329,7 @@
 		F94AD4131733395800160A31 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				F935C12F17B336AB001C6ACA /* AFBBancBox.h */,
 				F9F548ED173339D20032F86D /* AFBBancBoxConnection.h */,
 				F9F548EE173339D20032F86D /* AFBBancBoxConnection.m */,
 				F9F548E7173339D20032F86D /* AFBBancBoxAccount.h */,
@@ -614,8 +618,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F935C0C717B2F4C0001C6ACA /* AFBBancBoxClientOperationsSpec.m in Sources */,
-				F935C0C817B2F4C0001C6ACA /* AFBBancBoxAccountOperationsSpec.m in Sources */,
+				F935C13117B350E4001C6ACA /* AFBBancBoxClientOperationsSpec.m in Sources */,
+				F935C13217B350E4001C6ACA /* AFBBancBoxAccountOperationsSpec.m in Sources */,
 				F997B21517B1CCCF00DF6993 /* AFBBancBoxTransactionOperationsSpec.m in Sources */,
 				F9F54C171734151F0032F86D /* AFBBancBoxSpecValidEnumerationMatcher.m in Sources */,
 				F935C0BF17B2B407001C6ACA /* NSDate+Utilities.m in Sources */,
