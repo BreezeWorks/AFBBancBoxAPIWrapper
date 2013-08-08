@@ -35,10 +35,10 @@ describe(@"The BancBox API wrapper", ^{
     
     AFBBancBoxClient *client = [AFBBancBoxClient new];
     client.clientIdSubscriberReferenceId = subscriberReferenceId;
-    client.firstName = @"Bilbo";
-    client.lastName = @"Baggins";
-    client.dob = [[AFBBancBoxPerson birthdateDateFormatter] dateFromString:@"1972-01-04"];
-    client.ssn = @"555-55-5555";
+    client.firstName = BANCBOX_CLIENT_DATA_FIRSTNAME;
+    client.lastName = BANCBOX_CLIENT_DATA_LASTNAME;
+    client.dob = [[AFBBancBoxPerson birthdateDateFormatter] dateFromString:BANCBOX_CLIENT_DATA_DOB];
+    client.ssn = BANCBOX_CLIENT_DATA_SSN;
     
     // first create a new client we can work with
     __block BOOL addClientDone = NO;
@@ -52,6 +52,20 @@ describe(@"The BancBox API wrapper", ^{
     }];
     
     POLL(addClientDone);
+    
+    // verify client
+    // This is always failing and sets the client cipStatus to REJECTED which means we subsequently can't make payments
+    /*
+    __block BOOL verifyClientDone;
+    
+    [conn verifyClientWithBancBoxId:createdClient.clientIdBancBoxId subscriberReferenceId:createdClient.clientIdSubscriberReferenceId generateQuestions:NO success:^(AFBBancBoxResponse *response, id obj) {
+        verifyClientDone = YES;
+    } failure:^(AFBBancBoxResponse *response, id obj) {
+        verifyClientDone = YES;
+    }];
+    
+    POLL(verifyClientDone);
+    */
     
     // Open account
     __block BOOL openAccountDone = NO;
