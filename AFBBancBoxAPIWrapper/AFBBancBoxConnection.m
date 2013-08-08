@@ -315,12 +315,8 @@ NSString * const BancBoxSendFundsMethodAch = @"ach";
 
 - (id)verifyClientObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
-    NSMutableDictionary *response = [NSMutableDictionary dictionary];
-    if (bbResponse.response[@"cipStatus"]) {
-        response[@"cipStatus"] = bbResponse.response[@"cipStatus"];
-    }
-    response[@"questions"] = [self objectsFromResponseDictionaries:bbResponse.response[@"questions"] objectClass:[AFBBancBoxVerificationQuestion class] selector:@selector(questionFromDictionary:)];
-    return response;
+    NSArray *questions = [self objectsFromResponseDictionaries:bbResponse.response[@"questions"] objectClass:[AFBBancBoxVerificationQuestion class] selector:@selector(questionFromDictionary:)];
+    return questions;
 }
 
 #pragma mark - submitVerificationAnswers
