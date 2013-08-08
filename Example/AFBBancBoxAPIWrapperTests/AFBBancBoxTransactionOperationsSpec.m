@@ -55,8 +55,7 @@ describe(@"The BancBox API wrapper", ^{
     
     // verify client -- in Sandbox this will only work when the specific customer data is passed in createClient
     __block BOOL verifyClientDone;
-    
-    [conn verifyClientWithBancBoxId:createdClient.clientIdBancBoxId subscriberReferenceId:createdClient.clientIdSubscriberReferenceId generateQuestions:NO success:^(AFBBancBoxResponse *response, id obj) {
+    [conn verifyClient:createdClient generateQuestions:NO success:^(AFBBancBoxResponse *response, id obj) {
         verifyClientDone = YES;
     } failure:^(AFBBancBoxResponse *response, id obj) {
         verifyClientDone = YES;
@@ -85,7 +84,7 @@ describe(@"The BancBox API wrapper", ^{
     AFBBancBoxExternalAccountBank *bankAccount = [[AFBBancBoxExternalAccountBank alloc] initWithRoutingNumber:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ROUTING_NUMBER accountNumber:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ACCOUNT_NUMBER holderName:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_HOLDER_NAME bankAccountType:BancBoxExternalAccountBankTypeChecking];
     NSString *bankExternalAccountId = [NSString stringWithFormat:@"ExAcctBk-%i", (int)[[NSDate date] timeIntervalSince1970]];
     
-    [conn linkExternalAccount:bankAccount accountReferenceId:bankExternalAccountId bancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
+    [conn linkExternalAccount:bankAccount accountReferenceId:bankExternalAccountId forClient:createdClient success:^(AFBBancBoxResponse *response, id obj) {
         linkedAccount = obj;
         linkExternalAccountDone = YES;
     } failure:^(AFBBancBoxResponse *response, id obj) {

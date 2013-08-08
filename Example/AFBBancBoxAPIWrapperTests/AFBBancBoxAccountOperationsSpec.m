@@ -40,8 +40,10 @@ describe(@"The BancBox API wrapper", ^{
     
     // first create a new client we can work with
     __block BOOL addClientDone = NO;
+    __block AFBBancBoxClient *createdClient;
     
     [conn createClient:client.dictionaryForCreate success:^(AFBBancBoxResponse *response, id obj) {
+        createdClient = obj;
         addClientDone = YES;
     } failure:^(AFBBancBoxResponse *response, id obj) {
         addClientDone = YES;
@@ -234,7 +236,7 @@ describe(@"The BancBox API wrapper", ^{
         AFBBancBoxExternalAccountPaypal *ppAccount = [[AFBBancBoxExternalAccountPaypal alloc] initWithId:BANCBOX_LINK_EXTERNAL_ACCOUNT_PAYPAL_ID];
         NSString *paypalExternalAccountId = [NSString stringWithFormat:@"BancBoxTestExternalAccountPaypal-%i", (int)[[NSDate date] timeIntervalSince1970]];
         
-        [conn linkExternalAccount:ppAccount accountReferenceId:paypalExternalAccountId bancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
+        [conn linkExternalAccount:ppAccount accountReferenceId:paypalExternalAccountId forClient:createdClient success:^(AFBBancBoxResponse *response, id obj) {
             it(@"should be successful", ^{
                 [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
             });
@@ -280,7 +282,7 @@ describe(@"The BancBox API wrapper", ^{
         AFBBancBoxExternalAccountBank *bankAccount = [[AFBBancBoxExternalAccountBank alloc] initWithRoutingNumber:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ROUTING_NUMBER accountNumber:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_ACCOUNT_NUMBER holderName:BANCBOX_LINK_EXTERNAL_ACCOUNT_BANK_HOLDER_NAME bankAccountType:BancBoxExternalAccountBankTypeChecking];
         NSString *bankExternalAccountId = [NSString stringWithFormat:@"BancBoxTestExternalAccountBank-%i", (int)[[NSDate date] timeIntervalSince1970]];
         
-        [conn linkExternalAccount:bankAccount accountReferenceId:bankExternalAccountId bancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
+        [conn linkExternalAccount:bankAccount accountReferenceId:bankExternalAccountId forClient:createdClient success:^(AFBBancBoxResponse *response, id obj) {
             it(@"should be successful", ^{
                 [[response.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
             });
@@ -338,7 +340,7 @@ describe(@"The BancBox API wrapper", ^{
         
         NSString *ccExternalAccountId = [NSString stringWithFormat:@"BancBoxTestExAcctCreditCard-%i", (int)[[NSDate date] timeIntervalSince1970]];
         
-        [conn linkExternalAccount:ccAccount accountReferenceId:ccExternalAccountId bancBoxId:@"" subscriberReferenceId:subscriberReferenceId success:^(AFBBancBoxResponse *response, id obj) {
+        [conn linkExternalAccount:ccAccount accountReferenceId:ccExternalAccountId forClient:createdClient success:^(AFBBancBoxResponse *response, id obj) {
             apiResponse = response;
             it(@"should be successful", ^{
                 [[apiResponse.statusDescription should] equal:BancBoxResponseStatusDescriptionPass];
