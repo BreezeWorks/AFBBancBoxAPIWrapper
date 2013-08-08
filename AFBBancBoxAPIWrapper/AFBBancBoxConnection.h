@@ -26,9 +26,12 @@ extern NSString * const BancBoxCollectPaymentMethodBook;
 extern NSString * const BancBoxCollectPaymentMethodAch;
 extern NSString * const BancBoxCollectPaymentMethodCreditCard;
 
+typedef void(^ BancBoxResponseBlock)(AFBBancBoxResponse *response, id obj);
+
+
 @interface AFBBancBoxConnection : NSObject
 
-typedef void(^ BancBoxResponseBlock)(AFBBancBoxResponse *response, id obj);
++ (AFBBancBoxConnection *)sharedConnection;
 
 /*
 Use the createClient method to register a user (Client) onto the BancBox platform. Creating the client is the first step to tokenizing external account information, such as a credit card number, or for opening a bank account for your user, collecting money into the account, and sending money to billers or other users. It is important to note, for the purposes of tokenizing payment information, such as external bank account for ACH collections, or credit card information, you do not need to provide DOB or SSN information. However, when creating a bank account under the client, the following four fields are required:

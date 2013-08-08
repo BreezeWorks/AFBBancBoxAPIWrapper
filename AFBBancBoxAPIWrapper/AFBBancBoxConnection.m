@@ -34,6 +34,16 @@ NSString * const BancBoxSendFundsMethodAch = @"ach";
  
  */
 
++ (AFBBancBoxConnection *)sharedConnection {
+    static AFBBancBoxConnection *_sharedConnection = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedConnection = [AFBBancBoxConnection new];
+    });
+    
+    return _sharedConnection;
+}
+
 #pragma mark - createClient
 - (void)createClient:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
