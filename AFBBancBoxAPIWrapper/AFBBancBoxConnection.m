@@ -646,7 +646,10 @@ NSString * const BancBoxSendFundsMethodAch = @"ach";
         AFBBancBoxResponse *bbResponse = [[AFBBancBoxResponse alloc] initWithResponse:responseDictionary];
         if (bbResponse.status == BancBoxResponseStatusPass) {
             SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@ObjectFromResponse:", path]);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             id obj = [self performSelector:selector withObject:bbResponse];
+#pragma clang diagnostic pop
             successBlock(bbResponse, obj);
         } else {
             NSLog(@"Error returned by BancBox for '%@': %@. Params: %@", path, bbResponse, authenticatedParams);
@@ -676,7 +679,10 @@ NSString * const BancBoxSendFundsMethodAch = @"ach";
     
     if ([responseArray isKindOfClass:[NSArray class]]) {
         [responseArray enumerateObjectsUsingBlock:^(NSDictionary *responseObject, NSUInteger idx, BOOL *stop) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             id object = [objectClass performSelector:selector withObject:responseObject];
+#pragma clang diagnostic pop
             [objects addObject:object];
         }];
     }
