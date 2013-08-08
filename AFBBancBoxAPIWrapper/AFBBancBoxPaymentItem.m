@@ -61,7 +61,7 @@
 - (NSDateFormatter *)paymentItemDateFormatter
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     return dateFormatter;
 }
 
