@@ -108,7 +108,7 @@ While createClient will not fail if you do not provide the DOB and SSN, you will
  If verifyClient results in a validation error, please make sure these four fields were submitted with the correct information. If incorrect information was passed in the original createClient call, please use the updateClient API to correct the information for a client before calling verifyClient API again. If your account is enabled for out of wallet questions (optional for some subscribers) and the client cannot be uniquely identified, the system will return challenge questions to try and confirm the user's identity.
  */
 - (void)verifyClient:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
-- (void)verifyClientWithBancBoxId:(NSString *)bancBoxId subscriberReferenceId:(NSString *)subscriberReferenceId generateQuestions:(BOOL)generateQuestions success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
+- (void)verifyClientWithBancBoxId:(NSInteger)bancBoxId subscriberReferenceId:(NSString *)subscriberReferenceId generateQuestions:(BOOL)generateQuestions success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;
 
 // Use the submitVerificationAnswers API in conjunction with the verifyClient API to submit the answers for the challenge questions returned in the response for the verifyClient API in case the system was unable to uniquely identify the user based on the information available in the client record.
 - (void)submitVerificationAnswers:(NSDictionary *)params success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock;

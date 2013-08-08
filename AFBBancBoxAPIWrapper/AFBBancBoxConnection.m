@@ -307,16 +307,18 @@ NSString * const BancBoxSendFundsMethodAch = @"ach";
     [self executeRequestForPath:@"verifyClient" params:params success:successBlock failure:failureBlock];
 }
 
-- (void)verifyClientWithBancBoxId:(NSString *)bancBoxId subscriberReferenceId:(NSString *)subscriberReferenceId generateQuestions:(BOOL)generateQuestions success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+- (void)verifyClientWithBancBoxId:(NSInteger)bancBoxId subscriberReferenceId:(NSString *)subscriberReferenceId generateQuestions:(BOOL)generateQuestions success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
-    NSDictionary *params = @{ @"clientId": @{ @"bancBoxId": bancBoxId, @"subscriberReferenceId": subscriberReferenceId }, @"generateQuestions": [NSNumber numberWithBool:generateQuestions] };
+    NSDictionary *params = @{ @"clientId": @{ @"bancBoxId": [NSNumber numberWithInteger:bancBoxId], @"subscriberReferenceId": subscriberReferenceId }, @"generateQuestions": [NSNumber numberWithBool:generateQuestions] };
     [self verifyClient:params success:successBlock failure:failureBlock];
 }
 
 - (id)verifyClientObjectFromResponse:(AFBBancBoxResponse *)bbResponse
 {
     NSMutableDictionary *response = [NSMutableDictionary dictionary];
-    response[@"cipStatus"] = bbResponse.response[@"cipStatus"];
+    if (bbResponse.response[@"cipStatus"]) {
+        response[@"cipStatus"] = bbResponse.response[@"cipStatus"];
+    }
     response[@"questions"] = [self objectsFromResponseDictionaries:bbResponse.response[@"questions"] objectClass:[AFBBancBoxVerificationQuestion class] selector:@selector(questionFromDictionary:)];
     return response;
 }
