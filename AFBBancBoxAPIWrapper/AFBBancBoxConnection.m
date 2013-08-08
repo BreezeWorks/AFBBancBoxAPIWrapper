@@ -307,9 +307,11 @@ NSString * const BancBoxSendFundsMethodAch = @"ach";
     [self executeRequestForPath:@"verifyClient" params:params success:successBlock failure:failureBlock];
 }
 
-- (void)verifyClientWithBancBoxId:(NSInteger)bancBoxId subscriberReferenceId:(NSString *)subscriberReferenceId generateQuestions:(BOOL)generateQuestions success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+- (void)verifyClient:(AFBBancBoxClient *)client generateQuestions:(BOOL)generateQuestions success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
-    NSDictionary *params = @{ @"clientId": @{ @"bancBoxId": [NSNumber numberWithInteger:bancBoxId], @"subscriberReferenceId": subscriberReferenceId }, @"generateQuestions": [NSNumber numberWithBool:generateQuestions] };
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addEntriesFromDictionary:client.clientIdDictionary];
+    params[@"generateQuestions"] = [NSNumber numberWithBool:generateQuestions];
     [self verifyClient:params success:successBlock failure:failureBlock];
 }
 
@@ -427,9 +429,12 @@ NSString * const BancBoxSendFundsMethodAch = @"ach";
     [self executeRequestForPath:@"linkExternalAccount" params:params success:successBlock failure:failureBlock];
 }
 
-- (void)linkExternalAccount:(AFBBancBoxExternalAccount *)account accountReferenceId:(NSString *)accountReferenceId bancBoxId:(NSString *)bancBoxId subscriberReferenceId:(NSString *)subscriberReferenceId success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
+- (void)linkExternalAccount:(AFBBancBoxExternalAccount *)account accountReferenceId:(NSString *)accountReferenceId forClient:(AFBBancBoxClient *)client success:(BancBoxResponseBlock)successBlock failure:(BancBoxResponseBlock)failureBlock
 {
-    NSDictionary *params = @{ @"clientId": @{ @"bancBoxId": bancBoxId, @"subscriberReferenceId": subscriberReferenceId }, @"referenceId": accountReferenceId, @"account": [account accountDetailsDictionary] };
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addEntriesFromDictionary:client.clientIdDictionary];
+    params[@"referenceId"] = accountReferenceId;
+    params[@"account"] = [account accountDetailsDictionary];
     [self linkExternalAccount:params success:successBlock failure:failureBlock];
 }
 
