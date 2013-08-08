@@ -53,9 +53,7 @@ describe(@"The BancBox API wrapper", ^{
     
     POLL(addClientDone);
     
-    // verify client
-    // This is always failing and sets the client cipStatus to REJECTED which means we subsequently can't make payments
-    /*
+    // verify client -- in Sandbox this will only work when the specific customer data is passed in createClient
     __block BOOL verifyClientDone;
     
     [conn verifyClientWithBancBoxId:createdClient.clientIdBancBoxId subscriberReferenceId:createdClient.clientIdSubscriberReferenceId generateQuestions:NO success:^(AFBBancBoxResponse *response, id obj) {
@@ -65,7 +63,7 @@ describe(@"The BancBox API wrapper", ^{
     }];
     
     POLL(verifyClientDone);
-    */
+    
     
     // Open account
     __block BOOL openAccountDone = NO;
